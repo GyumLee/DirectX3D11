@@ -1,6 +1,9 @@
 # Directories
 .vs/
 x64/
+DirectX3D11/x64/
+Debug/
+DirectX3D11/Debug/
 bin/
 bin-int/
 
