@@ -1,6 +1,6 @@
 #pragma once
 
-/*READ ME *
+/*CAUTION *
 * * * * * *
 * + save all files before git
 *   => Shift+Ctrl+S in VS
@@ -80,6 +80,7 @@
 /*git commit *
 * * * * * * *
 * + type "git commit -m "desc""
+    - m = message
 *   - desc = description
 */
 
