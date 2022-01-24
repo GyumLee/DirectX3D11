@@ -1,2 +1,2 @@
 # DirectX3D11
-DirectX3D11
+Learning DirectX11 for 3D
