@@ -1,7 +1,7 @@
 #pragma once
 
-/*CAUTION *
-* * * * * *
+/*CAUTION&&TROUBLE SHOOTING *
+* * * * * * * * * * * * * * *
 * + save all files before git
 *   => Shift+Ctrl+S in VS
 */
@@ -99,4 +99,9 @@
 /*git pull *
 * * * * * * *
 * + type "git pull"
+*/
+
+/*git version *
+* * * * * * *
+* + type "git --version"
 */
