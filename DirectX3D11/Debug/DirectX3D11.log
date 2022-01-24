@@ -1,0 +1,5 @@
+﻿  TutorialScene.cpp
+D:\GitHub\ClassDx11\Dx3d\DirectX3D11\DirectX3D11\Scenes\TutorialScene.cpp(77,34): warning C4316: 'MatrixBuffer': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+D:\GitHub\ClassDx11\Dx3d\DirectX3D11\DirectX3D11\Scenes\TutorialScene.cpp(78,33): warning C4316: 'MatrixBuffer': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+D:\GitHub\ClassDx11\Dx3d\DirectX3D11\DirectX3D11\Scenes\TutorialScene.cpp(79,39): warning C4316: 'MatrixBuffer': 힙에 할당된 개체가 16에 맞추어져 있지 않을 수도 있습니다
+  DirectX3D11.vcxproj -> D:\GitHub\ClassDx11\Dx3d\DirectX3D11\Debug\DirectX3D11.exe

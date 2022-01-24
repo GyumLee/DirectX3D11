@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectX3D11", "DirectX3D11\DirectX3D11.vcxproj", "{AE37501F-E92E-4F16-A123-B3319199F36C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Profile|x64 = Profile|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Debug|x64.ActiveCfg = Debug|x64
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Debug|x64.Build.0 = Debug|x64
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Profile|x64.ActiveCfg = Release|x64
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Profile|x64.Build.0 = Release|x64
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Release|x64.ActiveCfg = Release|x64
+		{AE37501F-E92E-4F16-A123-B3319199F36C}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56119A70-0EAD-4164-B54F-C5A4D725BE20}
+	EndGlobalSection
+EndGlobal
