@@ -62,5 +62,5 @@ void BinaryWriter::Vector(Vector3 data)
 
 void BinaryWriter::Byte(void* data, UINT dataSize)
 {
-    WriteFile(file, &data, dataSize, &size, nullptr);
+    WriteFile(file, data, dataSize, &size, nullptr);
 }

@@ -2,8 +2,10 @@
 
 class Material
 {
-private:
+public:
 	string name;
+
+private:
 	string editName;
 
 	string file;
@@ -33,6 +35,8 @@ public:
 
 	void Save(string file);
 	void Load(string file);
+
+	MaterialBuffer::Data& GetData() { return buffer->data; }
 
 private:
 	void SelectMap(int type);

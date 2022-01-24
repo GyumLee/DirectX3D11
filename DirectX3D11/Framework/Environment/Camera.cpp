@@ -33,7 +33,7 @@ void Camera::GUIRender()
 		rotation = degree * XM_PI / 180.0f;
 		ImGui::DragFloat("MOVE SPEED", &moveSpeed, 1.0f, 0, 1000.0f);
 		ImGui::SliderFloat("ROTATION SPEED", &rotSpeed, 0.0f, 0.02f);
-		ImGui::DragFloat("WHEEL SPEED", &wheelSpeed, 1.0f, 0, 1000.0f);
+		ImGui::DragFloat("WHEEL SPEED", &wheelSpeed, 1.0f, 0, 2000.0f);
 
 		ImGui::TreePop();
 	}

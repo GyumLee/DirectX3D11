@@ -58,6 +58,12 @@
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dwrite.lib")
 
+//Assimp
+#include <Assimp/Importer.hpp>
+#include <Assimp/scene.h>
+#include <Assimp/postprocess.h>
+#pragma comment(lib, "assimp-vc142-mtd.lib")
+
 using namespace std;
 using namespace DirectX;
 
@@ -101,8 +107,9 @@ using namespace Utility;
 #include "Framework/Math/Transform.h"
 
 #include "Framework/Environment/Camera.h"
-#include "Framework/Environment/Grid.h"
 #include "Framework/Environment/Environment.h"
+
+#include "Framework/Model/ModelExporter.h"
 
 //Object Header
 #include "Objects/Basic/Cube.h"

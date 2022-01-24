@@ -9,7 +9,6 @@ Environment::Environment()
 	samplerState->SetState();
 
 	mainCamera = new Camera();
-	grid = new Grid();
 
 	lightBuffer = new LightBuffer();
 }
@@ -17,7 +16,6 @@ Environment::Environment()
 Environment::~Environment()
 {
 	delete mainCamera;
-	delete grid;
 
 	delete projectionBuffer;
 	delete lightBuffer;
@@ -37,7 +35,6 @@ void Environment::SetRender()
 
 void Environment::Render()
 {
-	grid->Render();
 }
 
 void Environment::GUIRender()
@@ -46,8 +43,6 @@ void Environment::GUIRender()
 	ImGui::Spacing();
 
 	mainCamera->GUIRender();
-	ImGui::Spacing();
-	grid->GUIRender();
 	ImGui::Spacing();
 
 	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth;

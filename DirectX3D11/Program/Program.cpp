@@ -6,23 +6,21 @@
 #include "Scenes/GridScene.h"
 #include "Scenes/TerrainScene.h"
 #include "Scenes/TerrainEditorScene.h"
+#include "Scenes/ModelExportScene.h"
 
 Program::Program()
 {
 	Create();
 
-	//scene = new TutorialScene();
-	//scene = new CubeScene();
-	//scene = new PlaneScene();
-	//scene = new GridScene();
-	//SceneManager::Get()->Create("Grid", new GridScene());
 	//SceneManager::Get()->Create("Cube", new CubeScene());
 	//SceneManager::Get()->Create("Plane", new PlaneScene());
-	//SceneManager::Get()->Create("Start", new TerrainScene());
-	SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
+	SceneManager::Get()->Create("Grid", new GridScene());
+	//SceneManager::Get()->Create("Terrain", new TerrainScene());
+	//SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
+	SceneManager::Get()->Create("ModelExport", new ModelExportScene());
 
-	SceneManager::Get()->Add("TerrainEditor");
-	//SceneManager::Get()->Add("Grid");
+	SceneManager::Get()->Add("Grid");
+	SceneManager::Get()->Add("ModelExport");
 }
 
 Program::~Program()

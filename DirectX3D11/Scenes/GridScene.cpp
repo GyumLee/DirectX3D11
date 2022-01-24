@@ -49,9 +49,10 @@ void GridScene::GUIRender()
 {
 	POINT size = { width, height };
 
-	if (ImGui::TreeNode("Grid"))
+	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth;
+	if (ImGui::TreeNodeEx("GRID SETTING", flags, "GRID SETTING"))
 	{
-		ImGui::SliderInt2("GridSize", (int*)&size, 0, MAX_VALUE);
+		ImGui::SliderInt2("SIZE", (int*)&size, 0, MAX_VALUE);
 
 		ImGui::TreePop();
 	}

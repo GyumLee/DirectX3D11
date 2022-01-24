@@ -6,7 +6,6 @@ private:
 	friend class Singleton;
 
 	Camera* mainCamera;
-	Grid* grid;
 
 	ProjectionBuffer* projectionBuffer;
 	Matrix projection;
