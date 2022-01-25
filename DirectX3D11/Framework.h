@@ -109,7 +109,11 @@ using namespace Utility;
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"
 
+#include "Framework/Model/ModelType.h"
 #include "Framework/Model/ModelExporter.h"
+#include "Framework/Model/ModelMesh.h"
+#include "Framework/Model/ModelReader.h"
+#include "Framework/Model/Model.h"
 
 //Object Header
 #include "Objects/Basic/Cube.h"

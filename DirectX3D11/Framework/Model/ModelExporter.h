@@ -9,15 +9,20 @@ private:
 	string name;
 
 	vector<Material*> materials;
+	vector<MeshData*> meshes;
 
 public:
 	ModelExporter(string name, string file);
 	~ModelExporter();
 
 	void ExportMaterial();
+	void ExportMesh();
 	
 private:
 	void ReadMaterial();
 	void WriteMaterial();
 	string CreateTexture(string file);
+
+	void ReadMesh(aiNode* node);
+	void WriteMesh();
 };

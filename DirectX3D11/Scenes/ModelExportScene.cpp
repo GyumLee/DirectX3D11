@@ -9,7 +9,7 @@ ModelExportScene::ModelExportScene()
 
 	exporter = new ModelExporter(name, file);
 	exporter->ExportMaterial();
-
+	exporter->ExportMesh();
 	delete exporter;
 }
 

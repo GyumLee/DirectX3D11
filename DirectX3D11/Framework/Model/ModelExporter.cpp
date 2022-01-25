@@ -21,6 +21,12 @@ void ModelExporter::ExportMaterial()
 	WriteMaterial();
 }
 
+void ModelExporter::ExportMesh()
+{
+	ReadMesh(scene->mRootNode);
+	WriteMesh();
+}
+
 void ModelExporter::ReadMaterial()
 {
 	for (UINT i = 0; i < scene->mNumMaterials; i++)
@@ -70,6 +76,22 @@ void ModelExporter::ReadMaterial()
 
 void ModelExporter::WriteMaterial()
 {
+	string savePath = "ModelData/Materials/" + name + ".mats";
+
+	CreateFolders(savePath);
+
+	BinaryWriter w(savePath);
+
+	w.UInt(materials.size());
+
+	for (Material* material : materials)
+	{
+		w.String(material->name);
+
+		delete material;
+	}
+
+	materials.clear();
 }
 
 string ModelExporter::CreateTexture(string file)
@@ -109,4 +131,79 @@ string ModelExporter::CreateTexture(string file)
 	}
 
 	return path;
+}
+
+void ModelExporter::ReadMesh(aiNode* node)
+{
+	for (UINT i = 0; i < node->mNumMeshes; i++)
+	{
+		MeshData* mesh = new MeshData();
+		mesh->name = node->mName.C_Str();
+
+		UINT index = node->mMeshes[i];
+		aiMesh* srcMesh = scene->mMeshes[index];
+
+		mesh->materialIndex = srcMesh->mMaterialIndex;
+
+		UINT startVertex = mesh->vertices.size();
+
+		mesh->vertices.resize(srcMesh->mNumVertices);
+		for (UINT v = 0; v < srcMesh->mNumVertices; v++)
+		{
+			ModelVertex vertex;
+			memcpy(&vertex.position, &srcMesh->mVertices[v], sizeof(Float3));
+
+			if(srcMesh->HasTextureCoords(0))
+				memcpy(&vertex.uv, &srcMesh->mTextureCoords[0][v], sizeof(Float2));
+
+			if(srcMesh->HasNormals())
+				memcpy(&vertex.normal, &srcMesh->mNormals[v], sizeof(Float3));
+
+			if (srcMesh->HasTangentsAndBitangents())
+				memcpy(&vertex.tangent, &srcMesh->mTangents[v], sizeof(Float3));
+
+			mesh->vertices[v] = vertex;
+		}
+
+		mesh->indices.resize(srcMesh->mNumFaces * 3);
+		for (UINT f = 0; f < srcMesh->mNumFaces; f++)
+		{
+			aiFace& face = srcMesh->mFaces[f];
+
+			for (UINT k = 0; k < face.mNumIndices; k++)
+			{
+				mesh->indices[f * 3 + k] = face.mIndices[k] + startVertex;
+			}
+		}
+
+		meshes.push_back(mesh);
+	}
+
+	for (UINT i = 0; i < node->mNumChildren; i++)
+		ReadMesh(node->mChildren[i]);
+}
+
+void ModelExporter::WriteMesh()
+{
+	string path = "ModelData/Meshes/" + name + ".mesh";
+
+	CreateFolders(path);
+
+	BinaryWriter w(path);
+
+	w.UInt(meshes.size());
+	for (MeshData* mesh : meshes)
+	{
+		w.String(mesh->name);
+		w.UInt(mesh->materialIndex);
+
+		w.UInt(mesh->vertices.size());
+		w.Byte(mesh->vertices.data(), sizeof(ModelVertex) * mesh->vertices.size());
+
+		w.UInt(mesh->indices.size());
+		w.Byte(mesh->indices.data(), sizeof(UINT) * mesh->indices.size());
+
+		delete mesh;
+	}
+	meshes.clear();
 }

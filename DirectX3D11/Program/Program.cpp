@@ -7,6 +7,7 @@
 #include "Scenes/TerrainScene.h"
 #include "Scenes/TerrainEditorScene.h"
 #include "Scenes/ModelExportScene.h"
+#include "Scenes/ModelRenderScene.h"
 
 Program::Program()
 {
@@ -17,10 +18,12 @@ Program::Program()
 	SceneManager::Get()->Create("Grid", new GridScene());
 	//SceneManager::Get()->Create("Terrain", new TerrainScene());
 	//SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
-	SceneManager::Get()->Create("ModelExport", new ModelExportScene());
+	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
+	SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
 
 	SceneManager::Get()->Add("Grid");
-	SceneManager::Get()->Add("ModelExport");
+	//SceneManager::Get()->Add("ModelExport");
+	SceneManager::Get()->Add("ModelRender");
 }
 
 Program::~Program()
