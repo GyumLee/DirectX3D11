@@ -1,7 +1,7 @@
 #pragma once
 
-/*CAUTION&&TROUBLE SHOOTING *
-* * * * * * * * * * * * * * *
+/*TROUBLE SHOOTING *
+* * * * * * * * * *
 * + save all files before git
 *   => Shift+Ctrl+S in VS
 */
@@ -75,6 +75,8 @@
 /*git reset *
 * * * * * * *
 * + type "git reset ."
+* + type "git reset HEAD~1"
+*   - 1 = commit num
 */
 
 /*git commit *
@@ -105,3 +107,19 @@
 * * * * * * *
 * + type "git --version"
 */
+
+/* * * * * *
+ * Git lfs *
+ * * * * * *
+ *install
+ * 1. https://git-lfs.github.com/
+ * 2. type "git lfs install"
+ * 3. type "git lfs track "*.fbx"
+ * 4. type "git add .gitattributes"
+ *
+ *uninstall
+ * 1. type "git lfs uninstall"
+ *
+ *TROUBLE SHOOTING
+ * + git clone at least once after "git lfs install"
+ */
