@@ -17,6 +17,7 @@ public:
 	void String(string data);
 	void WString(wstring data);
 	void XMFLOAT4(Float4 data);
+	void Matrix(XMMATRIX data);
 
 	void Vector(class Vector3 data);
 

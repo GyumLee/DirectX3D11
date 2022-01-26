@@ -3,7 +3,7 @@
 class ModelRenderScene : public Scene
 {
 private:
-	Model* model;
+	ModelBone* model;
 
 public:
 	ModelRenderScene();

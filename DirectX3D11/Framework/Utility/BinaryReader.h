@@ -17,6 +17,7 @@ public:
 	string String();
 	wstring WString();
 	Float4 XMFLOAT4();
+	XMMATRIX Matrix();
 
 	class Vector3 Vector();
 

@@ -55,6 +55,11 @@ void BinaryWriter::XMFLOAT4(Float4 data)
     WriteFile(file, &data, sizeof(Float4), &size, nullptr);
 }
 
+void BinaryWriter::Matrix(XMMATRIX data)
+{
+    WriteFile(file, &data, sizeof(XMMATRIX), &size, nullptr);
+}
+
 void BinaryWriter::Vector(Vector3 data)
 {
     WriteFile(file, &data, sizeof(Vector3), &size, nullptr);

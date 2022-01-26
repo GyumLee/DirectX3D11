@@ -5,7 +5,7 @@ ModelRenderScene::ModelRenderScene()
 {
 	string name = "Ninja";
 
-	model = new Model(name);
+	model = new ModelBone(name);
 }
 
 ModelRenderScene::~ModelRenderScene()

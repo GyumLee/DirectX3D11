@@ -7,6 +7,10 @@ private:
 
 	vector<Material*> materials;
 	vector<ModelMesh*> meshes;
+	vector<NodeData> nodes;
+	vector<BoneData> bones;
+
+	map<string, UINT> boneMap;
 
 public:
 	ModelReader(string name);
@@ -17,7 +21,12 @@ public:
 
 	void SetShader(wstring file);
 
+	vector<NodeData>& GetNodes() { return nodes; }
+	vector<BoneData>& GetBones() { return bones; }
+
 private:
 	void ReadMaterial();
 	void ReadMesh();
+
+	void SetMeshIndex(string name, int index);
 };

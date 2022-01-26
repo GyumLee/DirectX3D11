@@ -171,6 +171,9 @@
     <ClInclude Include="Framework\Model\Model.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Model\ModelBone.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -299,6 +302,9 @@
     <ClCompile Include="Framework\Model\Model.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Model\ModelBone.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -322,6 +328,7 @@
     <FxCompile Include="Shaders\Picking.hlsl" />
     <FxCompile Include="Shaders\TerrainSplatting.hlsl" />
     <FxCompile Include="Shaders\TerrainEditor.hlsl" />
+    <FxCompile Include="Shaders\ModelBone.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

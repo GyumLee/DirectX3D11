@@ -86,4 +86,38 @@ void ModelReader::ReadMesh()
 		delete[] vertices;
 		delete[] indices;
 	}
+
+	size = r.UInt();
+	nodes.resize(size);
+	for (NodeData& node : nodes)
+	{
+		node.index = r.Int();
+		node.name = r.String();
+		node.parent = r.Int();
+		node.transform = r.Matrix();
+
+		SetMeshIndex(node.name, node.index);
+	}
+
+	size = r.UInt();
+	bones.resize(size);
+	for (BoneData& bone : bones)
+	{
+		bone.name = r.String();
+		bone.index = r.Int();
+		bone.offset = r.Matrix();
+
+		boneMap[bone.name] = bone.index;
+	}
+}
+
+void ModelReader::SetMeshIndex(string name, int index)
+{
+	for (ModelMesh* mesh : meshes)
+	{
+		if (mesh->GetName() == name)
+		{
+			mesh->SetBoneIndex(index);
+		}
+	}
 }

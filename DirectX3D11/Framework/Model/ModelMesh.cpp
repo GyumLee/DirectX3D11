@@ -3,6 +3,7 @@
 ModelMesh::ModelMesh(string name)
 	:name(name), indexCount(0)
 {
+	boneIndexBuffer = new BoneIndexBuffer();
 }
 
 ModelMesh::~ModelMesh()
@@ -14,6 +15,8 @@ void ModelMesh::Render()
 {
 	mesh->IASet();
 	material->Set();
+
+	boneIndexBuffer->SetVSBuffer(11);
 
 	DC->DrawIndexed(indexCount, 0, 0);
 }

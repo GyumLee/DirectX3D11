@@ -1,3 +1,6 @@
+
+#define MAX_BONE 256
+
 //VertexLayout
 struct Vertex
 {
@@ -29,6 +32,16 @@ struct VertexUVNormalTangent
 	float2 uv : UV;
 	float3 normal : NORMAL;
 	float3 tangent : TANGENT;
+};
+
+struct VertexUVNormalTangentBlend
+{
+	float4 pos : POSITION;
+	float2 uv : UV;
+	float3 normal : NORMAL;
+	float3 tangent : TANGENT;
+	float4 indices : BLENDINDICES;
+	float4 weights : BLENDWEIGHTS;
 };
 
 //VertexShader ConstBuffer

@@ -11,6 +11,8 @@
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 
+#define MAX_BONE 256
+
 #define DELTA ImGui::GetIO().DeltaTime
 
 #define KEY_DOWN(k) ImGui::IsKeyPressed(k, false)
@@ -114,6 +116,7 @@ using namespace Utility;
 #include "Framework/Model/ModelMesh.h"
 #include "Framework/Model/ModelReader.h"
 #include "Framework/Model/Model.h"
+#include "Framework/Model/ModelBone.h"
 
 //Object Header
 #include "Objects/Basic/Cube.h"

@@ -69,6 +69,13 @@ Float4 BinaryReader::XMFLOAT4()
     return temp;
 }
 
+XMMATRIX BinaryReader::Matrix()
+{
+    XMMATRIX temp;
+    ReadFile(file, &temp, sizeof(XMMATRIX), &size, nullptr);
+    return temp;
+}
+
 Vector3 BinaryReader::Vector()
 {
     Vector3 temp;

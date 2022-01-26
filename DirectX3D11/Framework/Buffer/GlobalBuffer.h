@@ -136,3 +136,33 @@ public:
 	{
 	}
 };
+
+class BoneBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		Matrix bones[MAX_BONE];
+	}data;
+
+	BoneBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+		for (UINT i = 0; i < MAX_BONE; i++)
+			data.bones[i] = XMMatrixIdentity();
+	}
+};
+
+class BoneIndexBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		int index = 0;
+
+		float padding[3];
+	}data;
+
+	BoneIndexBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+	}
+};
