@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-	string name = "Ninja";
+	string name = "Muriel";
 
 	model = new ModelBone(name);
 }

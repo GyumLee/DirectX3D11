@@ -12,6 +12,7 @@
 #define WIN_HEIGHT 720
 
 #define MAX_BONE 256
+#define MAX_FRAME 256
 
 #define DELTA ImGui::GetIO().DeltaTime
 
@@ -117,6 +118,8 @@ using namespace Utility;
 #include "Framework/Model/ModelReader.h"
 #include "Framework/Model/Model.h"
 #include "Framework/Model/ModelBone.h"
+#include "Framework/Model/ModelClip.h"
+#include "Framework/Model/ModelAnimator.h"
 
 //Object Header
 #include "Objects/Basic/Cube.h"

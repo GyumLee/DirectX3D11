@@ -55,3 +55,37 @@ struct VertexWeights
 			weights[i] /= sum;
 	}
 };
+
+struct KeyTransform
+{
+	Float3 scale;
+	Float4 rotation;
+	Float3 position;
+};
+
+struct KeyFrame
+{
+	string boneName;
+	vector<KeyTransform> transforms;
+};
+
+struct ClipNode
+{
+	vector<KeyTransform> keyFrame;
+	aiString name;
+};
+
+struct Clip
+{
+	string name;
+
+	UINT frameCount;
+	float tickPerSecond;
+
+	vector<KeyFrame*> keyFrame;
+};
+
+struct ClipTransform
+{
+	Matrix transform[MAX_FRAME][MAX_BONE];
+};

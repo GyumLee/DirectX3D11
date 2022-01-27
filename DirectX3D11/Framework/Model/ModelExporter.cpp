@@ -28,6 +28,15 @@ void ModelExporter::ExportMesh()
 	WriteMesh();
 }
 
+void ModelExporter::ExportClip(string clipName)
+{
+	for (UINT i = 0; i < scene->mNumAnimations; i++)
+	{
+		Clip* clip = ReadClip(scene->mAnimations[i]);
+		WriteClip(clip, clipName, i);
+	}
+}
+
 void ModelExporter::ReadMaterial()
 {
 	for (UINT i = 0; i < scene->mNumMaterials; i++)
@@ -300,4 +309,142 @@ void ModelExporter::WriteMesh()
 		delete bone;
 	}
 	bones.clear();
+}
+
+Clip* ModelExporter::ReadClip(aiAnimation* animation)
+{
+	Clip* clip = new Clip();
+	clip->name = animation->mName.C_Str();
+	clip->tickPerSecond = (float)animation->mTicksPerSecond;
+	clip->frameCount = (UINT)(animation->mDuration) + 1;
+
+	vector<ClipNode> clipNodes;
+	for (UINT i = 0; i < animation->mNumChannels; i++)
+	{
+		aiNodeAnim* srcNode = animation->mChannels[i];
+
+		ClipNode node;
+		node.name = srcNode->mNodeName;
+
+		UINT keyCount = max(srcNode->mNumPositionKeys, srcNode->mNumRotationKeys);
+		keyCount = max(keyCount, srcNode->mNumScalingKeys);
+
+		KeyTransform transform;
+		for (UINT k = 0; k < keyCount; k++)
+		{
+			bool isFound = false;
+			float t = node.keyFrame.size();
+
+			if (k < srcNode->mNumPositionKeys &&
+				abs((float)srcNode->mPositionKeys[k].mTime - t <= FLT_EPSILON))//mTime == t
+			{
+				aiVectorKey key = srcNode->mPositionKeys[k];
+				memcpy_s(&transform.position, sizeof(Float3), &key.mValue, sizeof(aiVector3D));
+
+				isFound = true;
+			}
+			if (k < srcNode->mNumRotationKeys &&
+				abs((float)srcNode->mRotationKeys[k].mTime - t <= FLT_EPSILON))
+			{
+				aiQuatKey key = srcNode->mRotationKeys[k];
+				transform.rotation.x = (float)key.mValue.x;
+				transform.rotation.y = (float)key.mValue.y;
+				transform.rotation.z = (float)key.mValue.z;
+				transform.rotation.w = (float)key.mValue.w;
+
+				isFound = true;
+			}
+			if (k < srcNode->mNumScalingKeys &&
+				abs((float)srcNode->mScalingKeys[k].mTime - t <= FLT_EPSILON))
+			{
+				aiVectorKey key = srcNode->mScalingKeys[k];
+				memcpy_s(&transform.scale, sizeof(Float3), &key.mValue, sizeof(aiVector3D));
+
+				isFound = true;
+			}
+			if (isFound)
+				node.keyFrame.push_back(transform);
+		}
+
+		if (node.keyFrame.size() < clip->frameCount)
+		{
+			UINT count = clip->frameCount - node.keyFrame.size();
+			KeyTransform keyTransform = node.keyFrame.back();
+
+			for (UINT n = 0; n < count; n++)
+				node.keyFrame.push_back(keyTransform);
+		}
+
+		clipNodes.push_back(node);
+	}
+
+	ReadKeyFrame(clip, scene->mRootNode, clipNodes);
+
+	return clip;
+}
+
+void ModelExporter::ReadKeyFrame(Clip* clip, aiNode* node, vector<ClipNode>& clipNodes)
+{
+	KeyFrame* keyFrame = new KeyFrame();
+	keyFrame->boneName = node->mName.C_Str();
+
+	for (UINT i = 0; i < clip->frameCount; i++)
+	{
+		ClipNode* clipNode = nullptr;
+		for (ClipNode& temp : clipNodes)
+		{
+			if (temp.name == node->mName)
+			{
+				clipNode = &temp;
+				break;
+			}
+		}
+
+		KeyTransform keyTransform;
+		if (clipNode == nullptr)
+		{
+			Matrix transform(node->mTransformation[0]);
+			transform = XMMatrixTranspose(transform);
+
+			Vector3 S, R, T;
+			XMMatrixDecompose(&S.data, &R.data, &T.data, transform);
+			keyTransform.scale = S;
+			XMStoreFloat4(&keyTransform.rotation, R.data);
+			keyTransform.position = T;
+		}
+		else
+		{
+			keyTransform = clipNode->keyFrame[i];
+		}
+		keyFrame->transforms.push_back(keyTransform);
+	}
+	clip->keyFrame.push_back(keyFrame);
+
+	for (UINT i = 0; i < node->mNumChildren; i++)
+		ReadKeyFrame(clip, node->mChildren[i], clipNodes);
+}
+
+void ModelExporter::WriteClip(Clip* clip, string clipName, UINT index)
+{
+	string file = "ModelData/Clips/" + name + "/" + clipName + to_string(index) + ".clip";
+
+	CreateFolders(file);
+
+	BinaryWriter w(file);
+	w.String(clip->name);
+	w.UInt(clip->frameCount);
+	w.Float(clip->tickPerSecond);
+
+	w.UInt(clip->keyFrame.size());
+	for (KeyFrame* keyFrame : clip->keyFrame)
+	{
+		w.String(keyFrame->boneName);
+
+		w.UInt(keyFrame->transforms.size());
+		w.Byte(keyFrame->transforms.data(), sizeof(KeyTransform) * keyFrame->transforms.size());
+
+		delete keyFrame;
+	}
+
+	delete clip;
 }

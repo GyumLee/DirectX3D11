@@ -22,6 +22,7 @@ public:
 
 	void ExportMaterial();
 	void ExportMesh();
+	void ExportClip(string clipName);
 	
 private:
 	//Material
@@ -34,4 +35,9 @@ private:
 	void ReadNode(aiNode* node, int index, int parent);
 	void ReadBone(aiMesh* mesh, vector<VertexWeights>& vertexWeights);
 	void WriteMesh();
+
+	//Clip
+	Clip* ReadClip(aiAnimation* animation);
+	void ReadKeyFrame(Clip* clip, aiNode* node, vector<ClipNode>& clipNodes);
+	void WriteClip(Clip* clip, string clipName, UINT index);
 };
