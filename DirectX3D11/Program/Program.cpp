@@ -20,13 +20,13 @@ Program::Program()
 	//SceneManager::Get()->Create("Terrain", new TerrainScene());
 	//SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
 	SceneManager::Get()->Create("ModelExport", new ModelExportScene());
-	SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
-	//SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
+	//SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
+	SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
 
 	SceneManager::Get()->Add("Grid");
 	//SceneManager::Get()->Add("ModelExport");
-	SceneManager::Get()->Add("ModelRender");
-	//SceneManager::Get()->Add("ModelAnimator");
+	//SceneManager::Get()->Add("ModelRender");
+	SceneManager::Get()->Add("ModelAnimator");
 }
 
 Program::~Program()

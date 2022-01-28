@@ -5,7 +5,7 @@ TerrainEditor::TerrainEditor(UINT width, UINT height)
 	adjustValue(1.0f), editType(1), selectMap(0)
 {
 	material = new Material("TerrainEditor");
-	material->SetShader(L"TerrainEditor.hlsl");
+	material->SetShader(L"Terrain/TerrainEditor.hlsl");
 	material->Load("TextData/Materials/Dirt2.mat");
 
 	secondMap = Texture::Add("Textures/Landscape/Dirt.png");
@@ -462,7 +462,7 @@ void TerrainEditor::CreateComputeData()
 {
 	rayBuffer = new RayBuffer();
 
-	computeShader = Shader::AddCS(L"Picking.hlsl");
+	computeShader = Shader::AddCS(L"Terrain/Picking.hlsl");
 
 	size = indices.size() / 3;
 

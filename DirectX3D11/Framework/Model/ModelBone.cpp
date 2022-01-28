@@ -5,7 +5,7 @@ ModelBone::ModelBone(string name)
 	tag = name;
 
 	reader = new ModelReader(name);
-	reader->SetShader(L"ModelBone.hlsl");
+	reader->SetShader(L"Model/ModelBone.hlsl");
 
 	worldBuffer = new WorldBuffer();
 	boneBuffer = new BoneBuffer();

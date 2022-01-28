@@ -36,4 +36,5 @@ void ModelAnimatorRenderScene::PostRender()
 
 void ModelAnimatorRenderScene::GUIRender()
 {
+	modelAnimator->GUIRender();
 }

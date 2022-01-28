@@ -21,6 +21,8 @@ public:
 
 	void SetShader(wstring file);
 
+	int GetBone(string name);
+
 	vector<NodeData>& GetNodes() { return nodes; }
 	vector<BoneData>& GetBones() { return bones; }
 

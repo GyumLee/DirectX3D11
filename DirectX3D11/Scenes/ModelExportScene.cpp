@@ -4,7 +4,7 @@
 ModelExportScene::ModelExportScene()
 {
 	ModelExporter* exporter;
-	string name = "Muriel";
+	string name = "Ninja";
 	string file;
 	string clip;
 
@@ -14,7 +14,7 @@ ModelExportScene::ModelExportScene()
 	exporter->ExportMesh();
 	delete exporter;
 
-	/*clip = "Idle";
+	clip = "Idle";
 	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
 	exporter = new ModelExporter(name, file);
 	exporter->ExportClip(clip);
@@ -30,7 +30,7 @@ ModelExportScene::ModelExportScene()
 	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
 	exporter = new ModelExporter(name, file);
 	exporter->ExportClip(clip);
-	delete exporter;*/
+	delete exporter;
 }
 
 ModelExportScene::~ModelExportScene()

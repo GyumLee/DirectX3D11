@@ -4,7 +4,7 @@ Terrain::Terrain()
 	: width(10), height(10)
 {
 	material = new Material("Terrain");
-	material->SetShader(L"TerrainSplatting.hlsl");
+	material->SetShader(L"Terrain/TerrainSplatting.hlsl");
 
 	heightMap = Texture::Add("Textures/HeightMaps/TestHeightMap.png");
 	alphaMap = Texture::Add("Textures/HeightMaps/TestAlphaMap2.png");

@@ -34,6 +34,13 @@ void ModelReader::SetShader(wstring file)
 		material->SetShader(file);
 }
 
+int ModelReader::GetBone(string name)
+{
+	if (boneMap.count(name) == 0) return -1;
+
+	return boneMap[name];
+}
+
 void ModelReader::ReadMaterial()
 {
 	string path = "ModelData/Materials/" + name + ".mats";

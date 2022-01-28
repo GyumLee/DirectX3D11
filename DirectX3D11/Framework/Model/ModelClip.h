@@ -18,4 +18,6 @@ public:
 	void SetKeyFrame(string boneName, KeyFrame* keyFrame);
 
 	KeyFrame* GetKeyFrame(string boneName);
+	UINT GetFrameCount() { return frameCount; }
+	float GetTickPerSecond() { return tickPerSecond; }
 };

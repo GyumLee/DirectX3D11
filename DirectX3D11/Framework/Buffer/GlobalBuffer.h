@@ -166,3 +166,19 @@ public:
 	{
 	}
 };
+
+class FrameBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		int clip = 0;
+		UINT curFrame = 0;
+		float time = 0.0f;
+		float speed = 1.0f;
+	}data;
+
+	FrameBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+	}
+};

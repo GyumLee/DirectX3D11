@@ -341,12 +341,12 @@
     <FxCompile Include="Shaders\Texture.hlsl" />
     <FxCompile Include="Shaders\Grid.hlsl" />
     <FxCompile Include="Shaders\NormalMapping.hlsl" />
-    <FxCompile Include="Shaders\TerrainBrush.hlsl" />
-    <FxCompile Include="Shaders\ByteAddress.hlsl" />
-    <FxCompile Include="Shaders\Picking.hlsl" />
-    <FxCompile Include="Shaders\TerrainSplatting.hlsl" />
-    <FxCompile Include="Shaders\TerrainEditor.hlsl" />
-    <FxCompile Include="Shaders\ModelBone.hlsl" />
+    <FxCompile Include="Shaders\Terrain\Picking.hlsl" />
+    <FxCompile Include="Shaders\Terrain\TerrainBrush.hlsl" />
+    <FxCompile Include="Shaders\Terrain\TerrainEditor.hlsl" />
+    <FxCompile Include="Shaders\Terrain\TerrainSplatting.hlsl" />
+    <FxCompile Include="Shaders\Model\ModelBone.hlsl" />
+    <FxCompile Include="Shaders\Model\ModelAnimator.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />
