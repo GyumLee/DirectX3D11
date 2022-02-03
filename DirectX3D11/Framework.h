@@ -11,8 +11,8 @@
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 
-#define MAX_BONE 256
-#define MAX_FRAME 256
+#define MAX_BONE 1024
+#define MAX_FRAME 1024
 
 #define DELTA ImGui::GetIO().DeltaTime
 
@@ -24,6 +24,10 @@
 #define MOUSE_CLICK(k) ImGui::IsMouseClicked(k)
 #define MOUSE_DBCLICK(k) ImGui::IsMouseDoubleClicked(k)
 #define MOUSE_UP(k) ImGui::IsMouseReleased(k)
+
+#define LEFT_SHIFT (16)
+#define LEFT_CTRL (17)
+#define SPACE_BAR (32)
 
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()

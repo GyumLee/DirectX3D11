@@ -1,5 +1,5 @@
 
-#define MAX_BONE 256
+#define MAX_BONE 1024
 
 //VertexLayout
 struct Vertex

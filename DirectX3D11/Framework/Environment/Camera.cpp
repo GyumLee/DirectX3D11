@@ -78,12 +78,16 @@ void Camera::FreeMode()
 	{
 		if (MOUSE_PRESS(1))
 		{
-			if (KEY_PRESS('W')) position += Forward() * moveSpeed * DELTA;
-			if (KEY_PRESS('S')) position -= Forward() * moveSpeed * DELTA;
-			if (KEY_PRESS('D')) position += Right() * moveSpeed * DELTA;
-			if (KEY_PRESS('A')) position -= Right() * moveSpeed * DELTA;
-			if (KEY_PRESS('E')) position += Up() * moveSpeed * DELTA;
-			if (KEY_PRESS('Q')) position -= Up() * moveSpeed * DELTA;
+			float speed = moveSpeed;
+			if (KEY_PRESS(LEFT_SHIFT)) speed *= 2.0f;
+			if (KEY_PRESS(LEFT_CTRL)) speed *= 0.5f;
+
+			if (KEY_PRESS('W')) position += Forward() * speed * DELTA;
+			if (KEY_PRESS('S')) position -= Forward() * speed * DELTA;
+			if (KEY_PRESS('D')) position += Right() * speed * DELTA;
+			if (KEY_PRESS('A')) position -= Right() * speed * DELTA;
+			if (KEY_PRESS('E')) position += Up() * speed * DELTA;
+			if (KEY_PRESS('Q')) position -= Up() * speed * DELTA;
 
 			ImVec2 delta = ImGui::GetIO().MouseDelta;
 			rotation.x += delta.y * rotSpeed;
