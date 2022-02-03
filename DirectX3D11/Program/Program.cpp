@@ -9,6 +9,7 @@
 #include "Scenes/ModelExportScene.h"
 #include "Scenes/ModelRenderScene.h"
 #include "Scenes/ModelAnimatorRenderScene.h"
+#include "Scenes/CharacterScene.h"
 
 Program::Program()
 {
@@ -21,12 +22,14 @@ Program::Program()
 	//SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
 	//SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
-	SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
+	//SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
+	SceneManager::Get()->Create("Character", new CharacterScene());
 
 	SceneManager::Get()->Add("Grid");
 	//SceneManager::Get()->Add("ModelExport");
 	//SceneManager::Get()->Add("ModelRender");
-	SceneManager::Get()->Add("ModelAnimator");
+	//SceneManager::Get()->Add("ModelAnimator");
+	SceneManager::Get()->Add("Character");
 }
 
 Program::~Program()

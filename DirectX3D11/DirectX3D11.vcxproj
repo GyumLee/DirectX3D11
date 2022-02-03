@@ -133,9 +133,11 @@
     <ClInclude Include="Objects\Basic\Sphere.h" />
     <ClInclude Include="Objects\Landscape\Terrain.h" />
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Objects\Model\Ninja.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Program\SceneManager.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\CharacterScene.h" />
     <ClInclude Include="Scenes\CubeScene.h" />
     <ClInclude Include="Scenes\GridScene.h" />
     <ClInclude Include="Scenes\ModelAnimatorRenderScene.h" />
@@ -186,8 +188,10 @@
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Objects\Model\Ninja.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Program\SceneManager.cpp" />
+    <ClCompile Include="Scenes\CharacterScene.cpp" />
     <ClCompile Include="Scenes\CubeScene.cpp" />
     <ClCompile Include="Scenes\GridScene.cpp" />
     <ClCompile Include="Scenes\ModelAnimatorRenderScene.cpp" />

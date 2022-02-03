@@ -14,6 +14,8 @@
 #define MAX_BONE 1024
 #define MAX_FRAME 1024
 
+#define LERP(s, e, t) (s + (e - s) * t)
+
 #define DELTA ImGui::GetIO().DeltaTime
 
 #define KEY_DOWN(k) ImGui::IsKeyPressed(k, false)
@@ -131,6 +133,8 @@ using namespace Utility;
 
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
+
+#include "Objects/Model/Ninja.h"
 
 //Program
 #include "Scenes/Scene.h"

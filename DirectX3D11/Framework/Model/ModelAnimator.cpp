@@ -54,9 +54,23 @@ void ModelAnimator::Render()
 
 void ModelAnimator::GUIRender()
 {
-	ImGui::SliderInt("Clip", &frameBuffer->data.clip, 0, clips.size() - 1);
-	ImGui::SliderInt("Frame", (int*)&frameBuffer->data.curFrame, 0, clips[frameBuffer->data.clip]->GetFrameCount());
-	ImGui::SliderFloat("Speed", &frameBuffer->data.speed, 0, 5.0f);
+	Transform::GUIRender();
+	reader->GUIRender();
+
+	ImGui::SliderInt("Clip", &frameBuffer->data.cur.clip, 0, clips.size() - 1);
+	ImGui::SliderInt("Frame", (int*)&frameBuffer->data.cur.curFrame, 0, clips[frameBuffer->data.cur.clip]->GetFrameCount());
+	ImGui::SliderFloat("Speed", &frameBuffer->data.cur.speed, 0, 5.0f);
+	ImGui::SliderFloat("TakeTime", &frameBuffer->data.takeTime, 0, 1.0f);
+}
+
+void ModelAnimator::PlayClip(UINT clip, float speed, float takeTime)
+{
+	frameBuffer->data.next.clip = clip;
+	frameBuffer->data.next.speed = speed;
+	frameBuffer->data.takeTime = takeTime;
+
+	frameBuffer->data.next.curFrame = 0;
+	frameBuffer->data.next.time = 0.0f;
 }
 
 void ModelAnimator::ReadClip(string clipName, UINT clipNum)
@@ -90,18 +104,71 @@ void ModelAnimator::ReadClip(string clipName, UINT clipNum)
 	clips.push_back(clip);
 }
 
+Matrix ModelAnimator::GetTransformByNode(int nodeIndex)
+{
+	if (texture == nullptr) return XMMatrixIdentity();
+
+	FrameBuffer::Frame& curFrame = frameBuffer->data.cur;
+
+	Matrix cur = nodeTransform[curFrame.clip].transform[curFrame.curFrame][nodeIndex];
+	Matrix next = nodeTransform[curFrame.clip].transform[curFrame.curFrame + 1][nodeIndex];
+
+	Matrix curAnim = LERP(cur, next, curFrame.time);
+
+	FrameBuffer::Frame& nextFrame = frameBuffer->data.next;
+
+	if (nextFrame.clip == -1) return curAnim;
+
+	cur = nodeTransform[nextFrame.clip].transform[nextFrame.curFrame][nodeIndex];
+	next = nodeTransform[nextFrame.clip].transform[nextFrame.curFrame + 1][nodeIndex];
+
+	Matrix nextAnim = LERP(cur, next, nextFrame.time);
+
+	return LERP(curAnim, nextAnim, frameBuffer->data.tweenTime);
+}
+
 void ModelAnimator::UpdateFrame()
 {
 	FrameBuffer::Data& frameData = frameBuffer->data;
 
-	ModelClip* clip = clips[frameData.clip];
+	{//CurAnim
+		ModelClip* clip = clips[frameData.cur.clip];
 
-	frameData.time += clip->GetTickPerSecond() * frameData.speed * DELTA;
+		frameData.cur.time += clip->GetTickPerSecond() * frameData.cur.speed * DELTA;
 
-	if (frameData.time >= 1.0f)
-	{
-		frameData.curFrame = (frameData.curFrame + 1) % clip->GetFrameCount();
-		frameData.time = 0.0f;
+		if (frameData.cur.time >= 1.0f)
+		{
+			frameData.cur.curFrame = (frameData.cur.curFrame + 1) % (clip->GetFrameCount() - 1);
+			frameData.cur.time = 0.0f;
+		}
+	}
+
+	{//NextAnim
+		if (frameData.next.clip < 0) return;
+
+		ModelClip* clip = clips[frameData.next.clip];
+
+		frameData.tweenTime += DELTA / frameData.takeTime;
+
+		if (frameData.tweenTime < 1.0f)
+		{
+			frameData.next.time += clip->GetTickPerSecond() * frameData.next.speed * DELTA;
+
+			if (frameData.next.time >= 1.0f)
+			{
+				frameData.next.curFrame = (frameData.next.curFrame + 1) % (clip->GetFrameCount() - 1);
+				frameData.next.time = 0.0f;
+			}
+		}
+		else
+		{
+			frameData.cur = frameData.next;
+			frameData.tweenTime = 0.0f;
+
+			frameData.next.clip = -1;
+			frameData.next.curFrame = 0;
+			frameData.next.time = 0.0f;
+		}
 	}
 }
 

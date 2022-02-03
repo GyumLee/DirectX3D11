@@ -18,6 +18,13 @@ ModelAnimatorRenderScene::~ModelAnimatorRenderScene()
 
 void ModelAnimatorRenderScene::Update()
 {
+	if (KEY_DOWN('1'))
+		modelAnimator->PlayClip(0);
+	if (KEY_DOWN('2'))
+		modelAnimator->PlayClip(1);
+	if (KEY_DOWN('3'))
+		modelAnimator->PlayClip(2);
+
 	modelAnimator->Update();
 }
 

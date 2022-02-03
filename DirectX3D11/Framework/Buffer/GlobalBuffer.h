@@ -170,15 +170,27 @@ public:
 class FrameBuffer : public ConstBuffer
 {
 public:
-	struct Data
+	struct Frame
 	{
 		int clip = 0;
 		UINT curFrame = 0;
 		float time = 0.0f;
 		float speed = 1.0f;
+	};
+
+	struct Data
+	{
+		float takeTime = 0.2f;
+		float tweenTime = 0.0f;
+		float runningTime = 0.0f;
+		float padding;
+
+		Frame cur;
+		Frame next;
 	}data;
 
 	FrameBuffer() : ConstBuffer(&data, sizeof(Data))
 	{
+		data.next.clip = -1;
 	}
 };
