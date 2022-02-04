@@ -27,10 +27,6 @@
 #define MOUSE_DBCLICK(k) ImGui::IsMouseDoubleClicked(k)
 #define MOUSE_UP(k) ImGui::IsMouseReleased(k)
 
-#define LEFT_SHIFT (16)
-#define LEFT_CTRL (17)
-#define SPACE_BAR (32)
-
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()
 
@@ -114,6 +110,13 @@ using namespace Utility;
 
 #include "Framework/Math/Vector3.h"
 #include "Framework/Math/Transform.h"
+#include "Framework/Math/GameMath.h"
+using namespace GameMath;
+
+#include "Framework/Collision/Collider.h"
+#include "Framework/Collision/SphereCollider.h"
+#include "Framework/Collision/CapsuleCollider.h"
+#include "Framework/Collision/BoxCollider.h"
 
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"

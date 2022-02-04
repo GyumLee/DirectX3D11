@@ -6,7 +6,7 @@ Sphere::Sphere(float radius, UINT sliceCount, UINT stackCount)
 	tag = "Sphere";
 
 	material = new Material(tag);
-	material->SetShader(L"NormalMapping.hlsl");
+	material->SetShader(L"Basic/NormalMapping.hlsl");
 
 	CreateMesh();
 
@@ -66,8 +66,8 @@ void Sphere::CreateMesh()
 			indices.push_back((sliceCount + 1) * i + j + 1); //1
 			indices.push_back((sliceCount + 1) * (i + 1) + j); //2
 
-			indices.push_back((sliceCount + 1) * (i + 1) + j); //0
-			indices.push_back((sliceCount + 1) * i + j + 1); //2
+			indices.push_back((sliceCount + 1) * (i + 1) + j); //2
+			indices.push_back((sliceCount + 1) * i + j + 1); //1
 			indices.push_back((sliceCount + 1) * (i + 1) + j + 1); //3
 		}
 	}

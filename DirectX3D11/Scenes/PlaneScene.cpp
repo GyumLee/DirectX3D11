@@ -5,7 +5,7 @@ PlaneScene::PlaneScene()
 	: width(10), height(10)
 {
 	material = new Material();
-	material->SetShader(L"Texture.hlsl");
+	material->SetShader(L"Basic/Texture.hlsl");
 	material->SetDiffuseMap("Landscape/Tree.png");
 
 	CreateMesh();

@@ -78,7 +78,7 @@ struct Vector3
 		return XMVectorReplicate(value1) / value2.data;
 	}
 
-	friend Vector3 operator+(const Float3&value1, const Vector3& value2)
+	friend Vector3 operator+(const Float3& value1, const Vector3& value2)
 	{
 		return XMLoadFloat3(&value1) + value2.data;
 	}

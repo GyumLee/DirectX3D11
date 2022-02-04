@@ -5,7 +5,7 @@ Cube::Cube(Float3 size) : size(size)
 	tag = "Cube";
 
 	material = new Material();
-	material->SetShader(L"NormalMapping.hlsl");
+	material->SetShader(L"Basic/NormalMapping.hlsl");
 
 	//CreateMesh();
 	CreateSmoothMesh();

@@ -3,7 +3,7 @@
 class Ninja : public ModelAnimator
 {
 private:
-	Sphere* sphere;
+	Model* kunai;
 
 	Matrix rightHand;
 

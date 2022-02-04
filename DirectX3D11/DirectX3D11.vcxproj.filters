@@ -189,6 +189,24 @@
     <ClInclude Include="Objects\Model\Ninja.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\CollisionScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision\SphereCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision\CapsuleCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision\BoxCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\GameMath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -335,6 +353,24 @@
     <ClCompile Include="Objects\Model\Ninja.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\CollisionScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collision\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collision\SphereCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collision\CapsuleCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collision\BoxCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\GameMath.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -350,15 +386,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders\Texture.hlsl" />
-    <FxCompile Include="Shaders\Grid.hlsl" />
-    <FxCompile Include="Shaders\NormalMapping.hlsl" />
     <FxCompile Include="Shaders\Terrain\Picking.hlsl" />
     <FxCompile Include="Shaders\Terrain\TerrainBrush.hlsl" />
     <FxCompile Include="Shaders\Terrain\TerrainEditor.hlsl" />
     <FxCompile Include="Shaders\Terrain\TerrainSplatting.hlsl" />
     <FxCompile Include="Shaders\Model\ModelBone.hlsl" />
     <FxCompile Include="Shaders\Model\ModelAnimator.hlsl" />
+    <FxCompile Include="Shaders\Basic\Grid.hlsl" />
+    <FxCompile Include="Shaders\Basic\NormalMapping.hlsl" />
+    <FxCompile Include="Shaders\Basic\Texture.hlsl" />
+    <FxCompile Include="Shaders\Basic\Collider.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

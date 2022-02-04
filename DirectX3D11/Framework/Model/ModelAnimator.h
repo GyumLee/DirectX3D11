@@ -18,6 +18,8 @@ protected:
 	ID3D11Texture2D* texture;
 	ID3D11ShaderResourceView* srv;
 
+	bool isPlay = true;
+
 public:
 	ModelAnimator(string name);
 	~ModelAnimator();
@@ -27,6 +29,7 @@ public:
 	void GUIRender();
 
 	void PlayClip(UINT clip, float speed = 1.0f, float takeTime = 0.2f);
+	void StopClip() { isPlay = false; }
 
 	void ReadClip(string clipName, UINT clipNum = 0);
 

@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 Transform::Transform()
-	: scale(1, 1, 1), parent(nullptr)
+	: scale(1, 1, 1), parent(nullptr), isActive(true)
 {
 	world = XMMatrixIdentity();
 }

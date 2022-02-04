@@ -65,6 +65,8 @@ void ModelAnimator::GUIRender()
 
 void ModelAnimator::PlayClip(UINT clip, float speed, float takeTime)
 {
+	isPlay = true;
+
 	frameBuffer->data.next.clip = clip;
 	frameBuffer->data.next.speed = speed;
 	frameBuffer->data.takeTime = takeTime;
@@ -129,6 +131,8 @@ Matrix ModelAnimator::GetTransformByNode(int nodeIndex)
 
 void ModelAnimator::UpdateFrame()
 {
+	if (!isPlay) return;
+
 	FrameBuffer::Data& frameData = frameBuffer->data;
 
 	{//CurAnim

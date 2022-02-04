@@ -1,12 +1,11 @@
-#include "Header.hlsli"
+#include "../Header.hlsli"
 
 struct PixelInput
 {
 	float4 pos : SV_POSITION;
-	float4 color : COLOR;
 };
 
-PixelInput VS(VertexColor input)
+PixelInput VS(Vertex input)
 {
 	PixelInput output;
 	
@@ -14,12 +13,10 @@ PixelInput VS(VertexColor input)
 	output.pos = mul(output.pos, view);
 	output.pos = mul(output.pos, projection);
 	
-	output.color = input.color;
-	
 	return output;
 }
 
 float4 PS(PixelInput input) : SV_TARGET
 {
-	return input.color;
+	return mDiffuse;
 }

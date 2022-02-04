@@ -79,8 +79,8 @@ void Camera::FreeMode()
 		if (MOUSE_PRESS(1))
 		{
 			float speed = moveSpeed;
-			if (KEY_PRESS(LEFT_SHIFT)) speed *= 2.0f;
-			if (KEY_PRESS(LEFT_CTRL)) speed *= 0.5f;
+			if (KEY_PRESS(VK_SHIFT)) speed *= 2.0f;
+			if (KEY_PRESS(VK_CONTROL)) speed *= 0.5f;
 
 			if (KEY_PRESS('W')) position += Forward() * speed * DELTA;
 			if (KEY_PRESS('S')) position -= Forward() * speed * DELTA;

@@ -5,7 +5,7 @@ GridScene::GridScene()
 	: width(MAX_VALUE), height(MAX_VALUE)
 {
 	material = new Material();
-	material->SetShader(L"Grid.hlsl");
+	material->SetShader(L"Basic/Grid.hlsl");
 
 	CreateMesh();
 	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexType), vertices.size());

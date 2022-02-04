@@ -7,20 +7,21 @@ Ninja::Ninja()
 	ReadClip("Run");
 	ReadClip("Attack");
 
-	sphere = new Sphere();
-	sphere->SetParent(&rightHand);
+	kunai = new Model("Kunai");
+	kunai->SetParent(&rightHand);
+	kunai->Load();
 }
 
 Ninja::~Ninja()
 {
-	delete sphere;
+	delete kunai;
 }
 
 void Ninja::Update()
 {
 	SetRightHand();
 
-	sphere->UpdateWorld();
+	kunai->UpdateWorld();
 
 	ModelAnimator::Update();
 }
@@ -29,17 +30,17 @@ void Ninja::Render()
 {
 	ModelAnimator::Render();
 
-	sphere->Render();
+	kunai->Render();
 }
 
 void Ninja::GUIRender()
 {
 	ModelAnimator::GUIRender();
 
-	sphere->GUIRender();
+	kunai->GUIRender();
 }
 
 void Ninja::SetRightHand()
 {
-	rightHand = GetTransformByNode(35) * world;
+	rightHand = GetTransformByNode(11) * world;
 }

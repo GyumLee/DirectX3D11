@@ -13,6 +13,16 @@ CharacterScene::~CharacterScene()
 
 void CharacterScene::Update()
 {
+	if (KEY_DOWN('1'))
+		ninja->PlayClip(0);
+	if (KEY_DOWN('2'))
+		ninja->PlayClip(1);
+	if (KEY_DOWN('3'))
+		ninja->PlayClip(2);
+
+	if (KEY_DOWN(VK_ESCAPE))
+		ninja->StopClip();
+
 	ninja->Update();
 }
 

@@ -10,6 +10,7 @@
 #include "Scenes/ModelRenderScene.h"
 #include "Scenes/ModelAnimatorRenderScene.h"
 #include "Scenes/CharacterScene.h"
+#include "Scenes/CollisionScene.h"
 
 Program::Program()
 {
@@ -23,13 +24,15 @@ Program::Program()
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
 	//SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
 	//SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
-	SceneManager::Get()->Create("Character", new CharacterScene());
+	//SceneManager::Get()->Create("Character", new CharacterScene());
+	SceneManager::Get()->Create("Collision", new CollisionScene());
 
 	SceneManager::Get()->Add("Grid");
 	//SceneManager::Get()->Add("ModelExport");
 	//SceneManager::Get()->Add("ModelRender");
 	//SceneManager::Get()->Add("ModelAnimator");
-	SceneManager::Get()->Add("Character");
+	//SceneManager::Get()->Add("Character");
+	SceneManager::Get()->Add("Collision");
 }
 
 Program::~Program()
