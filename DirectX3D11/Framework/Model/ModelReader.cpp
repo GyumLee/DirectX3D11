@@ -96,7 +96,7 @@ void ModelReader::ReadMesh()
 
 	size = r.UInt();
 	nodes.resize(size);
-	for (NodeData& node : nodes)
+	for (NodeData& node : nodes)// 2)Debugging nodes
 	{
 		node.index = r.Int();
 		node.name = r.String();
@@ -105,8 +105,8 @@ void ModelReader::ReadMesh()
 
 		SetMeshIndex(node.name, node.index);
 	}
-
-	size = r.UInt();
+	
+	size = r.UInt();// 1)Breakpoint here
 	bones.resize(size);
 	for (BoneData& bone : bones)
 	{
