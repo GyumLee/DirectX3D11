@@ -36,6 +36,7 @@
 #include <map>
 #include <unordered_map>
 #include <string>
+#include <functional>
 
 #include <d3d11.h>
 #include <DirectXMath.h>
@@ -77,6 +78,8 @@ typedef XMFLOAT3 Float3;
 typedef XMFLOAT2 Float2;
 typedef XMMATRIX Matrix;
 typedef XMFLOAT4X4 Float4x4;
+
+typedef function<void()> Event;
 
 //Framework Header
 #include "Framework/Utility/Utility.h"
@@ -138,6 +141,7 @@ using namespace GameMath;
 #include "Objects/Landscape/TerrainEditor.h"
 
 #include "Objects/Model/Ninja.h"
+#include "Objects/Model/Hinata.h"
 
 //Program
 #include "Scenes/Scene.h"

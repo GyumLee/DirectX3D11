@@ -5,8 +5,9 @@ Terrain::Terrain()
 {
 	material = new Material("Terrain");
 	material->SetShader(L"Terrain/TerrainSplatting.hlsl");
+	material->SetDiffuseMap("Textures/Landscape/Dirt3.png");
 
-	heightMap = Texture::Add("Textures/HeightMaps/TestHeightMap.png");
+	heightMap = Texture::Add("Textures/HeightMaps/Test.png");
 	alphaMap = Texture::Add("Textures/HeightMaps/TestAlphaMap2.png");
 	secondMap = Texture::Add("Textures/Landscape/Dirt2.png");
 	thirdMap = Texture::Add("Textures/Landscape/Stones.png");

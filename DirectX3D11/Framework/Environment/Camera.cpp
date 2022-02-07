@@ -1,7 +1,9 @@
 #include "Framework.h"
 
 Camera::Camera()
-	: moveSpeed(200.0f), rotSpeed(0.004f), wheelSpeed(1000.0f)
+	: moveSpeed(200.0f), rotSpeed(0.004f), wheelSpeed(1000.0f),
+	target(nullptr), distance(20.0f), height(20.0f),
+	moveDamping(5.0f), rotDamping(0.0f), rotY(0.0f), destRot(0.0f)
 {
 	tag = "CameraTransform";
 	viewBuffer = new ViewBuffer();
@@ -19,7 +21,14 @@ Camera::~Camera()
 
 void Camera::Update()
 {
-	FreeMode();
+	if (target)
+	{
+		FollowMode();
+	}
+	else
+	{
+		FreeMode();
+	}
 }
 
 void Camera::GUIRender()
@@ -34,6 +43,25 @@ void Camera::GUIRender()
 		ImGui::DragFloat("MOVE SPEED", &moveSpeed, 1.0f, 0, 1000.0f);
 		ImGui::SliderFloat("ROTATION SPEED", &rotSpeed, 0.0f, 0.02f);
 		ImGui::DragFloat("WHEEL SPEED", &wheelSpeed, 1.0f, 0, 2000.0f);
+
+		if (target)
+		{
+			ImGui::Text("FollowOption");
+			ImGui::DragFloat("Distance", &distance, 0.1f);
+			ImGui::DragFloat("Height", &height, 0.1f);
+			ImGui::DragFloat3("FocusOffset", (float*)&focusOffset, 0.1f);
+			float degree = XMConvertToDegrees(rotY);
+			ImGui::DragFloat("RotationY", &degree, 1.0f, 0, 360);
+			rotY = XMConvertToRadians(degree);
+			ImGui::DragFloat("MoveDamping", &moveDamping, 0.1f, 0.0f, 100.0f);
+			ImGui::DragFloat("RotDamping", &rotDamping, 0.1f, 0.0f, 100.0f);
+
+			if (ImGui::Button("Save"))
+				SaveTargetMode();
+			ImGui::SameLine();
+			if (ImGui::Button("Load"))
+				LoadTargetMode();
+		}
 
 		ImGui::TreePop();
 	}
@@ -98,15 +126,33 @@ void Camera::FreeMode()
 	}
 
 	UpdateWorld();
+	view = XMMatrixInverse(nullptr, world);
+	SetView();
+}
+
+void Camera::FollowMode()
+{
+	destRot = LERP(destRot, target->rotation.y + XM_PI, rotDamping * DELTA);
+
+	rotMatrix = XMMatrixRotationY(destRot + rotY);
+
+	Vector3 forward = XMVector3TransformNormal(Vector3(0, 0, 1), rotMatrix);
+
+	destPos = target->GlobalPos() - forward * distance;
+	destPos.y += height;
+
+	position = LERP(position, destPos, moveDamping * DELTA);
+
+	Vector3 offset = XMVector3TransformCoord(focusOffset, rotMatrix);
+	Vector3 focus = target->GlobalPos() + offset;
+
+	view = XMMatrixLookAtLH(position, focus, Vector3(0, 1, 0));
+	world = XMMatrixInverse(nullptr, view);
 	SetView();
 }
 
 void Camera::SetView()
 {
-	//Vector3 focus = position + Forward();
-	//view = XMMatrixLookAtLH(position, focus, Up());
-
-	view = XMMatrixInverse(nullptr, world);
 	viewBuffer->Set(view, world);
 }
 
@@ -130,4 +176,30 @@ void Camera::Load()
 	rotation = r.Vector();
 	moveSpeed = r.Float();
 	rotSpeed = r.Float();
+}
+
+void Camera::SaveTargetMode()
+{
+	BinaryWriter w("TextData/Environment/CameraTarget.info");
+
+	w.Float(distance);
+	w.Float(height);
+	w.Float(rotY);
+	w.Vector(focusOffset);
+	w.Float(moveDamping);
+	w.Float(rotDamping);
+}
+
+void Camera::LoadTargetMode()
+{
+	BinaryReader r("TextData/Environment/CameraTarget.info");
+
+	if (r.IsFailed()) return;
+
+	distance = r.Float();
+	height = r.Float();
+	rotY = r.Float();
+	focusOffset = r.Vector();
+	moveDamping = r.Float();
+	rotDamping = r.Float();
 }

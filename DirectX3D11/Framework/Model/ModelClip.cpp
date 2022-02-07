@@ -12,6 +12,31 @@ ModelClip::~ModelClip()
 		delete frame.second;
 }
 
+void ModelClip::Init()
+{
+	eventIter = Events.begin();
+}
+
+void ModelClip::Excute(float playTime)
+{
+	if (Events.empty()) return;
+	if (eventIter == Events.end()) return;
+
+	float ratio = playTime / duration;
+
+	if (eventIter->first > ratio) return;
+
+	eventIter->second();
+	eventIter++;
+}
+
+void ModelClip::SetEvent(float timeRatio, Event event)
+{
+	if (Events.count(timeRatio) > 0) return;
+
+	Events[timeRatio] = event;
+}
+
 void ModelClip::SetKeyFrame(string boneName, KeyFrame* keyFrame)
 {
 	if (keyFrames.count(boneName) > 0) return;

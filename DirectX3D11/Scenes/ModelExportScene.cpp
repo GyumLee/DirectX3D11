@@ -4,7 +4,7 @@
 ModelExportScene::ModelExportScene()
 {
 	ModelExporter* exporter;
-	string name = "Kunai";
+	string name = "Hinata";
 	string file;
 	string clip;
 
@@ -14,23 +14,23 @@ ModelExportScene::ModelExportScene()
 	exporter->ExportMesh();
 	delete exporter;
 
-	//clip = "Idle";
-	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	//exporter = new ModelExporter(name, file);
-	//exporter->ExportClip(clip);
-	//delete exporter;
-	//
-	//clip = "Run";
-	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	//exporter = new ModelExporter(name, file);
-	//exporter->ExportClip(clip);
-	//delete exporter;
-	//
-	//clip = "Attack";
-	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	//exporter = new ModelExporter(name, file);
-	//exporter->ExportClip(clip);
-	//delete exporter;
+	clip = "Idle";
+	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	exporter = new ModelExporter(name, file);
+	exporter->ExportClip(clip);
+	delete exporter;
+	
+	clip = "Run";
+	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	exporter = new ModelExporter(name, file);
+	exporter->ExportClip(clip);
+	delete exporter;
+	
+	clip = "Fire";
+	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	exporter = new ModelExporter(name, file);
+	exporter->ExportClip(clip);
+	delete exporter;
 }
 
 ModelExportScene::~ModelExportScene()

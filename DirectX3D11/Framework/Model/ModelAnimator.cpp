@@ -69,10 +69,14 @@ void ModelAnimator::PlayClip(UINT clip, float speed, float takeTime)
 
 	frameBuffer->data.next.clip = clip;
 	frameBuffer->data.next.speed = speed;
-	frameBuffer->data.takeTime = takeTime;
-
 	frameBuffer->data.next.curFrame = 0;
 	frameBuffer->data.next.time = 0.0f;
+
+	frameBuffer->data.takeTime = takeTime;
+	frameBuffer->data.tweenTime = 0.0f;
+	frameBuffer->data.runningTime = 0.0f;
+
+	clips[clip]->Init();
 }
 
 void ModelAnimator::ReadClip(string clipName, UINT clipNum)
@@ -139,12 +143,15 @@ void ModelAnimator::UpdateFrame()
 		ModelClip* clip = clips[frameData.cur.clip];
 
 		frameData.cur.time += clip->GetTickPerSecond() * frameData.cur.speed * DELTA;
+		frameData.runningTime += frameData.cur.speed * DELTA;
 
 		if (frameData.cur.time >= 1.0f)
 		{
 			frameData.cur.curFrame = (frameData.cur.curFrame + 1) % (clip->GetFrameCount() - 1);
 			frameData.cur.time = 0.0f;
 		}
+
+		clip->Excute(frameData.runningTime);
 	}
 
 	{//NextAnim

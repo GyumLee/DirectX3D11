@@ -11,10 +11,17 @@ private:
 
 	unordered_map<string, KeyFrame*> keyFrames;
 
+	map<float, Event> Events;
+	map<float, Event>::iterator eventIter;
+
 public:
 	ModelClip(string name, UINT frameCount, float tickPerSecond);
 	~ModelClip();
 
+	void Init();
+	void Excute(float playTime);
+
+	void SetEvent(float timeRatio, Event event);
 	void SetKeyFrame(string boneName, KeyFrame* keyFrame);
 
 	KeyFrame* GetKeyFrame(string boneName);
