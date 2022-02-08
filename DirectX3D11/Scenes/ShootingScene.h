@@ -7,6 +7,8 @@ private:
 
 	Hinata* hinata;
 
+	Quad* cursor;
+
 public:
 	ShootingScene();
 	~ShootingScene();

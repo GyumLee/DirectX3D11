@@ -8,6 +8,9 @@ private:
 	Camera* mainCamera;
 
 	ProjectionBuffer* projectionBuffer;
+	ViewBuffer* uiViewBuffer;
+	ProjectionBuffer* orthoBuffer;
+
 	Matrix projection;
 
 	LightBuffer* lightBuffer;
@@ -16,11 +19,15 @@ private:
 
 	SamplerState* samplerState;
 
+	BlendState* blendState[2];
+
 	Environment();
 	~Environment();
 
 public:
 	void SetRender();
+	void SetPostRender();
+
 	void Render();
 	void GUIRender();
 

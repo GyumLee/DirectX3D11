@@ -5,12 +5,18 @@ Environment::Environment()
 	CreateViewport();
 	CreateProjection();
 
+	uiViewBuffer = new ViewBuffer();
+
 	samplerState = new SamplerState();
 	samplerState->SetState();
 
 	mainCamera = new Camera();
 
 	lightBuffer = new LightBuffer();
+
+	blendState[0] = new BlendState();
+	blendState[1] = new BlendState();
+	blendState[1]->Alpha(true);
 }
 
 Environment::~Environment()
@@ -18,9 +24,15 @@ Environment::~Environment()
 	delete mainCamera;
 
 	delete projectionBuffer;
+	delete uiViewBuffer;
+	delete orthoBuffer;
+
 	delete lightBuffer;
 
 	delete samplerState;
+
+	delete blendState[0];
+	delete blendState[1];
 }
 
 void Environment::SetRender()
@@ -31,6 +43,16 @@ void Environment::SetRender()
 	projectionBuffer->SetVSBuffer(2);
 
 	lightBuffer->SetPSBuffer(0);
+
+	blendState[0]->SetState();
+}
+
+void Environment::SetPostRender()
+{
+	uiViewBuffer->SetVSBuffer(1);
+	orthoBuffer->SetVSBuffer(2);
+
+	blendState[1]->SetState();
 }
 
 void Environment::Render()
@@ -78,4 +100,9 @@ void Environment::CreateProjection()
 		(float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 1000.0f);
 
 	projectionBuffer->Set(projection);
+
+	orthoBuffer = new ProjectionBuffer();
+
+	Matrix ortho = XMMatrixOrthographicOffCenterLH(0.0f, WIN_WIDTH, 0.0f, WIN_HEIGHT, -1.0f, 1.0f);
+	orthoBuffer->Set(ortho);
 }

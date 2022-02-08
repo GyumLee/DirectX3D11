@@ -42,6 +42,9 @@ public:
 
 	Vector3& GetFocusOffset() { return focusOffset; }
 
+	void SaveTargetMode();
+	void LoadTargetMode();
+
 private:
 	void FreeMode();
 	void FollowMode();
@@ -50,7 +53,4 @@ private:
 
 	void Save();
 	void Load();
-
-	void SaveTargetMode();
-	void LoadTargetMode();
 };

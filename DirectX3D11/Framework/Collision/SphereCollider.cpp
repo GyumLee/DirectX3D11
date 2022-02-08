@@ -13,6 +13,29 @@ SphereCollider::~SphereCollider()
 
 bool SphereCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 {
+	UpdateWorld();
+
+	Vector3 P = ray.position;
+	Vector3 D = ray.direction;
+
+	Vector3 C = globalPosition;
+	Vector3 A = P - C;
+
+	float b = Vector3::Dot(D, A);
+	float c = Vector3::Dot(A, A) - Radius() * Radius();
+
+	if (b * b >= c)
+	{
+		if (contact != nullptr)
+		{
+			float t = -b - sqrt(b * b - c);
+
+			contact->distance = t;
+			contact->hitPoint = P + D * t;
+		}
+		return true;
+	}
+
 	return false;
 }
 

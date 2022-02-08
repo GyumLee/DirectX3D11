@@ -11,6 +11,9 @@
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 
+#define CENTER_X (WIN_WIDTH * 0.5f)
+#define CENTER_Y (WIN_HEIGHT * 0.5f)
+
 #define MAX_BONE 1024
 #define MAX_FRAME 1024
 
@@ -106,6 +109,7 @@ using namespace Utility;
 
 #include "Framework/State/SamplerState.h"
 #include "Framework/State/RasterizerState.h"
+#include "Framework/State/BlendState.h"
 
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Material.h"
@@ -134,6 +138,7 @@ using namespace GameMath;
 #include "Framework/Model/ModelAnimator.h"
 
 //Object Header
+#include "Objects/Basic/Quad.h"
 #include "Objects/Basic/Cube.h"
 #include "Objects/Basic/Sphere.h"
 

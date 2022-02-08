@@ -67,6 +67,8 @@ void Program::Render()
 
 void Program::PostRender()
 {
+	Environment::Get()->SetPostRender();
+
 	Font::Get()->GetDC()->BeginDraw();
 
 	wstring fps = L"FPS : " + to_wstring((int)ImGui::GetIO().Framerate);
