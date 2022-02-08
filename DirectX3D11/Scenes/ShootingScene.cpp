@@ -11,8 +11,6 @@ ShootingScene::ShootingScene()
 	CAM->SetTarget(hinata);
 	CAM->LoadTargetMode();
 
-	ShowCursor(false);
-	SetCursorPos(CENTER_X, CENTER_Y);
 	//
 	RECT rect;
 	POINT p1, p2;
@@ -28,6 +26,8 @@ ShootingScene::ShootingScene()
 	rect.right = p2.x;
 	rect.bottom = p2.y;
 	ClipCursor(&rect);
+	SetCursorPos(rect.right - CENTER_X, rect.bottom - CENTER_Y);
+	//ShowCursor(false);
 	//
 
 	cursor = new Quad(50, 50);
