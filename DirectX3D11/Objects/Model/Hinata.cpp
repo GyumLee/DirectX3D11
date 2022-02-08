@@ -57,26 +57,47 @@ void Hinata::Move()
 
 	ImVec2 delta = ImGui::GetIO().MouseDelta;
 
-	rotation.y += -delta.x * DELTA * rotSpeed;
+	if (!isSkipMouseDelta)
+	{
+		rotation.y += delta.x * DELTA * rotSpeed;
 
-	CAM->GetFocusOffset().y -= -delta.y * DELTA * rotSpeed * 5.0f;
+		CAM->GetFocusOffset().y -= delta.y * DELTA * rotSpeed * 5.0f;
+	}
 
-	//
-	RECT rect;
-	POINT p1, p2;
-	GetClientRect(hWnd, &rect);
-	p1.x = rect.left;
-	p1.y = rect.top;
-	p2.x = rect.right;
-	p2.y = rect.bottom;
-	ClientToScreen(hWnd, &p1);
-	ClientToScreen(hWnd, &p2);
-	rect.left = p1.x;
-	rect.top = p1.y;
-	rect.right = p2.x;
-	rect.bottom = p2.y;
-	SetCursorPos(rect.right - CENTER_X, rect.bottom - CENTER_Y);
-	//
+	if (KEY_DOWN('V')) isStickCursor = !isStickCursor;
+	if (isStickCursor)
+	{
+		RECT rect;
+		POINT p1, p2;
+		GetClientRect(hWnd, &rect);
+		p1.x = rect.left;
+		p1.y = rect.top;
+		p2.x = rect.right;
+		p2.y = rect.bottom;
+		ClientToScreen(hWnd, &p1);
+		ClientToScreen(hWnd, &p2);
+		rect.left = p1.x;
+		rect.top = p1.y;
+		rect.right = p2.x;
+		rect.bottom = p2.y;
+		ClipCursor(&rect);
+		if (mousePos.x >= WIN_WIDTH - 1 || mousePos.x <= 0 ||
+			mousePos.y >= WIN_HEIGHT - 1 || mousePos.y <= 0)
+		{
+			SetCursorPos(rect.right - CENTER_X, rect.bottom - CENTER_Y);
+			isSkipMouseDelta = true;
+		}
+		else
+		{
+			isSkipMouseDelta = false;
+		}
+	}
+	if (KEY_DOWN('C'))
+	{
+		if (!isCursorSwitch) ShowCursor(false);
+		else ShowCursor(true);
+		isCursorSwitch = !isCursorSwitch;
+	}
 
 	/*if (KEY_PRESS('A'))
 		rotation.y -= rotSpeed * DELTA;

@@ -19,6 +19,10 @@ private:
 
 	Terrain* terrain = nullptr;
 
+	bool isStickCursor = false;
+	bool isSkipMouseDelta = false;
+	bool isCursorSwitch = false;
+
 public:
 	Hinata();
 	~Hinata();

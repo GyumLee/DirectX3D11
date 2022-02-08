@@ -20,6 +20,8 @@ Quad::~Quad()
 
 void Quad::Render()
 {
+	if (!isActive) return;
+
 	worldBuffer->Set(world);
 	worldBuffer->SetVSBuffer(0);
 

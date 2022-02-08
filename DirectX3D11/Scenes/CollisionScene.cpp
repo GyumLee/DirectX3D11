@@ -33,6 +33,7 @@ void CollisionScene::Update()
 	}*/
 
 	Ray ray = CAM->ScreenPointToRay(mousePos);
+	//Ray ray = CAM->ScreenPointToRay({ CENTER_X, CENTER_Y, 0.0f });
 
 	Contact contact;
 
