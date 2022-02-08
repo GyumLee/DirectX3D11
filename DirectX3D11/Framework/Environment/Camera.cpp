@@ -51,7 +51,8 @@ void Camera::GUIRender()
 			ImGui::DragFloat("Height", &height, 0.1f);
 			ImGui::DragFloat3("FocusOffset", (float*)&focusOffset, 0.1f);
 			float degree = XMConvertToDegrees(rotY);
-			ImGui::DragFloat("RotationY", &degree, 1.0f, 0, 360);
+			//ImGui::DragFloat("RotationY", &degree, 1.0f, 0, 360);
+			ImGui::DragFloat("RotationY", &degree, 1.0f, -360, 360);
 			rotY = XMConvertToRadians(degree);
 			ImGui::DragFloat("MoveDamping", &moveDamping, 0.1f, 0.0f, 100.0f);
 			ImGui::DragFloat("RotDamping", &rotDamping, 0.1f, 0.0f, 100.0f);
