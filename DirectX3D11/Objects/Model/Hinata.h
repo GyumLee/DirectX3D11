@@ -23,6 +23,8 @@ private:
 	bool isSkipMouseDelta = false;
 	bool isCursorSwitch = false;
 
+	RenderTransform* firePos;
+
 public:
 	Hinata();
 	~Hinata();
@@ -34,9 +36,10 @@ public:
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
 
 private:
+	void Control();
 	void Move();
-	void Fire();
 
+	void Fire();
 	void EndFire();
 
 	void SetClip(AnimState state);

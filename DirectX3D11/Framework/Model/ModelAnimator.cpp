@@ -79,7 +79,7 @@ void ModelAnimator::PlayClip(UINT clip, float speed, float takeTime)
 	clips[clip]->Init();
 }
 
-void ModelAnimator::ReadClip(string clipName, UINT clipNum)
+void ModelAnimator::ReadClip(string clipName, UINT clipNum, bool isRootMotion)
 {
 	string path = "ModelData/Clips/" + name + "/" + clipName + to_string(clipNum) + ".clip";
 
@@ -89,6 +89,7 @@ void ModelAnimator::ReadClip(string clipName, UINT clipNum)
 	float tickPerSecond = r.Float();
 
 	ModelClip* clip = new ModelClip(name, frameCount, tickPerSecond);
+	clip->SetRootMotion(isRootMotion);
 
 	UINT boneCount = r.UInt();
 	for (UINT i = 0; i < boneCount; i++)
@@ -266,6 +267,19 @@ void ModelAnimator::CreateClipTransform(UINT index)
 					Vector3(transform.scale), XMVectorZero(),
 					XMLoadFloat4(&transform.rotation),
 					Vector3(transform.position));
+
+				//Stick Hip Transform
+				if (clip->IsRootMotion() && nodeIndex == rootBoneIndex)
+				{
+					Float4x4 temp;
+					XMStoreFloat4x4(&temp, node.transform);
+					Vector3 position = { temp._41, temp._42, temp._43 };
+
+					animation = XMMatrixTransformation(XMVectorZero(), XMQuaternionIdentity(),
+						Vector3(transform.scale), XMVectorZero(),
+						XMLoadFloat4(&transform.rotation),
+						Vector3(position));
+				}
 			}
 
 			Matrix parent = XMMatrixIdentity();

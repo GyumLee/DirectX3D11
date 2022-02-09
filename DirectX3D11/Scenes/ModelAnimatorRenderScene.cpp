@@ -6,9 +6,12 @@ ModelAnimatorRenderScene::ModelAnimatorRenderScene()
 	string name = "Ninja";
 
 	modelAnimator = new ModelAnimator(name);
+
 	modelAnimator->ReadClip("Idle");
-	modelAnimator->ReadClip("Run");
-	modelAnimator->ReadClip("Attack");
+	modelAnimator->ReadClip("Hit", 0, true);
+	modelAnimator->ReadClip("Dying");
+
+	modelAnimator->Load();
 }
 
 ModelAnimatorRenderScene::~ModelAnimatorRenderScene()

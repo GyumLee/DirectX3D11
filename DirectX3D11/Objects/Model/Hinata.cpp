@@ -10,11 +10,17 @@ Hinata::Hinata()
 	rifle = new Model("Rifle");
 	rifle->SetParent(&rightHand);
 	rifle->Load();
+
+	firePos = new RenderTransform();
+	firePos->tag = "FirePos";
+	firePos->SetParent(rifle);
+	firePos->Load();
 }
 
 Hinata::~Hinata()
 {
 	delete rifle;
+	delete firePos;
 }
 
 void Hinata::Update()
@@ -22,22 +28,39 @@ void Hinata::Update()
 	rightHand = GetTransformByNode(204) * world;
 
 	Move();
-	Fire();
+	Control();
 
 	ModelAnimator::Update();
 	rifle->UpdateWorld();
+
+	firePos->UpdateWorld();
 }
 
 void Hinata::Render()
 {
 	ModelAnimator::Render();
 	rifle->Render();
+
+	firePos->Render();
 }
 
 void Hinata::GUIRender()
 {
 	Transform::GUIRender();
 	rifle->GUIRender();
+
+	firePos->GUIRender();
+}
+
+void Hinata::Control()
+{
+	if (isFire) return;
+
+	if (MOUSE_CLICK(0))
+	{
+		isFire = true;
+		SetClip(FIRE);
+	}
 }
 
 void Hinata::Move()
@@ -99,6 +122,9 @@ void Hinata::Move()
 		isCursorSwitch = !isCursorSwitch;
 	}
 
+	if (CAM->GetFocusOffset().y > 5.0f) CAM->GetFocusOffset().y = 5.0f;
+	else if (CAM->GetFocusOffset().y < 2.0f) CAM->GetFocusOffset().y = 2.0f;
+
 	/*if (KEY_PRESS('A'))
 		rotation.y -= rotSpeed * DELTA;
 	else if (KEY_PRESS('D'))
@@ -113,13 +139,9 @@ void Hinata::Move()
 
 void Hinata::Fire()
 {
-	if (isFire) return;
-
-	if (MOUSE_CLICK(0))
-	{
-		isFire = true;
-		SetClip(FIRE);
-	}
+	Vector3 rot = rotation;
+	rot.y += XM_PI;
+	BulletManager::Get()->Fire(firePos->GlobalPos(), rot);
 }
 
 void Hinata::EndFire()
@@ -143,5 +165,6 @@ void Hinata::SetMotions()
 	ReadClip("Run");
 	ReadClip("Fire");
 
+	clips[FIRE]->SetEvent(0.5f, bind(&Hinata::Fire, this));
 	clips[FIRE]->SetEvent(0.9f, bind(&Hinata::EndFire, this));
 }

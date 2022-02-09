@@ -137,9 +137,12 @@
     <ClInclude Include="Framework\Utility\Utility.h" />
     <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Basic\RenderTransform.h" />
     <ClInclude Include="Objects\Basic\Sphere.h" />
     <ClInclude Include="Objects\Landscape\Terrain.h" />
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Objects\Manager\BulletManager.h" />
+    <ClInclude Include="Objects\Model\Bullet.h" />
     <ClInclude Include="Objects\Model\Hinata.h" />
     <ClInclude Include="Objects\Model\Ninja.h" />
     <ClInclude Include="Program\Program.h" />
@@ -202,9 +205,12 @@
     <ClCompile Include="Framework\Utility\Utility.cpp" />
     <ClCompile Include="Objects\Basic\Cube.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
+    <ClCompile Include="Objects\Basic\RenderTransform.cpp" />
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Objects\Manager\BulletManager.cpp" />
+    <ClCompile Include="Objects\Model\Bullet.cpp" />
     <ClCompile Include="Objects\Model\Hinata.cpp" />
     <ClCompile Include="Objects\Model\Ninja.cpp" />
     <ClCompile Include="Program\Program.cpp" />

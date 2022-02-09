@@ -19,6 +19,7 @@ protected:
 	ID3D11ShaderResourceView* srv;
 
 	bool isPlay = true;
+	int rootBoneIndex = 1;
 
 public:
 	ModelAnimator(string name);
@@ -31,7 +32,7 @@ public:
 	void PlayClip(UINT clip, float speed = 1.0f, float takeTime = 0.2f);
 	void StopClip() { isPlay = false; }
 
-	void ReadClip(string clipName, UINT clipNum = 0);
+	void ReadClip(string clipName, UINT clipNum = 0, bool isRootMotion = false);
 
 	Matrix GetTransformByNode(int nodeIndex);
 

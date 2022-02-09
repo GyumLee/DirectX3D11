@@ -9,6 +9,8 @@ private:
 	float tickPerSecond;
 	float duration;
 
+	bool isRootMotion = false;
+
 	unordered_map<string, KeyFrame*> keyFrames;
 
 	map<float, Event> Events;
@@ -27,4 +29,7 @@ public:
 	KeyFrame* GetKeyFrame(string boneName);
 	UINT GetFrameCount() { return frameCount; }
 	float GetTickPerSecond() { return tickPerSecond; }
+
+	void SetRootMotion(bool value) { isRootMotion = value; }
+	bool IsRootMotion() { return isRootMotion; }
 };

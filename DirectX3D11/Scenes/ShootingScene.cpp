@@ -10,10 +10,12 @@ ShootingScene::ShootingScene()
 
 	CAM->SetTarget(hinata);
 	CAM->LoadTargetMode();
-
+	
 	cursor = new Quad(50, 50);
 	cursor->GetMaterial()->SetDiffuseMap("Textures/UI/Crosshair.png");
 	cursor->position = { CENTER_X, CENTER_Y, 0.0f };
+
+	BulletManager::Get()->CreateBullets();
 }
 
 ShootingScene::~ShootingScene()
@@ -23,6 +25,8 @@ ShootingScene::~ShootingScene()
 	delete hinata;
 
 	delete cursor;
+
+	BulletManager::Delete();
 }
 
 void ShootingScene::Update()
@@ -32,6 +36,8 @@ void ShootingScene::Update()
 
 	hinata->Update();
 	cursor->UpdateWorld();
+
+	BulletManager::Get()->Update();
 }
 
 void ShootingScene::PreRender()
@@ -44,6 +50,7 @@ void ShootingScene::Render()
 
 	hinata->Render();
 
+	BulletManager::Get()->Render();
 }
 
 void ShootingScene::PostRender()

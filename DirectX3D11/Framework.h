@@ -138,6 +138,7 @@ using namespace GameMath;
 #include "Framework/Model/ModelAnimator.h"
 
 //Object Header
+#include "Objects/Basic/RenderTransform.h"
 #include "Objects/Basic/Quad.h"
 #include "Objects/Basic/Cube.h"
 #include "Objects/Basic/Sphere.h"
@@ -147,6 +148,9 @@ using namespace GameMath;
 
 #include "Objects/Model/Ninja.h"
 #include "Objects/Model/Hinata.h"
+#include "Objects/Model/Bullet.h"
+
+#include "Objects/Manager/BulletManager.h"
 
 //Program
 #include "Scenes/Scene.h"
