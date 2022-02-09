@@ -18,11 +18,7 @@ private:
 	bool isFire = false;
 
 	Terrain* terrain = nullptr;
-
-	bool isStickCursor = false;
-	bool isSkipMouseDelta = false;
-	bool isCursorSwitch = false;
-
+	
 	RenderTransform* firePos;
 
 public:

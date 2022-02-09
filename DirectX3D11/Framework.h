@@ -127,6 +127,7 @@ using namespace GameMath;
 
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"
+#include "Framework/Environment/ETC.h"
 
 #include "Framework/Model/ModelType.h"
 #include "Framework/Model/ModelExporter.h"

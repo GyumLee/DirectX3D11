@@ -43,6 +43,8 @@ void Program::Update()
 	SceneManager::Get()->Update();
 
 	CAM->Update();
+
+	ETC::Get()->Update();
 }
 
 void Program::PreRender()
@@ -100,6 +102,7 @@ void Program::Create()
 	Font::Get();
 	Environment::Get();
 	SceneManager::Get();
+	ETC::Get();
 
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
@@ -122,6 +125,7 @@ void Program::Delete()
 	Font::Delete();
 	Environment::Delete();
 	SceneManager::Delete();
+	ETC::Delete();
 
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
