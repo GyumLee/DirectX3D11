@@ -17,25 +17,20 @@ Program::Program()
 {
 	Create();
 
-	//SceneManager::Get()->Create("Cube", new CubeScene());
-	//SceneManager::Get()->Create("Plane", new PlaneScene());
+	//SceneManager::Get()->Create("Start", new CubeScene());
+	//SceneManager::Get()->Create("Start", new PlaneScene());
 	SceneManager::Get()->Create("Grid", new GridScene());
-	//SceneManager::Get()->Create("Terrain", new TerrainScene());
-	//SceneManager::Get()->Create("TerrainEditor", new TerrainEditorScene());
+	//SceneManager::Get()->Create("Start", new TerrainScene());
+	//SceneManager::Get()->Create("Start", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
-	//SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
-	//SceneManager::Get()->Create("ModelAnimator", new ModelAnimatorRenderScene());
-	//SceneManager::Get()->Create("Character", new CharacterScene());
-	//SceneManager::Get()->Create("Collision", new CollisionScene());
-	SceneManager::Get()->Create("Shooting", new ShootingScene());
+	//SceneManager::Get()->Create("Start", new ModelRenderScene());
+	//SceneManager::Get()->Create("Start", new ModelAnimatorRenderScene());
+	//SceneManager::Get()->Create("Start", new CharacterScene());
+	//SceneManager::Get()->Create("Start", new CollisionScene());
+	SceneManager::Get()->Create("Start", new ShootingScene());
 
 	SceneManager::Get()->Add("Grid");
-	//SceneManager::Get()->Add("ModelExport");
-	//SceneManager::Get()->Add("ModelRender");
-	//SceneManager::Get()->Add("ModelAnimator");
-	//SceneManager::Get()->Add("Character");
-	//SceneManager::Get()->Add("Collision");
-	SceneManager::Get()->Add("Shooting");
+	SceneManager::Get()->Add("Start");
 }
 
 Program::~Program()
