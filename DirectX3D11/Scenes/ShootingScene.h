@@ -6,6 +6,7 @@ private:
 	Terrain* terrain;
 
 	Hinata* hinata;
+	Ninja* ninja;
 
 	Quad* cursor;
 

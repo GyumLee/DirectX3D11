@@ -8,7 +8,7 @@ Bullet::Bullet()
 
 	collider = new SphereCollider();
 	collider->tag = "BulletCollider";
-	collider->SetParent(model);
+	collider->SetParent(this);
 	collider->Load();
 }
 
@@ -59,4 +59,6 @@ void Bullet::Fire(Vector3 pos, Vector3 rot, float speed)
 	position = pos;
 	rotation = rot;
 	this->speed = speed;
+
+	UpdateWorld();
 }

@@ -101,6 +101,22 @@ Ray Camera::ScreenPointToRay(Vector3 screenPos)
 	return ray;
 }
 
+Vector3 Camera::WorldToScreenPoint(Vector3 worldPos)
+{
+	Vector3 screenPos;
+
+	screenPos = XMVector3TransformCoord(worldPos, view);
+	screenPos = XMVector3TransformCoord(screenPos, Environment::Get()->GetProjection());
+	//NDC -> -1~1 -> 0~width
+
+	screenPos = (screenPos + 1.0f) * 0.5f;//-1~1 -> 0~1
+
+	screenPos.x *= WIN_WIDTH;
+	screenPos.y *= WIN_HEIGHT;
+
+	return screenPos;
+}
+
 void Camera::FreeMode()
 {
 	if (!ImGui::GetIO().WantCaptureMouse)

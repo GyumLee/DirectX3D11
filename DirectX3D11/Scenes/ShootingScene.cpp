@@ -8,6 +8,10 @@ ShootingScene::ShootingScene()
 	hinata = new Hinata();
 	hinata->SetTerrain(terrain);
 
+	ninja = new Ninja();
+	ninja->SetTerrain(terrain);
+	ninja->SetTarget(hinata);
+
 	CAM->SetTarget(hinata);
 	CAM->LoadTargetMode();
 	
@@ -23,6 +27,7 @@ ShootingScene::~ShootingScene()
 	delete terrain;
 
 	delete hinata;
+	delete ninja;
 
 	delete cursor;
 
@@ -35,6 +40,8 @@ void ShootingScene::Update()
 	//cursor->position.y = WIN_HEIGHT - mousePos.y;
 
 	hinata->Update();
+	ninja->Update();
+
 	cursor->UpdateWorld();
 
 	BulletManager::Get()->Update();
@@ -49,6 +56,7 @@ void ShootingScene::Render()
 	terrain->Render();
 
 	hinata->Render();
+	ninja->Render();
 
 	BulletManager::Get()->Render();
 }
@@ -56,9 +64,12 @@ void ShootingScene::Render()
 void ShootingScene::PostRender()
 {
 	cursor->Render();
+
+	ninja->PostRender();
 }
 
 void ShootingScene::GUIRender()
 {
 	hinata->GUIRender();
+	ninja->GUIRender();
 }

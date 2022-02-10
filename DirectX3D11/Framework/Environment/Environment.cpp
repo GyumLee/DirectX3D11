@@ -17,6 +17,10 @@ Environment::Environment()
 	blendState[0] = new BlendState();
 	blendState[1] = new BlendState();
 	blendState[1]->Alpha(true);
+
+	depthState[0] = new DepthStencilState();
+	depthState[1] = new DepthStencilState();
+	depthState[1]->DepthEnable(false);
 }
 
 Environment::~Environment()
@@ -33,6 +37,9 @@ Environment::~Environment()
 
 	delete blendState[0];
 	delete blendState[1];
+
+	delete depthState[0];
+	delete depthState[1];
 }
 
 void Environment::SetRender()
@@ -45,6 +52,7 @@ void Environment::SetRender()
 	lightBuffer->SetPSBuffer(0);
 
 	blendState[0]->SetState();
+	depthState[0]->SetState();
 }
 
 void Environment::SetPostRender()
@@ -53,6 +61,7 @@ void Environment::SetPostRender()
 	orthoBuffer->SetVSBuffer(2);
 
 	blendState[1]->SetState();
+	depthState[1]->SetState();
 }
 
 void Environment::Render()

@@ -110,6 +110,7 @@ using namespace Utility;
 #include "Framework/State/SamplerState.h"
 #include "Framework/State/RasterizerState.h"
 #include "Framework/State/BlendState.h"
+#include "Framework/State/DepthStencilState.h"
 
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Material.h"
@@ -143,6 +144,8 @@ using namespace GameMath;
 #include "Objects/Basic/Quad.h"
 #include "Objects/Basic/Cube.h"
 #include "Objects/Basic/Sphere.h"
+
+#include "Objects/UI/ProgressBar.h"
 
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"

@@ -194,3 +194,13 @@ public:
 		data.next.clip = -1;
 	}
 };
+
+class ValueBuffer : public ConstBuffer
+{
+public:
+	float values[4];
+
+	ValueBuffer() : ConstBuffer(&values, sizeof(float) * 4)
+	{
+	}
+};

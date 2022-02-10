@@ -128,6 +128,7 @@
     <ClInclude Include="Framework\Shader\Shader.h" />
     <ClInclude Include="Framework\Shader\VertexShader.h" />
     <ClInclude Include="Framework\State\BlendState.h" />
+    <ClInclude Include="Framework\State\DepthStencilState.h" />
     <ClInclude Include="Framework\State\RasterizerState.h" />
     <ClInclude Include="Framework\State\SamplerState.h" />
     <ClInclude Include="Framework\System\Device.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Objects\Model\Bullet.h" />
     <ClInclude Include="Objects\Model\Hinata.h" />
     <ClInclude Include="Objects\Model\Ninja.h" />
+    <ClInclude Include="Objects\UI\ProgressBar.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Program\SceneManager.h" />
     <ClInclude Include="Resource.h" />
@@ -198,6 +200,7 @@
     <ClCompile Include="Framework\Shader\Shader.cpp" />
     <ClCompile Include="Framework\Shader\VertexShader.cpp" />
     <ClCompile Include="Framework\State\BlendState.cpp" />
+    <ClCompile Include="Framework\State\DepthStencilState.cpp" />
     <ClCompile Include="Framework\State\RasterizerState.cpp" />
     <ClCompile Include="Framework\State\SamplerState.cpp" />
     <ClCompile Include="Framework\System\Device.cpp" />
@@ -215,6 +218,7 @@
     <ClCompile Include="Objects\Model\Bullet.cpp" />
     <ClCompile Include="Objects\Model\Hinata.cpp" />
     <ClCompile Include="Objects\Model\Ninja.cpp" />
+    <ClCompile Include="Objects\UI\ProgressBar.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Program\SceneManager.cpp" />
     <ClCompile Include="Scenes\CharacterScene.cpp" />
@@ -278,6 +282,10 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Basic\Texture.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\ProgressBar.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
