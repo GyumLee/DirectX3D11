@@ -144,6 +144,7 @@
     <ClInclude Include="Objects\Landscape\Terrain.h" />
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
     <ClInclude Include="Objects\Manager\BulletManager.h" />
+    <ClInclude Include="Objects\Manager\MonsterManager.h" />
     <ClInclude Include="Objects\Model\Bullet.h" />
     <ClInclude Include="Objects\Model\Hinata.h" />
     <ClInclude Include="Objects\Model\Ninja.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
     <ClCompile Include="Objects\Manager\BulletManager.cpp" />
+    <ClCompile Include="Objects\Manager\MonsterManager.cpp" />
     <ClCompile Include="Objects\Model\Bullet.cpp" />
     <ClCompile Include="Objects\Model\Hinata.cpp" />
     <ClCompile Include="Objects\Model\Ninja.cpp" />

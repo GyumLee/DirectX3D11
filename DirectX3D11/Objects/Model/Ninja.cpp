@@ -34,7 +34,7 @@ void Ninja::Update()
 	SetRightHand();
 	SetHpBar();
 
-	Trace();
+	//Trace();
 	Move();
 	Hit();
 

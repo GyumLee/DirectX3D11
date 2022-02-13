@@ -35,6 +35,8 @@ public:
 
 	Material* GetMaterial() { return material; }
 
+	Float2 GetSize() { return Float2(width, height); }
+
 private:
 	void CreateMesh();
 	void CreateNormal();

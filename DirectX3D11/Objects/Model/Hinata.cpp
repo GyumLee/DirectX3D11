@@ -81,14 +81,16 @@ void Hinata::Move()
 	if (!ETC::Get()->IsSkipMouseDelta())
 	{
 		ImVec2 delta = ImGui::GetIO().MouseDelta;
-
 		rotation.y += delta.x * DELTA * rotSpeed;
-
-		CAM->GetFocusOffset().y -= delta.y * DELTA * rotSpeed * 5.0f;
+		CAM->GetRotOffset().x += delta.y * DELTA * rotSpeed;
 	}
 
-	if (CAM->GetFocusOffset().y > 5.0f) CAM->GetFocusOffset().y = 5.0f;
-	else if (CAM->GetFocusOffset().y < 2.0f) CAM->GetFocusOffset().y = 2.0f;
+	float degreeX;
+	degreeX = XMConvertToDegrees(CAM->GetRotOffset().x);
+	if (degreeX > 0.0f)
+		CAM->GetRotOffset().x = XMConvertToRadians(0.0f);
+	else if (degreeX < -30.0f)
+		CAM->GetRotOffset().x = XMConvertToRadians(-30.0f);
 
 	/*if (KEY_PRESS('A'))
 		rotation.y -= rotSpeed * DELTA;
@@ -104,9 +106,29 @@ void Hinata::Move()
 
 void Hinata::Fire()
 {
-	Vector3 rot = rotation;
+	Ray ray = CAM->ScreenPointToRay(Vector3(CENTER_X, CENTER_Y, 0.0f));
+
+	Vector3 hitPoint;
+	Vector3 destRot;
+
+	Transform* monster = MonsterManager::Get()->RayCollision(ray, &hitPoint);
+
+	if (monster)
+	{
+		Vector3 direction = (hitPoint - firePos->GlobalPos()).Normalize();
+		destRot.y = atan2(direction.x, direction.z);
+		destRot.x = asin(-direction.y);
+	}
+	else
+	{
+		destRot = CAM->rotation;
+	}
+
+	BulletManager::Get()->Fire(firePos->GlobalPos(), destRot, 30.0f);
+
+	/*Vector3 rot = rotation;
 	rot.y += XM_PI;
-	BulletManager::Get()->Fire(firePos->GlobalPos(), rot);
+	BulletManager::Get()->Fire(firePos->GlobalPos(), rot);*/
 }
 
 void Hinata::EndFire()

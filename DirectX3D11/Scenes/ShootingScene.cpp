@@ -8,18 +8,15 @@ ShootingScene::ShootingScene()
 	hinata = new Hinata();
 	hinata->SetTerrain(terrain);
 
-	ninja = new Ninja();
-	ninja->SetTerrain(terrain);
-	ninja->SetTarget(hinata);
-
-	CAM->SetTarget(hinata);
 	CAM->LoadTargetMode();
+	CAM->SetTarget(hinata);
 	
 	cursor = new Quad(50, 50);
 	cursor->GetMaterial()->SetDiffuseMap("Textures/UI/Crosshair.png");
 	cursor->position = { CENTER_X, CENTER_Y, 0.0f };
 
 	BulletManager::Get()->CreateBullets();
+	MonsterManager::Get()->CreateMonsters(terrain);
 }
 
 ShootingScene::~ShootingScene()
@@ -27,11 +24,11 @@ ShootingScene::~ShootingScene()
 	delete terrain;
 
 	delete hinata;
-	delete ninja;
 
 	delete cursor;
 
 	BulletManager::Delete();
+	MonsterManager::Delete();
 }
 
 void ShootingScene::Update()
@@ -40,7 +37,7 @@ void ShootingScene::Update()
 	//cursor->position.y = WIN_HEIGHT - mousePos.y;
 
 	hinata->Update();
-	ninja->Update();
+	MonsterManager::Get()->Update();
 
 	cursor->UpdateWorld();
 
@@ -56,7 +53,7 @@ void ShootingScene::Render()
 	terrain->Render();
 
 	hinata->Render();
-	ninja->Render();
+	MonsterManager::Get()->Render();
 
 	BulletManager::Get()->Render();
 }
@@ -65,11 +62,10 @@ void ShootingScene::PostRender()
 {
 	cursor->Render();
 
-	ninja->PostRender();
+	MonsterManager::Get()->PostRender();
 }
 
 void ShootingScene::GUIRender()
 {
 	hinata->GUIRender();
-	ninja->GUIRender();
 }

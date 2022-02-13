@@ -38,7 +38,7 @@ void TerrainEditorScene::GUIRender()
 
 void TerrainEditorScene::Raw()
 {
-	ComputeShader* shader = Shader::AddCS(L"ByteAddress.hlsl");
+	ComputeShader* shader = Shader::AddCS(L"Old/ByteAddress.hlsl");
 
 	struct  Output
 	{

@@ -3,7 +3,7 @@
 Camera::Camera()
 	: moveSpeed(200.0f), rotSpeed(0.004f), wheelSpeed(1000.0f),
 	target(nullptr), distance(20.0f), height(20.0f),
-	moveDamping(5.0f), rotDamping(0.0f), rotY(0.0f), destRot(0.0f)
+	moveDamping(5.0f), rotDamping(0.0f)
 {
 	tag = "CameraTransform";
 	viewBuffer = new ViewBuffer();
@@ -50,10 +50,12 @@ void Camera::GUIRender()
 			ImGui::DragFloat("Distance", &distance, 0.1f);
 			ImGui::DragFloat("Height", &height, 0.1f);
 			ImGui::DragFloat3("FocusOffset", (float*)&focusOffset, 0.1f);
-			float degree = XMConvertToDegrees(rotY);
-			//ImGui::DragFloat("RotationY", &degree, 1.0f, 0, 360);
-			ImGui::DragFloat("RotationY", &degree, 1.0f, -360, 360);
-			rotY = XMConvertToRadians(degree);
+			Vector3 degree;
+			degree.x = XMConvertToDegrees(rotOffset.x);
+			degree.y = XMConvertToDegrees(rotOffset.y);
+			ImGui::DragFloat3("RotationOffset", (float*)&degree, 1.0f, -180, 180);
+			rotOffset.x = XMConvertToRadians(degree.x);
+			rotOffset.y = XMConvertToRadians(degree.y);
 			ImGui::DragFloat("MoveDamping", &moveDamping, 0.1f, 0.0f, 100.0f);
 			ImGui::DragFloat("RotDamping", &rotDamping, 0.1f, 0.0f, 100.0f);
 
@@ -117,6 +119,20 @@ Vector3 Camera::WorldToScreenPoint(Vector3 worldPos)
 	return screenPos;
 }
 
+void Camera::SetTarget(Transform* transform)
+{
+	target = transform;
+	target->UpdateWorld();
+
+	destRot.y = target->rotation.y + XM_PI;
+	rotMatrix = XMMatrixRotationY(destRot.y + rotOffset.y);
+
+	Vector3 forward = XMVector3TransformNormal(Vector3(0, 0, 1), rotMatrix);
+
+	position = forward * -distance + target->GlobalPos();
+	position.y += height;
+}
+
 void Camera::FreeMode()
 {
 	if (!ImGui::GetIO().WantCaptureMouse)
@@ -142,16 +158,14 @@ void Camera::FreeMode()
 		position += Forward() * ImGui::GetIO().MouseWheel * wheelSpeed * DELTA;
 	}
 
-	UpdateWorld();
-	view = XMMatrixInverse(nullptr, world);
 	SetView();
 }
 
 void Camera::FollowMode()
 {
-	destRot = LERP(destRot, target->rotation.y + XM_PI, rotDamping * DELTA);
+	destRot.y = LERP(destRot.y, target->rotation.y + XM_PI, rotDamping * DELTA);
 
-	rotMatrix = XMMatrixRotationY(destRot + rotY);
+	rotMatrix = XMMatrixRotationY(destRot.y + rotOffset.y);
 
 	Vector3 forward = XMVector3TransformNormal(Vector3(0, 0, 1), rotMatrix);
 
@@ -163,13 +177,21 @@ void Camera::FollowMode()
 	Vector3 offset = XMVector3TransformCoord(focusOffset, rotMatrix);
 	Vector3 focus = target->GlobalPos() + offset;
 
-	view = XMMatrixLookAtLH(position, focus, Vector3(0, 1, 0));
-	world = XMMatrixInverse(nullptr, view);
+	Vector3 direction = (focus - position).Normalize();
+
+	destRot.x = asin(-direction.y) + rotOffset.x;
+
+	rotation.x = destRot.x;
+	rotation.y = atan2(direction.x, direction.z);
+
 	SetView();
 }
 
 void Camera::SetView()
 {
+	UpdateWorld();
+	view = XMMatrixInverse(nullptr, world);
+
 	viewBuffer->Set(view, world);
 }
 
@@ -201,7 +223,7 @@ void Camera::SaveTargetMode()
 
 	w.Float(distance);
 	w.Float(height);
-	w.Float(rotY);
+	w.Vector(rotOffset);
 	w.Vector(focusOffset);
 	w.Float(moveDamping);
 	w.Float(rotDamping);
@@ -215,7 +237,7 @@ void Camera::LoadTargetMode()
 
 	distance = r.Float();
 	height = r.Float();
-	rotY = r.Float();
+	rotOffset = r.Vector();
 	focusOffset = r.Vector();
 	moveDamping = r.Float();
 	rotDamping = r.Float();

@@ -16,11 +16,10 @@ private:
 	float distance;
 	float height;
 
-	float rotY;
-
-	float destRot;
+	Vector3 destRot;
 	Vector3 destPos;
 	Vector3 focusOffset;
+	Vector3 rotOffset;
 
 	Matrix rotMatrix;
 
@@ -39,9 +38,10 @@ public:
 	Ray ScreenPointToRay(Vector3 screenPos);
 	Vector3 WorldToScreenPoint(Vector3 worldPos);
 
-	void SetTarget(Transform* transform) { target = transform; }
+	void SetTarget(Transform* transform);
 
 	Vector3& GetFocusOffset() { return focusOffset; }
+	Vector3& GetRotOffset() { return rotOffset; }
 
 	void SaveTargetMode();
 	void LoadTargetMode();

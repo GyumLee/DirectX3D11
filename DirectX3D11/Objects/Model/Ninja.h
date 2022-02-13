@@ -36,6 +36,8 @@ public:
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
 	void SetTarget(Transform* transform) { target = transform; }
 
+	Collider* GetCollider() { return collider; }
+
 private:
 	void Move();
 	void Hit();

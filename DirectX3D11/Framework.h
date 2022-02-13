@@ -155,6 +155,7 @@ using namespace GameMath;
 #include "Objects/Model/Bullet.h"
 
 #include "Objects/Manager/BulletManager.h"
+#include "Objects/Manager/MonsterManager.h"
 
 //Program
 #include "Scenes/Scene.h"
