@@ -149,6 +149,7 @@ using namespace GameMath;
 
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
+#include "Objects/Landscape/SkyBox.h"
 
 #include "Objects/Model/Ninja.h"
 #include "Objects/Model/Hinata.h"

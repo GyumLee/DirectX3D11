@@ -17,11 +17,14 @@ ShootingScene::ShootingScene()
 
 	BulletManager::Get()->CreateBullets();
 	MonsterManager::Get()->CreateMonsters(terrain);
+
+	skyBox = new SkyBox("Textures/DDS/ColdSunset.dds");
 }
 
 ShootingScene::~ShootingScene()
 {
 	delete terrain;
+	delete skyBox;
 
 	delete hinata;
 
@@ -50,6 +53,8 @@ void ShootingScene::PreRender()
 
 void ShootingScene::Render()
 {
+	skyBox->Render();
+
 	terrain->Render();
 
 	hinata->Render();

@@ -9,6 +9,8 @@ private:
 
 	Quad* cursor;
 
+	SkyBox* skyBox;
+
 public:
 	ShootingScene();
 	~ShootingScene();

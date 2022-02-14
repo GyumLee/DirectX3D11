@@ -240,6 +240,9 @@
     <ClInclude Include="Objects\Manager\MonsterManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Landscape\SkyBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -437,6 +440,9 @@
     <ClCompile Include="Objects\Manager\MonsterManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Landscape\SkyBox.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -463,6 +469,7 @@
     <FxCompile Include="Shaders\Basic\Texture.hlsl" />
     <FxCompile Include="Shaders\Basic\Collider.hlsl" />
     <FxCompile Include="Shaders\UI\ProgressBar.hlsl" />
+    <FxCompile Include="Shaders\Basic\SkyBox.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

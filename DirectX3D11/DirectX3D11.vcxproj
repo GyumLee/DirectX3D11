@@ -141,6 +141,7 @@
     <ClInclude Include="Objects\Basic\Quad.h" />
     <ClInclude Include="Objects\Basic\RenderTransform.h" />
     <ClInclude Include="Objects\Basic\Sphere.h" />
+    <ClInclude Include="Objects\Landscape\SkyBox.h" />
     <ClInclude Include="Objects\Landscape\Terrain.h" />
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
     <ClInclude Include="Objects\Manager\BulletManager.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Objects\Basic\Quad.cpp" />
     <ClCompile Include="Objects\Basic\RenderTransform.cpp" />
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
+    <ClCompile Include="Objects\Landscape\SkyBox.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
     <ClCompile Include="Objects\Manager\BulletManager.cpp" />
@@ -249,6 +251,10 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Basic\Grid.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Basic\SkyBox.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
