@@ -268,7 +268,7 @@ void ModelAnimator::CreateClipTransform(UINT index)
 					XMLoadFloat4(&transform.rotation),
 					Vector3(transform.position));
 
-				//Stick Hip Transform
+				//Stick Root Transform
 				if (clip->IsRootMotion() && nodeIndex == rootBoneIndex)
 				{
 					Float4x4 temp;

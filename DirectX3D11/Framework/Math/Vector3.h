@@ -95,6 +95,24 @@ struct Vector3
 		return XMLoadFloat3(&value1) / value2.data;
 	}
 
+	bool operator==(const Vector3& value)
+	{
+		return XMVector3Equal(data, value.data);
+	}
+
+	float operator[](const UINT& index) const
+	{
+		switch (index)
+		{
+		case 0:
+			return XMVectorGetX(data);
+		case 1:
+			return XMVectorGetY(data);
+		case 2:
+			return XMVectorGetZ(data);
+		}
+	}
+
 	float Length() const { return XMVectorGetX(XMVector3Length(data)); }
 	Vector3 Normalize() const { return XMVector3Normalize(data); }
 

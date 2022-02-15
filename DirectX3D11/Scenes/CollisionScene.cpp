@@ -3,13 +3,16 @@
 
 CollisionScene::CollisionScene()
 {
-	Collider* collider = new SphereCollider();
-	collider->tag = "Sphere";
+	Collider* collider = new BoxCollider();
+	collider->tag = "Box1";
 
 	colliders.push_back(collider);
 
+	/*collider = new BoxCollider();
+	collider->tag = "Box2";
+	colliders.push_back(collider);*/
 	collider = new SphereCollider();
-	collider->tag = "Sphere2";
+	collider->tag = "Sphere1";
 	colliders.push_back(collider);
 }
 
@@ -33,7 +36,6 @@ void CollisionScene::Update()
 	}*/
 
 	Ray ray = CAM->ScreenPointToRay(mousePos);
-	//Ray ray = CAM->ScreenPointToRay({ CENTER_X, CENTER_Y, 0.0f });
 
 	Contact contact;
 

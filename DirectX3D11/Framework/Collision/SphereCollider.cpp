@@ -41,7 +41,7 @@ bool SphereCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 
 bool SphereCollider::BoxCollision(BoxCollider* collider)
 {
-	return false;
+	return collider->SphereCollision(this);
 }
 
 bool SphereCollider::SphereCollision(SphereCollider* collider)

@@ -5,7 +5,8 @@ class Hinata : public ModelAnimator
 private:
 	enum AnimState
 	{
-		IDLE, RUN, FIRE
+		IDLE, RUN, FIRE,
+		MAX
 	}state;
 
 	Model* rifle;

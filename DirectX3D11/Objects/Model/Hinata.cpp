@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 Hinata::Hinata()
-	: ModelAnimator("Hinata"), state(IDLE)
+	: ModelAnimator("Hinata"), state(MAX)
 {
 	Load();
 
