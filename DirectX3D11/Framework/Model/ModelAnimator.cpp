@@ -1,7 +1,7 @@
 #include "Framework.h"
 
-ModelAnimator::ModelAnimator(string name)
-	: name(name), texture(nullptr)
+ModelAnimator::ModelAnimator(string name, int rootBoneIndex)
+	: name(name), texture(nullptr), rootBoneIndex(rootBoneIndex)
 {
 	tag = name;
 
@@ -105,7 +105,7 @@ void ModelAnimator::ReadClip(string clipName, UINT clipNum, bool isRootMotion)
 			void* ptr = (void*)keyFrame->transforms.data();
 			r.Byte(&ptr, sizeof(KeyTransform) * size);
 		}
-		clip->SetKeyFrame(keyFrame->boneName, keyFrame);
+		clip->SetKeyFrame(keyFrame->boneName, keyFrame); // 2. BreakPoint here, find translate(keyFrame->transforms) bone(keyFrame->boneName)
 	}
 
 	clips.push_back(clip);

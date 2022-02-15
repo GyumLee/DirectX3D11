@@ -19,10 +19,10 @@ protected:
 	ID3D11ShaderResourceView* srv;
 
 	bool isPlay = true;
-	int rootBoneIndex = 1;
+	int rootBoneIndex;
 
 public:
-	ModelAnimator(string name);
+	ModelAnimator(string name, int rootBoneIndex = 1);
 	~ModelAnimator();
 
 	void Update();

@@ -147,6 +147,7 @@ void Ninja::SetMotions()
 	ReadClip("Idle");
 	ReadClip("Run");
 	ReadClip("Attack");
+	//ReadClip("Hit"); // 1. BreakPoint here, Start Debugging, go to ReadClip()
 	ReadClip("Hit", 0, true);
 	ReadClip("Dying");
 
