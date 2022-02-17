@@ -3,16 +3,12 @@
 
 CollisionScene::CollisionScene()
 {
-	Collider* collider = new BoxCollider();
-	collider->tag = "Box1";
-
+	Collider* collider = new CapsuleCollider(1, 5);
+	collider->tag = "Capsule1";
 	colliders.push_back(collider);
 
-	/*collider = new BoxCollider();
-	collider->tag = "Box2";
-	colliders.push_back(collider);*/
-	collider = new SphereCollider();
-	collider->tag = "Sphere1";
+	collider = new CapsuleCollider(1, 3);
+	collider->tag = "Capsule2";
 	colliders.push_back(collider);
 }
 
@@ -24,7 +20,7 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
-	/*if (colliders[0]->Collision(colliders[1]))
+	if (colliders[0]->Collision(colliders[1]))
 	{
 		colliders[0]->SetColor(1, 0, 0);
 		colliders[1]->SetColor(1, 0, 0);
@@ -33,9 +29,9 @@ void CollisionScene::Update()
 	{
 		colliders[0]->SetColor(0, 1, 0);
 		colliders[1]->SetColor(0, 1, 0);
-	}*/
+	}
 
-	Ray ray = CAM->ScreenPointToRay(mousePos);
+	/*Ray ray = CAM->ScreenPointToRay(mousePos);
 
 	Contact contact;
 
@@ -47,7 +43,7 @@ void CollisionScene::Update()
 	else
 	{
 		colliders[0]->SetColor(0, 1, 0);
-	}
+	}*/
 
 	for (Collider* collider : colliders)
 		collider->UpdateWorld();

@@ -53,7 +53,7 @@ bool SphereCollider::SphereCollision(SphereCollider* collider)
 
 bool SphereCollider::CapsuleCollision(CapsuleCollider* collider)
 {
-	return false;
+	return collider->SphereCollision(this);
 }
 
 void SphereCollider::CreateMesh()

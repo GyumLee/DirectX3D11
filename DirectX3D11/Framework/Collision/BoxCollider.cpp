@@ -117,7 +117,7 @@ bool BoxCollider::SphereCollision(SphereCollider* collider)
 
 bool BoxCollider::CapsuleCollision(CapsuleCollider* collider)
 {
-	return false;
+	return collider->BoxCollision(this);
 }
 
 BoxCollider::Obb BoxCollider::GetObb()
