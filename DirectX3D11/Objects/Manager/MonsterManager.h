@@ -9,6 +9,8 @@ private:
 
 	Terrain* terrain;
 
+	Hinata* player;
+
 	MonsterManager();
 	~MonsterManager();
 
@@ -20,4 +22,6 @@ public:
 	void CreateMonsters(Terrain* terrain, UINT poolCount = 3);
 
 	Transform* RayCollision(Ray ray, Vector3* hitPoint);
+
+	void SetPlayer(Hinata* hinata) { player = hinata; }
 };

@@ -16,7 +16,8 @@ ShootingScene::ShootingScene()
 	cursor->position = { CENTER_X, CENTER_Y, 0.0f };
 
 	BulletManager::Get()->CreateBullets();
-	MonsterManager::Get()->CreateMonsters(terrain);
+	MonsterManager::Get()->CreateMonsters(terrain, 3);
+	MonsterManager::Get()->SetPlayer(hinata);
 
 	skyBox = new SkyBox("Textures/DDS/ColdSunset.dds");
 }
@@ -40,11 +41,11 @@ void ShootingScene::Update()
 	//cursor->position.y = WIN_HEIGHT - mousePos.y;
 
 	hinata->Update();
-	MonsterManager::Get()->Update();
 
 	cursor->UpdateWorld();
 
 	BulletManager::Get()->Update();
+	MonsterManager::Get()->Update();
 }
 
 void ShootingScene::PreRender()
@@ -54,7 +55,6 @@ void ShootingScene::PreRender()
 void ShootingScene::Render()
 {
 	skyBox->Render();
-
 	terrain->Render();
 
 	hinata->Render();

@@ -152,6 +152,7 @@ using namespace GameMath;
 #include "Objects/Landscape/SkyBox.h"
 
 #include "Objects/Model/Ninja.h"
+#include "Objects/Model/Sword.h"
 #include "Objects/Model/Hinata.h"
 #include "Objects/Model/Bullet.h"
 

@@ -36,7 +36,6 @@ void Ninja::Update()
 
 	//Trace();
 	Move();
-	Hit();
 
 	kunai->UpdateWorld();
 
@@ -76,19 +75,16 @@ void Ninja::Move()
 
 void Ninja::Hit()
 {
-	if (BulletManager::Get()->Collision(collider))
-	{
-		collider->isActive = false;
+	collider->isActive = false;
 
-		hp -= 30.0f;
+	hp -= 30.0f;
 
-		hpBar->SetValue(hp);
+	hpBar->SetValue(hp);
 
-		if (hp > 0)
-			SetClip(HIT);
-		else
-			SetClip(DYING);
-	}
+	if (hp > 0)
+		SetClip(HIT);
+	else
+		SetClip(DYING);
 }
 
 void Ninja::Trace()

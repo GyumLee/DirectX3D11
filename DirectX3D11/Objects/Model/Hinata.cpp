@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 Hinata::Hinata()
-	: ModelAnimator("Hinata"), state(MAX)
+	: ModelAnimator("Hinata"), state(RIFLE_IDLE)
 {
 	Load();
 
@@ -10,6 +10,11 @@ Hinata::Hinata()
 	rifle = new Model("Rifle");
 	rifle->SetParent(&rightHand);
 	rifle->Load();
+
+	sword = new Sword();
+	sword->SetParent(&rightHand);
+	sword->isActive = false;
+	sword->GetCollider()->isActive = false;
 
 	firePos = new RenderTransform();
 	firePos->tag = "FirePos";
@@ -21,6 +26,7 @@ Hinata::~Hinata()
 {
 	delete rifle;
 	delete firePos;
+	delete sword;
 }
 
 void Hinata::Update()
@@ -32,14 +38,15 @@ void Hinata::Update()
 
 	ModelAnimator::Update();
 	rifle->UpdateWorld();
-
 	firePos->UpdateWorld();
+	sword->Update();
 }
 
 void Hinata::Render()
 {
 	ModelAnimator::Render();
 	rifle->Render();
+	sword->Render();
 
 	firePos->Render();
 }
@@ -50,32 +57,52 @@ void Hinata::GUIRender()
 	rifle->GUIRender();
 
 	firePos->GUIRender();
+	sword->GUIRender();
 }
 
 void Hinata::Control()
 {
-	if (isFire) return;
+	if (isAttack) return;
 
 	if (MOUSE_CLICK(0))
 	{
-		isFire = true;
-		SetClip(FIRE);
+		isAttack = true;
+
+		if (isSwordMode)
+			SetClip(SWORD_ATTACK);
+		else
+			SetClip(RIFLE_ATTACK);
+		
+	}
+
+	if (KEY_DOWN(VK_TAB))
+	{
+		if (isSwordMode)
+		{
+			isSwordMode = false;
+			SetClip(SHEATH_SWORD);
+		}
+		else
+		{
+			isSwordMode = true;
+			SetClip(PUTBACK_RIFLE);
+		}
 	}
 }
 
 void Hinata::Move()
 {
-	if (isFire) return;
+	if (isAttack) return;
 
 	if (KEY_PRESS('W'))
 	{
 		position -= Forward() * moveSpeed * DELTA;
-		SetClip(RUN);
+		SetClip(RIFLE_RUN);
 	}
 	else if (KEY_PRESS('S'))
 	{
 		position += Forward() * moveSpeed * DELTA;
-		SetClip(RUN);
+		SetClip(RIFLE_RUN);
 	}
 
 	if (!ETC::Get()->IsSkipMouseDelta())
@@ -98,7 +125,7 @@ void Hinata::Move()
 		rotation.y += rotSpeed * DELTA;*/
 
 	if (KEY_UP('W') || KEY_UP('S'))
-		SetClip(IDLE);
+		SetClip(RIFLE_IDLE);
 
 	if (terrain != nullptr)
 		position.y = terrain->GetHeight(position);
@@ -133,8 +160,46 @@ void Hinata::Fire()
 
 void Hinata::EndFire()
 {
-	isFire = false;
-	SetClip(IDLE);
+	isAttack = false;
+	SetClip(RIFLE_IDLE);
+}
+
+void Hinata::EndSlash()
+{
+	isAttack = false;
+	SetClip(SWORD_IDLE);
+}
+
+void Hinata::EndSheath()
+{
+	SetClip(GRAB_RIFLE);
+	rifle->isActive = true;
+	sword->isActive = false;
+}
+
+void Hinata::EndPutBack()
+{
+	SetClip(DRAW_SWORD);
+	rifle->isActive = false;
+	sword->isActive = true;
+}
+
+void Hinata::ActiveSword()
+{
+	sword->GetCollider()->isActive = true;
+}
+
+void Hinata::InactiveSword()
+{
+	sword->GetCollider()->isActive = false;
+}
+
+void Hinata::SetIdle()
+{
+	if (isSwordMode)
+		SetClip(SWORD_IDLE);
+	else
+		SetClip(RIFLE_IDLE);
 }
 
 void Hinata::SetClip(AnimState state)
@@ -151,7 +216,21 @@ void Hinata::SetMotions()
 	ReadClip("Idle");
 	ReadClip("Run");
 	ReadClip("Fire");
+	ReadClip("SwordIdle");
+	ReadClip("SwordRun");
+	ReadClip("SwordSlash");
+	ReadClip("PutBackRifle");
+	ReadClip("GrabRifle");
+	ReadClip("DrawSword");
+	ReadClip("SheathSword");
 
-	clips[FIRE]->SetEvent(0.5f, bind(&Hinata::Fire, this));
-	clips[FIRE]->SetEvent(0.9f, bind(&Hinata::EndFire, this));
+	clips[RIFLE_ATTACK]->SetEvent(0.5f, bind(&Hinata::Fire, this));
+	clips[RIFLE_ATTACK]->SetEvent(0.9f, bind(&Hinata::EndFire, this));
+	clips[SHEATH_SWORD]->SetEvent(0.9f, bind(&Hinata::EndSheath, this));
+	clips[PUTBACK_RIFLE]->SetEvent(0.9f, bind(&Hinata::EndPutBack, this));
+	clips[GRAB_RIFLE]->SetEvent(0.7f, bind(&Hinata::SetIdle, this));
+	clips[DRAW_SWORD]->SetEvent(0.7f, bind(&Hinata::SetIdle, this));
+	clips[SWORD_ATTACK]->SetEvent(0.5f, bind(&Hinata::ActiveSword, this));
+	clips[SWORD_ATTACK]->SetEvent(0.7f, bind(&Hinata::InactiveSword, this));
+	clips[SWORD_ATTACK]->SetEvent(0.9f, bind(&Hinata::EndSlash, this));
 }

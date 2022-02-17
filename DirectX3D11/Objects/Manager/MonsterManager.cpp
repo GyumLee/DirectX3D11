@@ -13,7 +13,17 @@ MonsterManager::~MonsterManager()
 void MonsterManager::Update()
 {
 	for (Ninja* monster : monsters)
+	{
+		if (!monster->isActive) continue;
+
 		monster->Update();
+
+		if (BulletManager::Get()->Collision(monster->GetCollider()))
+			monster->Hit();
+
+		if (monster->GetCollider()->Collision(player->GetSwordCollider()))
+			monster->Hit();
+	}
 }
 
 void MonsterManager::Render()

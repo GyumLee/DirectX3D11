@@ -18,6 +18,8 @@ Model::~Model()
 
 void Model::Render()
 {
+	if (!isActive) return;
+
 	worldBuffer->Set(world);
 	worldBuffer->SetVSBuffer(0);
 

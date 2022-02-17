@@ -33,6 +33,8 @@ public:
 	void PostRender();
 	void GUIRender();
 
+	void Hit();
+
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
 	void SetTarget(Transform* transform) { target = transform; }
 
@@ -40,7 +42,6 @@ public:
 
 private:
 	void Move();
-	void Hit();
 	void Trace();
 
 	void EndHit();

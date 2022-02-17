@@ -149,6 +149,7 @@
     <ClInclude Include="Objects\Model\Bullet.h" />
     <ClInclude Include="Objects\Model\Hinata.h" />
     <ClInclude Include="Objects\Model\Ninja.h" />
+    <ClInclude Include="Objects\Model\Sword.h" />
     <ClInclude Include="Objects\UI\ProgressBar.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Program\SceneManager.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="Objects\Model\Bullet.cpp" />
     <ClCompile Include="Objects\Model\Hinata.cpp" />
     <ClCompile Include="Objects\Model\Ninja.cpp" />
+    <ClCompile Include="Objects\Model\Sword.cpp" />
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Program\SceneManager.cpp" />
