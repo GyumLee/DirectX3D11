@@ -246,6 +246,9 @@
     <ClInclude Include="Objects\Model\Sword.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\LightScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -449,6 +452,9 @@
     <ClCompile Include="Objects\Model\Sword.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\LightScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -465,17 +471,15 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Terrain\Picking.hlsl" />
-    <FxCompile Include="Shaders\Terrain\TerrainBrush.hlsl" />
     <FxCompile Include="Shaders\Terrain\TerrainEditor.hlsl" />
     <FxCompile Include="Shaders\Terrain\TerrainSplatting.hlsl" />
-    <FxCompile Include="Shaders\Model\ModelBone.hlsl" />
-    <FxCompile Include="Shaders\Model\ModelAnimator.hlsl" />
     <FxCompile Include="Shaders\Basic\Grid.hlsl" />
-    <FxCompile Include="Shaders\Basic\NormalMapping.hlsl" />
     <FxCompile Include="Shaders\Basic\Texture.hlsl" />
     <FxCompile Include="Shaders\Basic\Collider.hlsl" />
     <FxCompile Include="Shaders\UI\ProgressBar.hlsl" />
     <FxCompile Include="Shaders\Basic\SkyBox.hlsl" />
+    <FxCompile Include="Shaders\Lighting\ModelLighting.hlsl" />
+    <FxCompile Include="Shaders\Lighting\AnimatorLighting.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

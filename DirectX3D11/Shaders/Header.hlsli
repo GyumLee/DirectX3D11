@@ -44,6 +44,18 @@ struct VertexUVNormalTangentBlend
 	float4 weights : BLENDWEIGHTS;
 };
 
+//PixelInput
+struct LightPixelInput
+{
+	float4 pos : SV_POSITION;
+	float2 uv : UV;
+	float3 normal : NORMAL;
+	float3 tangent : TANGENT;
+	float3 binormal : BINORMAL;
+	float3 viewPos : POSITION0;
+	float3 worldPos : POSITION1;
+};
+
 //VertexShader ConstBuffer
 cbuffer WorldBuffer : register(b0)
 {
@@ -97,7 +109,9 @@ Texture2D normalMap : register(t2);
 struct Light
 {
 	float4 color;
+	
 	float3 direction;
+	float padding;
 };
 
 cbuffer LightBuffer : register(b0)
@@ -105,8 +119,9 @@ cbuffer LightBuffer : register(b0)
 	Light light;
 
 	float padding;
+	float3 ambientLight;
 	
-	float4 ambientLight;
+	float3 ambientCeil;
 }
 
 cbuffer MaterialBuffer : register(b1)
@@ -185,4 +200,85 @@ matrix SkinWorld(float4 indices, float4 weights)
 	}
 	
 	return transform;
+}
+
+//Pixel Function
+struct Material
+{
+	float3 normal;
+	float4 diffuseColor;
+	float4 specularIntensity;
+	float3 viewPos;
+	float3 worldPos;
+};
+
+float3 NormalMapping(float3 T, float3 B, float3 N, float2 uv)
+{
+	T = normalize(T);
+	B = normalize(B);
+	N = normalize(N);
+	
+	[flatten]
+	if (hasNormalMap)
+	{
+		float3 normal = normalMap.Sample(samp, uv).rgb;
+	
+		float3x3 TBN = float3x3(T, B, N);
+		N = normal * 2.0f - 1.0f; // 0~1 -> -1~1
+		N = normalize(mul(N, TBN));
+	}
+	
+	return N;
+}
+
+float4 SpecularMapping(float2 uv)
+{
+	[flatten]
+	if (hasSpecularMap)
+		return specularMap.Sample(samp, uv);
+	
+	return float4(1, 1, 1, 1);
+}
+
+Material GetMaterial(LightPixelInput input)
+{
+	Material material;
+	material.normal = NormalMapping(input.tangent, input.binormal, input.normal, input.uv);
+	
+	[branch]
+	if (hasDiffuseMap)
+		material.diffuseColor = diffuseMap.Sample(samp, input.uv);
+	else
+		material.diffuseColor = 1;
+
+	material.viewPos = input.viewPos;
+	material.specularIntensity = SpecularMapping(input.uv);
+	material.worldPos = input.worldPos;
+	
+	return material;
+}
+
+float4 CalcAmbient(Material material)
+{
+	float up = material.normal.y * 0.5f + 0.5f; // 0~1, 0.5f
+	
+	float4 resultAmbient = float4(ambientLight + up * ambientCeil, 1.0f);
+
+	return resultAmbient * material.diffuseColor;
+}
+
+float4 CalcEmissive(Material material)
+{
+	float emissiveIntensity = 0.0f;
+	
+	[flatten]
+	if (mEmissive.a > 0.0f)
+	{
+		float3 viewDir = normalize(material.viewPos - material.worldPos);
+		
+		float t = saturate(dot(material.normal, viewDir));
+		emissiveIntensity = smoothstep(1.0f - mEmissive.a, 1.0f, 1.0f - t);
+	}
+	
+	return float4(mEmissive.rgb * emissiveIntensity, 1.0f);
 }

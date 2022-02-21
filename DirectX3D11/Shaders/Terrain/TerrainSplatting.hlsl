@@ -48,51 +48,5 @@ float4 PS(PixelInput input) : SV_TARGET
 	albedo = lerp(albedo, second, alpha.r);
 	albedo = lerp(albedo, third, alpha.g);
 	
-	float3 T = normalize(input.tangent);
-	float3 B = normalize(input.binormal);
-	float3 N = normalize(input.normal);
-	
-	float3 normal = N;
-	
-	if (hasNormalMap)
-	{
-		float4 normalMapping = normalMap.Sample(samp, input.uv);
-	
-		normal = normalMapping * 2.0f - 1.0f; // 0~1 -> -1~1
-		float3x3 TBN = float3x3(T, B, N);
-		normal = normalize(mul(normal, TBN));
-	}
-	
-	float3 lightDirection = normalize(light.direction);
-	
-	float diffuseIntensity = saturate(dot(normal, -lightDirection));
-	
-	float4 specular = 0;
-	if (diffuseIntensity > 0)
-	{
-		//Blinn Phong Shading
-		float3 halfWay = normalize(input.viewDir + lightDirection);
-		specular = saturate(dot(normal, -halfWay));
-		
-		float4 specularIntensity = 1.0f;
-		
-		if (hasSpecularMap)
-			specularIntensity = specularMap.Sample(samp, input.uv);
-		
-		specular = pow(specular, shininess) * specularIntensity * mSpecular * light.color;
-	}
-	
-	float emissiveIntensity = 0.0f;
-	
-	if (mEmissive.a > 0.0f)
-	{
-		float t = saturate(dot(normal, -input.viewDir));
-		emissiveIntensity = smoothstep(1.0f - mEmissive.a, 1.0f, 1.0f - t);
-	}
-	
-	float4 diffuse = albedo * diffuseIntensity * light.color * mDiffuse;
-	float4 ambient = albedo * ambientLight * mAmbient;
-	float4 emissive = mEmissive * emissiveIntensity;
-	
-	return albedo * diffuse + specular + ambient + emissive;
+	return albedo;
 }

@@ -5,7 +5,7 @@ Model::Model(string name)
 	tag = name;
 
 	reader = new ModelReader(name);
-	reader->SetShader(L"Basic/NormalMapping.hlsl");
+	reader->SetShader(L"Lighting/ModelLighting.hlsl");
 
 	worldBuffer = new WorldBuffer();
 }

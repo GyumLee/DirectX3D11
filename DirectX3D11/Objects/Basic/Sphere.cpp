@@ -6,7 +6,7 @@ Sphere::Sphere(float radius, UINT sliceCount, UINT stackCount)
 	tag = "Sphere";
 
 	material = new Material(tag);
-	material->SetShader(L"Basic/NormalMapping.hlsl");
+	material->SetShader(L"Lighting/ModelLighting.hlsl");
 
 	CreateMesh();
 

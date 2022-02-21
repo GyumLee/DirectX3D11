@@ -12,6 +12,7 @@
 #include "Scenes/CharacterScene.h"
 #include "Scenes/CollisionScene.h"
 #include "Scenes/ShootingScene.h"
+#include "Scenes/LightScene.h"
 
 Program::Program()
 {
@@ -19,17 +20,18 @@ Program::Program()
 
 	//SceneManager::Get()->Create("Start", new CubeScene());
 	//SceneManager::Get()->Create("Start", new PlaneScene());
-	SceneManager::Get()->Create("Grid", new GridScene());
+	//SceneManager::Get()->Create("Grid", new GridScene());
 	//SceneManager::Get()->Create("Start", new TerrainScene());
 	//SceneManager::Get()->Create("Start", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
 	//SceneManager::Get()->Create("Start", new ModelRenderScene());
 	//SceneManager::Get()->Create("Start", new ModelAnimatorRenderScene());
 	//SceneManager::Get()->Create("Start", new CharacterScene());
-	SceneManager::Get()->Create("Start", new CollisionScene());
+	//SceneManager::Get()->Create("Start", new CollisionScene());
 	//SceneManager::Get()->Create("Start", new ShootingScene());
+	SceneManager::Get()->Create("Start", new LightScene());
 
-	SceneManager::Get()->Add("Grid");
+	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
 }
 

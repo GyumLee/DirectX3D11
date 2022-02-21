@@ -81,7 +81,8 @@ void Environment::GUIRender()
 	{
 		ImGui::ColorEdit3("COLOR", (float*)&lightBuffer->data.color, ImGuiColorEditFlags_PickerHueWheel);
 		ImGui::DragFloat3("DIRECTION", (float*)&lightBuffer->data.direction, 0.01f, -1.0f, 1.0f);
-		ImGui::ColorEdit3("AMBIENT", (float*)&lightBuffer->data.ambientColor, ImGuiColorEditFlags_PickerHueWheel);
+		ImGui::ColorEdit3("AMBIENT LIGHT", (float*)&lightBuffer->data.ambientColor, ImGuiColorEditFlags_PickerHueWheel);
+		ImGui::ColorEdit3("AMBIENT CEIL", (float*)&lightBuffer->data.ambientCeil, ImGuiColorEditFlags_PickerHueWheel);
 
 		ImGui::TreePop();
 	}

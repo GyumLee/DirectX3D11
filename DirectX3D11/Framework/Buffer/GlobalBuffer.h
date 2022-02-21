@@ -73,7 +73,11 @@ public:
 		Float3 direction = { 0, -1, 1 }; // 12byte
 		float padding; // 4byte
 
-		Float4 ambientColor = { 0.1f, 0.1f, 0.1f, 1.0f };
+		float padding2;
+		Float3 ambientColor = { 0.1f, 0.1f, 0.1f };
+
+		Float3 ambientCeil = { 0.1f, 0.1f, 0.1f };
+		float padding3;
 	}data;
 
 	LightBuffer() : ConstBuffer(&data, sizeof(Data))

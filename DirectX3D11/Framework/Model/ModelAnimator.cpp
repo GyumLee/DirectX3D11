@@ -6,7 +6,7 @@ ModelAnimator::ModelAnimator(string name, int rootBoneIndex)
 	tag = name;
 
 	reader = new ModelReader(name);
-	reader->SetShader(L"Model/ModelAnimator.hlsl");
+	reader->SetShader(L"Lighting/AnimatorLighting.hlsl");
 
 	frameBuffer = new FrameBuffer();
 	worldBuffer = new WorldBuffer();

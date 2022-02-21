@@ -36,6 +36,8 @@ public:
 
 	Matrix GetTransformByNode(int nodeIndex);
 
+	ModelReader* GetReader() { return reader; }
+
 private:
 	void UpdateFrame();
 
