@@ -45,6 +45,16 @@ void Quad::CreateMesh()
 	vertices[1].uv = { 1, 0 };
 	vertices[2].uv = { 0, 1 };
 	vertices[3].uv = { 1, 1 };
+
+	vertices[0].normal = { 0, 0, -1.0f };
+	vertices[1].normal = { 0, 0, -1.0f };
+	vertices[2].normal = { 0, 0, -1.0f };
+	vertices[3].normal = { 0, 0, -1.0f };
+
+	vertices[0].tangent = { 1, 0, 0 };
+	vertices[1].tangent = { 1, 0, 0 };
+	vertices[2].tangent = { 1, 0, 0 };
+	vertices[3].tangent = { 1, 0, 0 };
 	/*
 	0 1
 	2 3

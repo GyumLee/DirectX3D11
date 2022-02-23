@@ -3,7 +3,7 @@
 class Quad : public Transform
 {
 private:
-	typedef VertexUV VertexType;
+	typedef VertexUVNormalTangent VertexType;
 
 	Material* material;
 	Mesh* mesh;

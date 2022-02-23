@@ -1,5 +1,6 @@
 
 #define MAX_BONE 1024
+#define MAX_LIGHT 10
 
 //VertexLayout
 struct Vertex
@@ -111,16 +112,24 @@ struct Light
 	float4 color;
 	
 	float3 direction;
-	float padding;
+	int type;
+	
+	float3 position;
+	float range;
+	
+	float inner;
+	float outer;
+	float length;
+	int active;
 };
 
 cbuffer LightBuffer : register(b0)
 {
-	Light light;
+	Light lights[MAX_LIGHT];
 
-	float padding;
-	float3 ambientLight;
+	int lightCount;
 	
+	float3 ambientLight;
 	float3 ambientCeil;
 }
 
@@ -281,4 +290,139 @@ float4 CalcEmissive(Material material)
 	}
 	
 	return float4(mEmissive.rgb * emissiveIntensity, 1.0f);
+}
+
+float4 CalcDirectional(Material material, Light light)
+{
+	float3 toLight = -normalize(light.direction);
+	
+	float NdotL = saturate(dot(toLight, material.normal));
+	float4 finalColor = light.color * NdotL * mDiffuse;
+
+	[flatten]
+	if (NdotL > 0)
+	{
+		float3 toEye = normalize(material.viewPos - material.worldPos);
+		float3 halfWay = normalize(toEye + toLight);
+		float NdotH = saturate(dot(material.normal, halfWay));
+		
+		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+	}
+	
+	return finalColor * material.diffuseColor;
+}
+
+float4 CalcPoint(Material material, Light light)
+{
+	float3 toLight = light.position - material.worldPos;
+	float distanceToLight = length(toLight);
+	toLight /= distanceToLight;
+	
+	float NdotL = saturate(dot(toLight, material.normal));
+	float4 finalColor = light.color * NdotL * mDiffuse;
+
+	[flatten]
+	if (NdotL > 0)
+	{
+		float3 toEye = normalize(material.viewPos - material.worldPos);
+		float3 halfWay = normalize(toEye + toLight);
+		float NdotH = saturate(dot(material.normal, halfWay));
+		
+		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+	}
+	
+	float distanceToLightNormal = 1.0f - saturate(distanceToLight / light.range);
+	float attention = distanceToLightNormal * distanceToLightNormal;
+	
+	return finalColor * material.diffuseColor * attention;
+}
+
+float4 CalcSpot(Material material, Light light)
+{
+	float3 toLight = light.position - material.worldPos;
+	float distanceToLight = length(toLight);
+	toLight /= distanceToLight;
+	
+	float NdotL = saturate(dot(toLight, material.normal));
+	float4 finalColor = light.color * NdotL * mDiffuse;
+
+	[flatten]
+	if (NdotL > 0)
+	{
+		float3 toEye = normalize(material.viewPos - material.worldPos);
+		float3 halfWay = normalize(toEye + toLight);
+		float NdotH = saturate(dot(material.normal, halfWay));
+		
+		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+	}
+	
+	float3 dir = -normalize(light.direction);
+	float cosAngle = dot(dir, toLight);
+	
+	float outer = cos(radians(light.outer));
+	float inner = 1.0f / cos(radians(light.inner));
+	
+	float conAttention = saturate((cosAngle - outer) * inner);
+	conAttention *= conAttention;
+	
+	float distanceToLightNormal = 1.0f - saturate(distanceToLight / light.range);
+	float attention = distanceToLightNormal * distanceToLightNormal;
+	
+	return finalColor * material.diffuseColor * attention * conAttention;
+}
+
+float4 CalcCapsule(Material material, Light light)
+{
+	float3 direction = normalize(light.direction);
+	float3 start = material.worldPos - light.position;
+	float distanceOnLine = dot(start, direction) / light.length;
+	distanceOnLine = saturate(distanceOnLine) * light.length;
+	
+	float3 pointOnLine = light.position + direction * distanceOnLine;
+	
+	float3 toLight = pointOnLine - material.worldPos;
+	float distanceToLight = length(toLight);
+	toLight /= distanceToLight;
+	
+	float NdotL = saturate(dot(toLight, material.normal));
+	float4 finalColor = light.color * NdotL * mDiffuse;
+
+	[flatten]
+	if (NdotL > 0)
+	{
+		float3 toEye = normalize(material.viewPos - material.worldPos);
+		float3 halfWay = normalize(toEye + toLight);
+		float NdotH = saturate(dot(material.normal, halfWay));
+		
+		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+	}
+	
+	float distanceToLightNormal = 1.0f - saturate(distanceToLight / light.range);
+	float attention = distanceToLightNormal * distanceToLightNormal;
+	
+	return finalColor * material.diffuseColor * attention;
+}
+
+float4 CalcLights(Material material)
+{
+	float4 result = 0;
+	
+	for (int i = 0; i < lightCount; i++)
+	{
+		[flatten]
+		if (!lights[i].active)
+			continue;
+		
+		[flatten]
+		if (lights[i].type == 0)
+			result += CalcDirectional(material, lights[i]);
+		else if (lights[i].type == 1)
+			result += CalcPoint(material, lights[i]);
+		else if (lights[i].type == 2)
+			result += CalcSpot(material, lights[i]);
+		else if (lights[i].type == 3)
+			result += CalcCapsule(material, lights[i]);
+	}
+	
+	return result;
 }

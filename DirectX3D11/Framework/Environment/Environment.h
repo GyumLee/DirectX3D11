@@ -35,7 +35,11 @@ public:
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetProjection() { return projection; }
 
+	LightBuffer::Light* GetLight(UINT index) { return &lightBuffer->data.lights[index]; }
+
 private:
 	void CreateViewport();
 	void CreateProjection();
+
+	void SetLight(UINT index);
 };

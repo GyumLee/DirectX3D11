@@ -1,23 +1,13 @@
 #include "../Header.hlsli"
 
-struct PixelInput
+LightPixelInput VS(VertexUVNormalTangent input)
 {
-	float4 pos : SV_POSITION;
-	float2 uv : UV;
-	float3 normal : NORMAL;
-	float3 tangent : TANGENT;
-	float3 binormal : BINORMAL;
-	float3 viewDir : VIEWDIR;
-};
-
-PixelInput VS(VertexUVNormalTangent input)
-{
-	PixelInput output;
+	LightPixelInput output;
 	
 	output.pos = mul(input.pos, world);
 	
-	float3 camPos = invView._41_42_43;
-	output.viewDir = normalize(output.pos.xyz - camPos);
+	output.worldPos = output.pos;
+	output.viewPos = invView._41_42_43;
 	
 	output.pos = mul(output.pos, view);
 	output.pos = mul(output.pos, projection);
@@ -35,7 +25,7 @@ Texture2D alphaMap : register(t10);
 Texture2D secondMap : register(t11);
 Texture2D thirdMap : register(t12);
 
-float4 PS(PixelInput input) : SV_TARGET
+float4 PS(LightPixelInput input) : SV_TARGET
 {
 	float4 albedo = float4(1, 1, 1, 1);
 	if (hasDiffuseMap)
@@ -48,5 +38,16 @@ float4 PS(PixelInput input) : SV_TARGET
 	albedo = lerp(albedo, second, alpha.r);
 	albedo = lerp(albedo, third, alpha.g);
 	
-	return albedo;
+	Material material;
+	material.normal = NormalMapping(input.tangent, input.binormal, input.normal, input.uv);
+	material.diffuseColor = albedo;
+	material.viewPos = input.viewPos;
+	material.specularIntensity = SpecularMapping(input.uv);
+	material.worldPos = input.worldPos;
+	
+	float4 result = CalcLights(material);
+	float4 ambient = CalcAmbient(material);
+	float4 emissive = CalcEmissive(material);
+	
+	return result + ambient + emissive;
 }

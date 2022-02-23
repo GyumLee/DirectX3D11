@@ -28,6 +28,8 @@ private:
 
 	bool isSwordMode;
 
+	LightBuffer::Light* light;
+
 public:
 	Hinata();
 	~Hinata();

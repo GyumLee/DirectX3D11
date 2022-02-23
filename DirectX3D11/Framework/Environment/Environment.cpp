@@ -79,8 +79,17 @@ void Environment::GUIRender()
 	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth;
 	if(ImGui::TreeNodeEx("LIGHT SETTING", flags, "LIGHT SETTING"))
 	{
-		ImGui::ColorEdit3("COLOR", (float*)&lightBuffer->data.color, ImGuiColorEditFlags_PickerHueWheel);
-		ImGui::DragFloat3("DIRECTION", (float*)&lightBuffer->data.direction, 0.01f, -1.0f, 1.0f);
+		if (ImGui::Button("Add"))
+			lightBuffer->data.lightCount++;
+		ImGui::SameLine();
+		if (ImGui::Button("Remove"))
+			lightBuffer->data.lightCount--;
+
+		for (UINT i = 0; i < lightBuffer->data.lightCount; i++)
+		{
+			SetLight(i);
+		}
+
 		ImGui::ColorEdit3("AMBIENT LIGHT", (float*)&lightBuffer->data.ambientColor, ImGuiColorEditFlags_PickerHueWheel);
 		ImGui::ColorEdit3("AMBIENT CEIL", (float*)&lightBuffer->data.ambientCeil, ImGuiColorEditFlags_PickerHueWheel);
 
@@ -115,4 +124,30 @@ void Environment::CreateProjection()
 
 	Matrix ortho = XMMatrixOrthographicOffCenterLH(0.0f, WIN_WIDTH, 0.0f, WIN_HEIGHT, -1.0f, 1.0f);
 	orthoBuffer->Set(ortho);
+}
+
+void Environment::SetLight(UINT index)
+{
+	string name = "Light_" + to_string(index);
+	LightBuffer::Light& light = lightBuffer->data.lights[index];
+
+	if (ImGui::TreeNode(name.c_str()))
+	{
+		ImGui::Checkbox("Active", (bool*)&light.active);
+
+		const char* list[] = { "Directional", "Point", "Spot", "Capsule" };
+		ImGui::Combo("Type", (int*)&light.type, list, 4);
+
+		ImGui::ColorEdit3("COLOR", (float*)&light.color, ImGuiColorEditFlags_PickerHueWheel);
+		ImGui::DragFloat3("DIRECTION", (float*)&light.direction, 0.01f, -1.0f, 1.0f);
+
+		ImGui::DragFloat3("POSITION", (float*)&light.position);
+		ImGui::DragFloat("RANGE", (float*)&light.range);
+
+		ImGui::SliderFloat("INNER", &light.inner, 0, light.outer);
+		ImGui::SliderFloat("OUTER", &light.outer, light.inner, 180);
+		ImGui::SliderFloat("LENGTH", &light.length, 0, 200);
+
+		ImGui::TreePop();
+	}
 }

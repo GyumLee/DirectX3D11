@@ -20,6 +20,9 @@ Hinata::Hinata()
 	firePos->tag = "FirePos";
 	firePos->SetParent(rifle);
 	firePos->Load();
+
+	light = Environment::Get()->GetLight(0);
+	light->type = LightType::SPOT;
 }
 
 Hinata::~Hinata()
@@ -31,6 +34,9 @@ Hinata::~Hinata()
 
 void Hinata::Update()
 {
+	light->position = firePos->GlobalPos();
+	light->direction = firePos->Forward();
+
 	rightHand = GetTransformByNode(204) * world;
 
 	Move();

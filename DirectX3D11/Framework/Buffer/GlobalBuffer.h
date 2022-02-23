@@ -63,21 +63,39 @@ public:
 	}
 };
 
+enum class LightType
+{
+	DIRECTIONAL, POINT, SPOT, CAPSULE
+};
+
 class LightBuffer : public ConstBuffer
 {
 public:
-	struct Data
+	struct Light
 	{
 		Float4 color = { 1, 1, 1, 1 };
-		// it requires 16byte
-		Float3 direction = { 0, -1, 1 }; // 12byte
-		float padding; // 4byte
 
-		float padding2;
+		Float3 direction = { 0, -1, 1 };
+		LightType type = LightType::POINT;
+
+		Float3 position = { 0, 5, 0 };
+		float range = 50.0f;
+
+		float inner = 55.0f;
+		float outer = 70.0f;
+		float length = 50.0f;
+		int active = 1;
+	};
+
+	struct Data
+	{
+		Light lights[MAX_LIGHT];
+
+		int lightCount = 1;
 		Float3 ambientColor = { 0.1f, 0.1f, 0.1f };
 
 		Float3 ambientCeil = { 0.1f, 0.1f, 0.1f };
-		float padding3;
+		float padding;
 	}data;
 
 	LightBuffer() : ConstBuffer(&data, sizeof(Data))

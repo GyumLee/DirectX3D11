@@ -27,7 +27,9 @@ float4 PS(LightPixelInput input) : SV_TARGET
 {
 	Material material = GetMaterial(input);
 	
+	float4 result = CalcLights(material);
 	float4 ambient = CalcAmbient(material);
+	float4 emissive = CalcEmissive(material);
 	
-	return ambient;
+	return result + ambient + emissive;
 }
