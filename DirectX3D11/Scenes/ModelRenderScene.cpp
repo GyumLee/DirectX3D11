@@ -3,9 +3,9 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-	string name = "Bullet";
+	string name = "Character";
 
-	model = new ModelBone(name);
+	model = new Model(name);
 }
 
 ModelRenderScene::~ModelRenderScene()

@@ -76,7 +76,7 @@ public:
 		Float4 color = { 1, 1, 1, 1 };
 
 		Float3 direction = { 0, -1, 1 };
-		LightType type = LightType::POINT;
+		LightType type = LightType::DIRECTIONAL;
 
 		Float3 position = { 0, 5, 0 };
 		float range = 50.0f;

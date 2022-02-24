@@ -13,6 +13,7 @@
 #include "Scenes/CollisionScene.h"
 #include "Scenes/ShootingScene.h"
 #include "Scenes/LightScene.h"
+#include "Scenes/AStarScene.h"
 
 Program::Program()
 {
@@ -28,8 +29,9 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ModelAnimatorRenderScene());
 	//SceneManager::Get()->Create("Start", new CharacterScene());
 	//SceneManager::Get()->Create("Start", new CollisionScene());
-	SceneManager::Get()->Create("Start", new ShootingScene());
+	//SceneManager::Get()->Create("Start", new ShootingScene());
 	//SceneManager::Get()->Create("Start", new LightScene());
+	SceneManager::Get()->Create("Start", new AStarScene());
 
 	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");

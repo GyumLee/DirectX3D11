@@ -93,6 +93,9 @@
   <ItemGroup>
     <ClInclude Include="Absent\GitManual.h" />
     <ClInclude Include="Absent\ImGuiManual.h" />
+    <ClInclude Include="Algorithm\AStar.h" />
+    <ClInclude Include="Algorithm\Heap.h" />
+    <ClInclude Include="Algorithm\Node.h" />
     <ClInclude Include="DirectX3D11.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Framework\Buffer\ConstBuffer.h" />
@@ -147,6 +150,7 @@
     <ClInclude Include="Objects\Manager\BulletManager.h" />
     <ClInclude Include="Objects\Manager\MonsterManager.h" />
     <ClInclude Include="Objects\Model\Bullet.h" />
+    <ClInclude Include="Objects\Model\Character.h" />
     <ClInclude Include="Objects\Model\Hinata.h" />
     <ClInclude Include="Objects\Model\Ninja.h" />
     <ClInclude Include="Objects\Model\Sword.h" />
@@ -154,6 +158,7 @@
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Program\SceneManager.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\AStarScene.h" />
     <ClInclude Include="Scenes\CharacterScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\CubeScene.h" />
@@ -171,6 +176,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm\AStar.cpp" />
+    <ClCompile Include="Algorithm\Node.cpp" />
     <ClCompile Include="DirectX3D11.cpp" />
     <ClCompile Include="Framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -222,12 +229,14 @@
     <ClCompile Include="Objects\Manager\BulletManager.cpp" />
     <ClCompile Include="Objects\Manager\MonsterManager.cpp" />
     <ClCompile Include="Objects\Model\Bullet.cpp" />
+    <ClCompile Include="Objects\Model\Character.cpp" />
     <ClCompile Include="Objects\Model\Hinata.cpp" />
     <ClCompile Include="Objects\Model\Ninja.cpp" />
     <ClCompile Include="Objects\Model\Sword.cpp" />
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Program\SceneManager.cpp" />
+    <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\CharacterScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\CubeScene.cpp" />

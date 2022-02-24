@@ -141,6 +141,11 @@ using namespace GameMath;
 #include "Framework/Model/ModelClip.h"
 #include "Framework/Model/ModelAnimator.h"
 
+//Algorithm
+#include "Algorithm/Node.h"
+#include "Algorithm/Heap.h"
+#include "Algorithm/AStar.h"
+
 //Object Header
 #include "Objects/Basic/RenderTransform.h"
 #include "Objects/Basic/Quad.h"
@@ -157,6 +162,7 @@ using namespace GameMath;
 #include "Objects/Model/Sword.h"
 #include "Objects/Model/Hinata.h"
 #include "Objects/Model/Bullet.h"
+#include "Objects/Model/Character.h"
 
 #include "Objects/Manager/BulletManager.h"
 #include "Objects/Manager/MonsterManager.h"

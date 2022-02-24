@@ -1,13 +1,16 @@
 #pragma once
 
-class ModelRenderScene : public Scene
+class AStarScene : public Scene
 {
 private:
-	Model* model;
+	Terrain* terrain;
+	Character* character;
+
+	AStar* aStar;
 
 public:
-	ModelRenderScene();
-	~ModelRenderScene();
+	AStarScene();
+	~AStarScene();
 
 	virtual void Update() override;
 	virtual void PreRender() override;

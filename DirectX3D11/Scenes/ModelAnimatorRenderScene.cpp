@@ -3,13 +3,13 @@
 
 ModelAnimatorRenderScene::ModelAnimatorRenderScene()
 {
-	string name = "Ninja";
+	string name = "Character";
 
 	modelAnimator = new ModelAnimator(name);
 
-	modelAnimator->ReadClip("Idle");
-	modelAnimator->ReadClip("Hit", 0, true);
-	modelAnimator->ReadClip("Dying");
+	modelAnimator->ReadClip("idle", 1);
+	modelAnimator->ReadClip("run", 1);
+	modelAnimator->ReadClip("jump", 1);
 
 	modelAnimator->Load();
 }
