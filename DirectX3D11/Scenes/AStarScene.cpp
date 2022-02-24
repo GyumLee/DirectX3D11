@@ -5,13 +5,14 @@ AStarScene::AStarScene()
 {
 	terrain = new Terrain();
 
-	character = new Character();
-	character->SetTerrain(terrain);
-
-	CAM->SetTarget(character);
-
 	aStar = new AStar();
 	aStar->SetNode(terrain);
+
+	character = new Character();
+	character->SetTerrain(terrain);
+	character->SetAStar(aStar);
+
+	CAM->SetTarget(character);
 }
 
 AStarScene::~AStarScene()

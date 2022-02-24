@@ -19,6 +19,7 @@ private:
 	vector<Vector3> path;
 
 	Terrain* terrain;
+	AStar* aStar;
 
 public:
 	Character();
@@ -28,6 +29,7 @@ public:
 	void Render();
 
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
+	void SetAStar(AStar* aStar) { this->aStar = aStar; }
 
 private:
 	void Control();

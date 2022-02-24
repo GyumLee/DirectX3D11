@@ -44,6 +44,9 @@ Program::~Program()
 
 void Program::Update()
 {
+	if (KEY_DOWN(VK_F8))
+		Collider::isVisible = !Collider::isVisible;
+
 	SceneManager::Get()->Update();
 
 	CAM->Update();

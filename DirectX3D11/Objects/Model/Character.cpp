@@ -36,7 +36,10 @@ void Character::Control()
 	{
 		destPos = terrain->Picking();
 
-		path.insert(path.begin(), destPos);
+		int start = aStar->FindCloseNode(position);
+		int end = aStar->FindCloseNode(destPos);
+
+		aStar->GetPath(start, end, path);
 	}
 
 	if (state != JUMP && KEY_DOWN(VK_SPACE))

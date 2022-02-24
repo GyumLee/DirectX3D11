@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algorithm\AStar.cpp" />
+    <ClCompile Include="Algorithm\Heap.cpp" />
     <ClCompile Include="Algorithm\Node.cpp" />
     <ClCompile Include="DirectX3D11.cpp" />
     <ClCompile Include="Framework.cpp">
