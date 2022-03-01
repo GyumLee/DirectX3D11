@@ -4,33 +4,33 @@
 ModelExportScene::ModelExportScene()
 {
 	ModelExporter* exporter;
-	string name = "Character";
+	string name = "BedsideTable";
 	string file;
 	string clip;
 
-	//file = "ModelData/FBX/" + name + ".fbx";
-	//exporter = new ModelExporter(name, file);
-	//exporter->ExportMaterial();
-	//exporter->ExportMesh();
-	//delete exporter;
+	file = "ModelData/FBX/" + name + ".fbx";
+	exporter = new ModelExporter(name, file);
+	exporter->ExportMaterial();
+	exporter->ExportMesh();
+	delete exporter;
 
-	clip = "idle";
-	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	exporter = new ModelExporter(name, file);
-	exporter->ExportClip(clip);
-	delete exporter;
-	
-	clip = "jump";
-	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	exporter = new ModelExporter(name, file);
-	exporter->ExportClip(clip);
-	delete exporter;
-	
-	clip = "run";
-	file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
-	exporter = new ModelExporter(name, file);
-	exporter->ExportClip(clip);
-	delete exporter;
+	//clip = "idle";
+	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	//exporter = new ModelExporter(name, file);
+	//exporter->ExportClip(clip);
+	//delete exporter;
+	//
+	//clip = "jump";
+	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	//exporter = new ModelExporter(name, file);
+	//exporter->ExportClip(clip);
+	//delete exporter;
+	//
+	//clip = "run";
+	//file = "ModelData/Animations/" + name + "/" + clip + ".fbx";
+	//exporter = new ModelExporter(name, file);
+	//exporter->ExportClip(clip);
+	//delete exporter;
 }
 
 ModelExportScene::~ModelExportScene()

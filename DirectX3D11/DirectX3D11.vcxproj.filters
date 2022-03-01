@@ -264,6 +264,9 @@
     <ClInclude Include="Algorithm\Heap.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Model\Obstacle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -485,6 +488,9 @@
     <ClCompile Include="Algorithm\Heap.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Model\Obstacle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -510,6 +516,7 @@
     <FxCompile Include="Shaders\Basic\SkyBox.hlsl" />
     <FxCompile Include="Shaders\Lighting\ModelLighting.hlsl" />
     <FxCompile Include="Shaders\Lighting\AnimatorLighting.hlsl" />
+    <FxCompile Include="Shaders\Lighting\BoneLighting.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

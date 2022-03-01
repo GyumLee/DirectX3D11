@@ -8,6 +8,8 @@ private:
 
 	AStar* aStar;
 
+	vector<Obstacle*> obstacles;
+
 public:
 	AStarScene();
 	~AStarScene();
@@ -17,4 +19,7 @@ public:
 	virtual void Render() override;
 	virtual void PostRender() override;
 	virtual void GUIRender() override;
+
+private:
+	void CreateObstacles();
 };

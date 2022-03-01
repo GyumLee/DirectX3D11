@@ -15,6 +15,8 @@ bool CapsuleCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 {
 	UpdateWorld();
 
+	ray.direction = ray.direction.Normalize();
+
 	Vector3 direction = Up();
 	Vector3 pa = globalPosition - direction * Height() * 0.5f;
 	Vector3 pb = globalPosition + direction * Height() * 0.5f;

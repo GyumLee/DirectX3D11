@@ -32,6 +32,8 @@ void LightScene::Render()
 	sword->Render();
 	hinata->Render();
 	sphere->Render();
+
+	Environment::Get()->LightRender();
 }
 
 void LightScene::PostRender()

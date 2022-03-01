@@ -15,6 +15,8 @@ bool SphereCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 {
 	UpdateWorld();
 
+	ray.direction = ray.direction.Normalize();
+
 	Vector3 P = ray.position;
 	Vector3 D = ray.direction;
 

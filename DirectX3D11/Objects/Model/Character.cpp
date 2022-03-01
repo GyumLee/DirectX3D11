@@ -32,14 +32,25 @@ void Character::Render()
 
 void Character::Control()
 {
-	if (MOUSE_CLICK(0))
+	if (MOUSE_CLICK(0) && !ImGui::GetIO().WantCaptureMouse)
 	{
 		destPos = terrain->Picking();
 
-		int start = aStar->FindCloseNode(position);
-		int end = aStar->FindCloseNode(destPos);
+		Ray ray;
+		ray.position = position;
+		ray.direction = destPos - position;
 
-		aStar->GetPath(start, end, path);
+		float distance = ray.direction.Length();
+
+		if (aStar->CollisionObstacle(ray, distance))
+		{
+			SetPath();
+		}
+		else
+		{
+			path.clear();
+			path.push_back(destPos);
+		}
 	}
 
 	if (state != JUMP && KEY_DOWN(VK_SPACE))
@@ -119,4 +130,36 @@ void Character::SetClip(AnimState state)
 
 void Character::SetPath()
 {
+	int start = aStar->FindCloseNode(position);
+	int end = aStar->FindCloseNode(destPos);
+
+	aStar->GetPath(start, end, path);
+	aStar->MakeDirectPath(position, destPos, path);
+
+	path.insert(path.begin(), destPos);
+
+	UINT pathSize = path.size();
+
+	while (path.size() > 2)
+	{
+		vector<Vector3> tempPath = path;
+		tempPath.erase(tempPath.begin());
+		tempPath.pop_back();
+
+		Vector3 start = path.back();
+		Vector3 end = path.front();
+
+		aStar->MakeDirectPath(start, end, tempPath);
+
+		path.clear();
+
+		path = tempPath;
+		path.insert(path.begin(), end);
+		path.push_back(start);
+
+		if (pathSize == path.size())
+			break;
+		else
+			pathSize = path.size();
+	}
 }

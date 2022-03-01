@@ -9,9 +9,6 @@ private:
 
 	BoneBuffer* boneBuffer;
 
-	map<int, Matrix> boneTransform;
-	Matrix* nodeTransforms;
-
 public:
 	ModelBone(string name);
 	~ModelBone();

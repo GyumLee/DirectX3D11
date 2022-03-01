@@ -5,7 +5,7 @@ ModelBone::ModelBone(string name)
 	tag = name;
 
 	reader = new ModelReader(name);
-	reader->SetShader(L"Model/ModelBone.hlsl");
+	reader->SetShader(L"Lighting/BoneLighting.hlsl");
 
 	worldBuffer = new WorldBuffer();
 	boneBuffer = new BoneBuffer();
@@ -19,8 +19,6 @@ ModelBone::~ModelBone()
 	delete boneBuffer;
 
 	delete reader;
-
-	delete[] nodeTransforms;
 }
 
 void ModelBone::Render()
@@ -35,8 +33,6 @@ void ModelBone::Render()
 void ModelBone::MakeTransform()
 {
 	vector<NodeData> nodes = reader->GetNodes();
-
-	nodeTransforms = new Matrix[nodes.size()];
 
 	UINT nodeIndex = 0;
 	for (NodeData node : nodes)

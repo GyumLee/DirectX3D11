@@ -21,6 +21,9 @@ Environment::Environment()
 	depthState[0] = new DepthStencilState();
 	depthState[1] = new DepthStencilState();
 	depthState[1]->DepthEnable(false);
+
+	for (UINT i = 0; i < MAX_LIGHT; i++)
+		lightTransforms[i] = new RenderTransform();
 }
 
 Environment::~Environment()
@@ -40,6 +43,9 @@ Environment::~Environment()
 
 	delete depthState[0];
 	delete depthState[1];
+
+	for (RenderTransform* lightTransform : lightTransforms)
+		delete lightTransform;
 }
 
 void Environment::SetRender()
@@ -97,6 +103,30 @@ void Environment::GUIRender()
 	}
 
 	ImGui::Spacing(); ImGui::Spacing();
+}
+
+LightBuffer::Light* Environment::AddLight()
+{
+	int index = lightBuffer->data.lightCount++;
+
+	return &lightBuffer->data.lights[index];
+}
+
+void Environment::LightRender()
+{
+	for (int i = 0; i < lightBuffer->data.lightCount; i++)
+	{
+		LightBuffer::Light light = lightBuffer->data.lights[i];
+
+		lightTransforms[i]->position = light.position;
+		lightTransforms[i]->rotation.y = atan2(light.direction.x, light.direction.z);
+		lightTransforms[i]->rotation.x = asin(-light.direction.y);
+		if (light.active)
+		{
+			lightTransforms[i]->UpdateWorld();
+			lightTransforms[i]->Render();
+		}
+	}
 }
 
 void Environment::CreateViewport()

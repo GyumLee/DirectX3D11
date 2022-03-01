@@ -26,6 +26,8 @@ public:
 	vector<NodeData>& GetNodes() { return nodes; }
 	vector<BoneData>& GetBones() { return bones; }
 
+	Material* GetMaterial(UINT index) { return materials[index]; }
+
 private:
 	void ReadMaterial();
 	void ReadMesh();

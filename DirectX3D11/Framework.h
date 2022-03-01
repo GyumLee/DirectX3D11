@@ -163,6 +163,7 @@ using namespace GameMath;
 #include "Objects/Model/Hinata.h"
 #include "Objects/Model/Bullet.h"
 #include "Objects/Model/Character.h"
+#include "Objects/Model/Obstacle.h"
 
 #include "Objects/Manager/BulletManager.h"
 #include "Objects/Manager/MonsterManager.h"

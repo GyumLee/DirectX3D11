@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-	string name = "Character";
+	string name = "BedsideTable";
 
 	model = new Model(name);
 }

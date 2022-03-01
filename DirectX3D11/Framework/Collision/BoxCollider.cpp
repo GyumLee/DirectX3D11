@@ -25,7 +25,7 @@ bool BoxCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 
 	Vector3 delta = box.position - ray.position;
 
-	ray.direction.Normalize();
+	ray.direction = ray.direction.Normalize();
 
 	for (UINT i = 0; i < 3; i++)
 	{

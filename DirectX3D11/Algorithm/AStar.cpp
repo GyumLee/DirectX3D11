@@ -97,6 +97,46 @@ void AStar::GetPath(IN int start, IN int end, OUT vector<Vector3>& path)
     path.push_back(nodes[start]->position);
 }
 
+void AStar::MakeDirectPath(IN Vector3 start, IN Vector3 end, OUT vector<Vector3>& path)
+{
+    int cutNodeNum = 0;
+    Ray ray;
+    ray.position = start;
+
+    for (UINT i = 0; i < path.size(); i++)
+    {
+        ray.direction = path[i] - ray.position;
+        float distance = ray.direction.Length();
+
+        if (!CollisionObstacle(ray, distance))
+        {
+            cutNodeNum = path.size() - i - 1;
+            break;
+        }
+    }
+
+    for (int i = 0; i < cutNodeNum; i++)
+        path.pop_back();
+
+    cutNodeNum = 0;
+    ray.position = end;
+
+    for (UINT i = 0; i < path.size(); i++)
+    {
+        ray.direction = path[path.size() - i - 1] - ray.position;
+        float distance = ray.direction.Length();
+
+        if (!CollisionObstacle(ray, distance))
+        {
+            cutNodeNum = path.size() - i - 1;
+            break;
+        }
+    }
+
+    for (int i = 0; i < cutNodeNum; i++)
+        path.erase(path.begin());
+}
+
 int AStar::FindCloseNode(Vector3 pos)
 {
     float minDist = FLT_MAX;
@@ -116,6 +156,34 @@ int AStar::FindCloseNode(Vector3 pos)
     }
 
     return index;
+}
+
+bool AStar::CollisionObstacle(Ray ray, float distance)
+{
+    for (Collider* obstacle : obstacles)
+    {
+        Contact contact;
+
+        if (obstacle->RayCollision(ray, &contact))
+        {
+            if (contact.distance < distance)
+                return true;
+        }
+    }
+
+    return false;
+}
+
+void AStar::SetObstacleNode()
+{
+    for (Collider* obstacle : obstacles)
+    {
+        for (Node* node : nodes)
+        {
+            if (obstacle->Collision(node))
+                node->state = Node::OBSTACLE;
+        }
+    }
 }
 
 void AStar::Reset()

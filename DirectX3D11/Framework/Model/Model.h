@@ -2,7 +2,7 @@
 
 class Model : public Transform
 {
-private:
+protected:
 	ModelReader* reader;
 
 	WorldBuffer* worldBuffer;

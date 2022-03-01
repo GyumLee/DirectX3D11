@@ -8,6 +8,9 @@ Sword::Sword() : Model("Sword")
 	collider->SetParent(this);
 	collider->tag = "SwordCollider";
 	collider->Load();
+
+	Material* material = reader->GetMaterial(0);
+	material->SetShader(L"Basic/Texture.hlsl");
 }
 
 Sword::~Sword()

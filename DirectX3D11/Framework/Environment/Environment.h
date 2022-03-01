@@ -22,6 +22,8 @@ private:
 	BlendState* blendState[2];
 	DepthStencilState* depthState[2];
 
+	class RenderTransform* lightTransforms[MAX_LIGHT];
+
 	Environment();
 	~Environment();
 
@@ -31,6 +33,10 @@ public:
 
 	void Render();
 	void GUIRender();
+
+	LightBuffer::Light* AddLight();
+
+	void LightRender();
 
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetProjection() { return projection; }
