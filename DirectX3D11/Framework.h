@@ -16,8 +16,8 @@
 
 #define MAX_BONE 1024
 #define MAX_FRAME 1024
-
 #define MAX_LIGHT 10
+#define MAX_INSTANCE 400
 
 #define LERP(s, e, t) (s + (e - s) * t)
 
@@ -36,6 +36,7 @@
 #define DC Device::Get()->GetDeviceContext()
 
 #define CAM Environment::Get()->GetMainCamera()
+#define FRUSTUM Environment::Get()->GetFrustum()
 
 #include <vector>
 #include <map>
@@ -129,6 +130,7 @@ using namespace GameMath;
 #include "Framework/Collision/BoxCollider.h"
 
 #include "Framework/Environment/Camera.h"
+#include "Framework/Environment/Frustum.h"
 #include "Framework/Environment/Environment.h"
 #include "Framework/Environment/ETC.h"
 
@@ -140,6 +142,8 @@ using namespace GameMath;
 #include "Framework/Model/ModelBone.h"
 #include "Framework/Model/ModelClip.h"
 #include "Framework/Model/ModelAnimator.h"
+#include "Framework/Model/ModelInstancing.h"
+#include "Framework/Model/ModelAnimatorInstancing.h"
 
 //Algorithm
 #include "Algorithm/Node.h"

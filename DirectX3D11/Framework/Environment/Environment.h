@@ -6,6 +6,7 @@ private:
 	friend class Singleton;
 
 	Camera* mainCamera;
+	Frustum* frustum;
 
 	ProjectionBuffer* projectionBuffer;
 	ViewBuffer* uiViewBuffer;
@@ -39,6 +40,7 @@ public:
 	void LightRender();
 
 	Camera* GetMainCamera() { return mainCamera; }
+	Frustum* GetFrustum() { return frustum; }
 	Matrix GetProjection() { return projection; }
 
 	LightBuffer::Light* GetLight(UINT index) { return &lightBuffer->data.lights[index]; }

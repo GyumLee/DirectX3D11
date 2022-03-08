@@ -9,11 +9,14 @@
 #include "Scenes/ModelExportScene.h"
 #include "Scenes/ModelRenderScene.h"
 #include "Scenes/ModelAnimatorRenderScene.h"
-#include "Scenes/CharacterScene.h"
+//#include "Scenes/CharacterScene.h"
 #include "Scenes/CollisionScene.h"
 #include "Scenes/ShootingScene.h"
 #include "Scenes/LightScene.h"
 #include "Scenes/AStarScene.h"
+#include "Scenes/ModelInstancingScene.h"
+#include "Scenes/ModelAnimatorInstancingScene.h"
+#include "Scenes/FrustumScene.h"
 
 Program::Program()
 {
@@ -21,7 +24,7 @@ Program::Program()
 
 	//SceneManager::Get()->Create("Start", new CubeScene());
 	//SceneManager::Get()->Create("Start", new PlaneScene());
-	//SceneManager::Get()->Create("Grid", new GridScene());
+	SceneManager::Get()->Create("Grid", new GridScene());
 	//SceneManager::Get()->Create("Start", new TerrainScene());
 	//SceneManager::Get()->Create("Start", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
@@ -31,7 +34,10 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new CollisionScene());
 	//SceneManager::Get()->Create("Start", new ShootingScene());
 	//SceneManager::Get()->Create("Start", new LightScene());
-	SceneManager::Get()->Create("Start", new AStarScene());
+	//SceneManager::Get()->Create("Start", new AStarScene());
+	SceneManager::Get()->Create("Start", new ModelInstancingScene());
+	//SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
+	//SceneManager::Get()->Create("Start", new FrustumScene());
 
 	SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
@@ -44,12 +50,13 @@ Program::~Program()
 
 void Program::Update()
 {
-	if (KEY_DOWN(VK_F8))
+	if (KEY_DOWN(VK_F4))
 		Collider::isVisible = !Collider::isVisible;
 
 	SceneManager::Get()->Update();
 
 	CAM->Update();
+	FRUSTUM->Update();
 
 	ETC::Get()->Update();
 }

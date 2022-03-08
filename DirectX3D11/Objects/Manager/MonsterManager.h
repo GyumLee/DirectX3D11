@@ -5,6 +5,9 @@ class MonsterManager : public Singleton<MonsterManager>
 private:
 	friend class Singleton;
 
+	ModelAnimatorInstancing* ninjaInstancing;
+	ModelInstancing* kunaiInstancing;
+
 	vector<Ninja*> monsters;
 
 	Terrain* terrain;

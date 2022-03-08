@@ -23,9 +23,9 @@ Texture* Texture::Add(string file)
 
 	string extension = GetExtension(file);
 
-	if (extension.compare("tga") == 0)
+	if (extension.compare("tga") == 0 || extension.compare("TGA") == 0)
 		LoadFromTGAFile(path.c_str(), nullptr, image);
-	else if(extension.compare("dds") == 0)
+	else if(extension.compare("dds") == 0 || extension.compare("DDS") == 0)
 		LoadFromDDSFile(path.c_str(), DDS_FLAGS_NONE, nullptr, image);
 	else
 		LoadFromWICFile(path.c_str(), WIC_FLAGS_FORCE_RGB, nullptr, image);

@@ -16,8 +16,8 @@ struct PixelInput
 	float3 normal : NORMAL;
 	float3 tangent : TANGENT;
 	float3 binormal : BINORMAL;
-	float3 viewDir : VIEWDIR;
-	float3 worldPos : POSITION;
+	float3 viewPos : POSITION0;
+	float3 worldPos : POSITION1;
 	float4 alpha : ALPHA;
 };
 
@@ -27,9 +27,8 @@ PixelInput VS(VertexInput input)
 	
 	output.pos = mul(input.pos, world);
 	
-	float3 camPos = invView._41_42_43;
+	output.viewPos = invView._41_42_43;
 	output.worldPos = output.pos.xyz;
-	output.viewDir = normalize(output.worldPos - camPos);
 	
 	output.pos = mul(output.pos, view);
 	output.pos = mul(output.pos, projection);
@@ -97,7 +96,27 @@ Texture2D thirdDiffuseMap : register(t12);
 
 float4 PS(PixelInput input) : SV_TARGET
 {
+	float4 albedo = float4(1, 1, 1, 1);
+	if (hasDiffuseMap)
+		albedo = diffuseMap.Sample(samp, input.uv);
+	
+	float4 second = secondDiffuseMap.Sample(samp, input.uv);
+	float4 third = thirdDiffuseMap.Sample(samp, input.uv);
+	
+	albedo = lerp(albedo, second, input.alpha.x);
+	albedo = lerp(albedo, third, input.alpha.y);
+	
+	Material material;
+	material.normal = NormalMapping(input.tangent, input.binormal, input.normal, input.uv);
+	material.diffuseColor = albedo;
+	material.viewPos = input.viewPos;
+	material.specularIntensity = SpecularMapping(input.uv);
+	material.worldPos = input.worldPos;
+	
+	float4 result = CalcLights(material);
+	float4 ambient = CalcAmbient(material);
+	
 	float4 brushColor = float4(BrushColor(input.worldPos), 1.0f);
 	
-	return brushColor;
+	return result + ambient + brushColor;
 }

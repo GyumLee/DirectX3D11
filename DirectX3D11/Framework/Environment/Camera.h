@@ -40,11 +40,17 @@ public:
 
 	void SetTarget(Transform* transform);
 
+	float& GetDistance() { return distance; }
+	float& GetHeight() { return height; }
 	Vector3& GetFocusOffset() { return focusOffset; }
 	Vector3& GetRotOffset() { return rotOffset; }
+	float& GetMoveDamping() { return moveDamping; }
+	float& GetRotDamping() { return rotDamping; }
 
 	void SaveTargetMode();
 	void LoadTargetMode();
+
+	Matrix GetView() { return view; }
 
 private:
 	void FreeMode();

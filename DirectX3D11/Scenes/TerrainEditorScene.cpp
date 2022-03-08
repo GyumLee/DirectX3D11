@@ -5,7 +5,7 @@ TerrainEditorScene::TerrainEditorScene()
 {
 	terrainEditor = new TerrainEditor();
 
-	Raw();
+	//Raw();
 }
 
 TerrainEditorScene::~TerrainEditorScene()

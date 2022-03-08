@@ -17,16 +17,22 @@ public:
 	~ModelReader();
 
 	void Render();
+	void Render(UINT instanceCount);
+
 	void GUIRender();
 
 	void SetShader(wstring file);
 
 	int GetBone(string name);
 
+	Vector3 GetSize();
+
 	vector<NodeData>& GetNodes() { return nodes; }
 	vector<BoneData>& GetBones() { return bones; }
 
 	Material* GetMaterial(UINT index) { return materials[index]; }
+
+	string GetName() { return name; }
 
 private:
 	void ReadMaterial();

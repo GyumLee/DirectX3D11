@@ -22,6 +22,12 @@ void ModelReader::Render()
 		mesh->Render();
 }
 
+void ModelReader::Render(UINT instanceCount)
+{
+	for (ModelMesh* mesh : meshes)
+		mesh->Render(instanceCount);
+}
+
 void ModelReader::GUIRender()
 {
 	for (Material* material : materials)
@@ -39,6 +45,29 @@ int ModelReader::GetBone(string name)
 	if (boneMap.count(name) == 0) return -1;
 
 	return boneMap[name];
+}
+
+Vector3 ModelReader::GetSize()
+{
+	Vector3 minBox, maxBox;
+	meshes[0]->SetBox(&minBox, &maxBox);
+
+	for (UINT i = 1; i < meshes.size(); i++)
+	{
+		Vector3 minPos, maxPos;
+
+		meshes[i]->SetBox(&minPos, &maxPos);
+
+		minBox.x = min(minBox.x, minPos.x);
+		minBox.y = min(minBox.y, minPos.y);
+		minBox.z = min(minBox.z, minPos.z);
+
+		maxBox.x = max(maxBox.x, maxPos.x);
+		maxBox.y = max(maxBox.y, maxPos.y);
+		maxBox.z = max(maxBox.z, maxPos.z);
+	}
+
+	return maxBox - minBox;
 }
 
 void ModelReader::ReadMaterial()

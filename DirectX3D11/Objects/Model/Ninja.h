@@ -1,6 +1,6 @@
 #pragma once
 
-class Ninja : public ModelAnimator
+class Ninja
 {
 private:
 	enum AnimState
@@ -8,9 +8,9 @@ private:
 		IDLE, RUN, ATTACK, HIT, DYING
 	}state;
 
-	Model* kunai;
+	UINT instanceID;
 
-	Matrix rightHand;
+	Matrix leftHand;
 
 	Terrain* terrain = nullptr;
 
@@ -23,9 +23,13 @@ private:
 	float lerpSpeed = 1.0f;
 
 	Transform* target = nullptr;
+	Transform* ninja = nullptr;
+	Transform* kunai = nullptr;
+
+	ModelAnimatorInstancing* instancing;
 
 public:
-	Ninja();
+	Ninja(UINT instanceID);
 	~Ninja();
 
 	void Update();
@@ -35,10 +39,28 @@ public:
 
 	void Hit();
 
+	void SetEvent();
+
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
 	void SetTarget(Transform* transform) { target = transform; }
+	void SetTransform(Transform* transform)
+	{
+		ninja = transform;
+		collider->SetParent(transform);
+	}
+	void SetKunai(Transform* transform)
+	{
+		kunai = transform;
+		kunai->tag = "Kunai";
+		kunai->SetParent(&leftHand);
+		kunai->Load();
+	}
+	void SetInstancing(ModelAnimatorInstancing* instancing) { this->instancing = instancing; }
 
 	Collider* GetCollider() { return collider; }
+
+	bool IsActive() { return ninja->isActive; }
+	Transform* GetTransform() { return ninja; }
 
 private:
 	void Move();
@@ -48,7 +70,7 @@ private:
 	void EndDie();
 
 	void SetHpBar();
-	void SetRightHand();
+	void SetLeftHand();
 	void SetMotions();
 
 	void SetClip(AnimState state);

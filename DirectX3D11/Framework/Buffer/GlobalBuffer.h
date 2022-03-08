@@ -92,9 +92,9 @@ public:
 		Light lights[MAX_LIGHT];
 
 		int lightCount = 1;
-		Float3 ambientColor = { 0.1f, 0.1f, 0.1f };
+		Float3 ambientColor = { 0.0f, 0.0f, 0.0f };
 
-		Float3 ambientCeil = { 0.1f, 0.1f, 0.1f };
+		Float3 ambientCeil = { 0.05f, 0.05f, 0.05f };
 		float padding;
 	}data;
 
@@ -214,6 +214,43 @@ public:
 	FrameBuffer() : ConstBuffer(&data, sizeof(Data))
 	{
 		data.next.clip = -1;
+	}
+};
+
+class FrameInstancingBuffer : public ConstBuffer
+{
+public:
+	struct Frame
+	{
+		int clip = 0;
+		UINT curFrame = 0;
+		float time = 0.0f;
+		float speed = 1.0f;
+	};
+
+	struct Motion
+	{
+		float takeTime = 0.2f;
+		float tweenTime = 0.0f;
+		float runningTime = 0.0f;
+		float padding;
+
+		Frame cur;
+		Frame next;
+
+		Motion()
+		{
+			next.clip = 1;
+		}
+	};
+
+	struct Data
+	{
+		Motion motions[MAX_INSTANCE];
+	}data;
+
+	FrameInstancingBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
 	}
 };
 

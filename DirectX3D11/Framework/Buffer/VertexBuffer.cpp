@@ -19,10 +19,10 @@ VertexBuffer::~VertexBuffer()
 	buffer->Release();
 }
 
-void VertexBuffer::IASet(D3D_PRIMITIVE_TOPOLOGY type)
+void VertexBuffer::IASet(D3D_PRIMITIVE_TOPOLOGY type, UINT slot)
 {
 	DC->IASetPrimitiveTopology(type);
-	DC->IASetVertexBuffers(0, 1, &buffer, &stride, &offset);
+	DC->IASetVertexBuffers(slot, 1, &buffer, &stride, &offset);
 }
 
 void VertexBuffer::Update(void* data, UINT count)

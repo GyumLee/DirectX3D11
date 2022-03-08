@@ -1,20 +1,11 @@
 #include "Framework.h"
 
-Ninja::Ninja()
-	: ModelAnimator("Ninja"), state(IDLE)
+Ninja::Ninja(UINT instanceID)
+	: instanceID(instanceID), state(IDLE)
 {
-	SetMotions();
-
-	kunai = new Model("Kunai");
-	kunai->SetParent(&rightHand);
-	kunai->Load();
-
 	collider = new SphereCollider();
 	collider->tag = "NinjaCollider";
-	collider->SetParent(this);
 	collider->Load();
-
-	Load();
 
 	hpBar = new ProgressBar("Textures/UI/hp_bar.png", "Textures/UI/hp_bar_BG.png");
 	//hpBar->scale *= 0.1f;
@@ -22,55 +13,48 @@ Ninja::Ninja()
 
 Ninja::~Ninja()
 {
-	delete kunai;
 	delete collider;
 	delete hpBar;
 }
 
 void Ninja::Update()
 {
-	if (!isActive) return;
-
-	SetRightHand();
+	SetLeftHand();
 	SetHpBar();
 
 	//Trace();
 	Move();
 
-	kunai->UpdateWorld();
-
-	ModelAnimator::Update();
 	collider->UpdateWorld();
 }
 
 void Ninja::Render()
 {
-	if (!isActive) return;
+	if (!ninja->isActive) return;
+	float radius = ((SphereCollider*)collider)->Radius();
+	if (!FRUSTUM->ContainSphere(collider->GlobalPos(), radius)) return;
 
-	ModelAnimator::Render();
-
-	kunai->Render();
 	collider->Render();
 }
 
 void Ninja::PostRender()
 {
-	if (!isActive) return;
+	if (!ninja->isActive) return;
+	float radius = ((SphereCollider*)collider)->Radius();
+	if (!FRUSTUM->ContainSphere(collider->GlobalPos(), radius)) return;
 
 	hpBar->Render();
 }
 
 void Ninja::GUIRender()
 {
-	ModelAnimator::GUIRender();
-	kunai->GUIRender();
 	collider->GUIRender();
 }
 
 void Ninja::Move()
 {
 	if (terrain)
-		position.y = terrain->GetHeight(position);
+		ninja->position.y = terrain->GetHeight(ninja->position);
 }
 
 void Ninja::Hit()
@@ -87,22 +71,27 @@ void Ninja::Hit()
 		SetClip(DYING);
 }
 
+void Ninja::SetEvent()
+{
+	instancing->AddEvent(instanceID, HIT, 0.8f, bind(&Ninja::EndHit, this));
+}
+
 void Ninja::Trace()
 {
 	if (!collider->isActive) return;
 
 	if (!target) return;
 
-	Vector3 dir = target->position - position;
+	Vector3 dir = target->position - ninja->position;
 
-	Vector3 cross = Vector3::Cross(dir, Forward());
+	Vector3 cross = Vector3::Cross(dir, ninja->Forward());
 
 	if (cross.y > 0.01f)
-		rotation.y += DELTA;
+		ninja->rotation.y += DELTA;
 	else if (cross.y < -0.01f)
-		rotation.y -= DELTA;
+		ninja->rotation.y -= DELTA;
 
-	position -= Forward() * DELTA;
+	ninja->position -= ninja->Forward() * DELTA;
 
 	SetClip(RUN);
 }
@@ -115,16 +104,16 @@ void Ninja::EndHit()
 
 void Ninja::EndDie()
 {
-	isActive = false;
+	ninja->isActive = false;
 }
 
 void Ninja::SetHpBar()
 {
-	float distance = Distance(CAM->position, position);
+	float distance = Distance(CAM->position, ninja->position);
 	hpBar->scale.x = 10 / distance;
 	hpBar->scale.y = 10 / distance;
 
-	Vector3 barPos = position + Vector3(0, 5, 0);
+	Vector3 barPos = ninja->position + Vector3(0, 5, 0);
 
 	hpBar->position = CAM->WorldToScreenPoint(barPos);
 
@@ -133,22 +122,22 @@ void Ninja::SetHpBar()
 	hpBar->Update();
 }
 
-void Ninja::SetRightHand()
+void Ninja::SetLeftHand()
 {
-	rightHand = GetTransformByNode(11) * world;
+	leftHand = instancing->GetTransformByNode(instanceID, 11) * ninja->GetWorld();
 }
 
 void Ninja::SetMotions()
 {
-	ReadClip("Idle");
-	ReadClip("Run");
-	ReadClip("Attack");
-	//ReadClip("Hit"); // 1. BreakPoint here, Start Debugging, go to ReadClip()
-	ReadClip("Hit", 0, true);
-	ReadClip("Dying");
-
-	clips[HIT]->SetEvent(0.8f, bind(&Ninja::EndHit, this));
-	clips[DYING]->SetEvent(0.9f, bind(&Ninja::EndDie, this));
+	//ReadClip("Idle");
+	//ReadClip("Run");
+	//ReadClip("Attack");
+	////ReadClip("Hit"); // 1. BreakPoint here, Start Debugging, go to ReadClip()
+	//ReadClip("Hit", 0, true);
+	//ReadClip("Dying");
+	//
+	//clips[HIT]->SetEvent(0.8f, bind(&Ninja::EndHit, this));
+	//clips[DYING]->SetEvent(0.9f, bind(&Ninja::EndDie, this));
 }
 
 void Ninja::SetClip(AnimState state)
@@ -156,6 +145,6 @@ void Ninja::SetClip(AnimState state)
 	if (this->state != state)
 	{
 		this->state = state;
-		PlayClip(state);
+		instancing->PlayClip(instanceID, state);
 	}
 }

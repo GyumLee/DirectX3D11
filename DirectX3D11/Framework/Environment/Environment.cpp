@@ -11,6 +11,7 @@ Environment::Environment()
 	samplerState->SetState();
 
 	mainCamera = new Camera();
+	frustum = new Frustum(projection);
 
 	lightBuffer = new LightBuffer();
 
@@ -29,6 +30,7 @@ Environment::Environment()
 Environment::~Environment()
 {
 	delete mainCamera;
+	delete frustum;
 
 	delete projectionBuffer;
 	delete uiViewBuffer;

@@ -12,7 +12,7 @@ public:
 	VertexBuffer(void* data, UINT stride, UINT count);
 	~VertexBuffer();
 
-	void IASet(D3D_PRIMITIVE_TOPOLOGY type);
+	void IASet(D3D_PRIMITIVE_TOPOLOGY type, UINT slot = 0);
 
 	void Update(void* data, UINT count);
 };

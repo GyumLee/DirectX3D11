@@ -89,3 +89,14 @@ struct ClipTransform
 {
 	Matrix transform[MAX_FRAME][MAX_BONE];
 };
+
+struct InstanceData
+{
+	Matrix transform;
+	UINT index;
+
+	InstanceData() : index(0)
+	{
+		transform = XMMatrixIdentity();
+	}
+};

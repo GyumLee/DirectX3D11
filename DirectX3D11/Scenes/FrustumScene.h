@@ -1,16 +1,17 @@
 #pragma once
 
-class ModelRenderScene : public Scene
+class FrustumScene : public Scene
 {
 private:
-	Model* model;
-	BoxCollider* boxCollider;
+	vector<Sphere*> spheres;
 
-	//RasterizerState* rasterizerState[2];
+	UINT drawCount = 0;
+
+	//Frustum* frustum;
 
 public:
-	ModelRenderScene();
-	~ModelRenderScene();
+	FrustumScene();
+	~FrustumScene();
 
 	virtual void Update() override;
 	virtual void PreRender() override;

@@ -38,9 +38,11 @@ public:
 
 	ModelReader* GetReader() { return reader; }
 
+protected:
+	void CreateTexture();
+
 private:
 	void UpdateFrame();
 
-	void CreateTexture();
 	void CreateClipTransform(UINT index);
 };

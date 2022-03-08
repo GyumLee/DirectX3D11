@@ -1,16 +1,15 @@
 #pragma once
 
-class ModelRenderScene : public Scene
+class ModelInstancingScene : public Scene
 {
 private:
-	Model* model;
-	BoxCollider* boxCollider;
+	//vector<Model*> models;
 
-	//RasterizerState* rasterizerState[2];
+	ModelInstancing* modelInstancing;
 
 public:
-	ModelRenderScene();
-	~ModelRenderScene();
+	ModelInstancingScene();
+	~ModelInstancingScene();
 
 	virtual void Update() override;
 	virtual void PreRender() override;
