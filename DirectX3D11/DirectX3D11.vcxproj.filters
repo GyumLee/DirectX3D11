@@ -282,6 +282,18 @@
     <ClInclude Include="Framework\Environment\Frustum.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\RenderTargetScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\System\RenderTarget.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\System\DepthStencil.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\UI\RenderTexture.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -521,6 +533,18 @@
     <ClCompile Include="Framework\Environment\Frustum.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\RenderTargetScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\System\RenderTarget.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\System\DepthStencil.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\UI\RenderTexture.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -549,6 +573,7 @@
     <FxCompile Include="Shaders\Lighting\BoneLighting.hlsl" />
     <FxCompile Include="Shaders\Model\ModelInstancing.hlsl" />
     <FxCompile Include="Shaders\Model\ModelAnimatorInstancing.hlsl" />
+    <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

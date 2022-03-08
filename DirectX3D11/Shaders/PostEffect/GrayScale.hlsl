@@ -21,12 +21,9 @@ PixelInput VS(VertexUV input)
 
 float4 PS(PixelInput input) : SV_TARGET
 {
-	//float4 result = 1;
-	//
-	//if (hasDiffuseMap)
-	//	result = diffuseMap.Sample(samp, input.uv);
-	//
-	//return result * mDiffuse;
+	float4 albedo = diffuseMap.Sample(samp, input.uv);
 	
-	return diffuseMap.Sample(samp, input.uv);
+	float scale = dot(albedo.rgb, float3(0.39f, 0.6f, 0.11f));
+	
+	return float4(scale.xxx, albedo.a);
 }

@@ -31,8 +31,8 @@ private:
 public:
 	void SetRender();
 	void SetPostRender();
+	void SetViewport(UINT width = WIN_WIDTH, UINT height = WIN_HEIGHT);
 
-	void Render();
 	void GUIRender();
 
 	LightBuffer::Light* AddLight();
@@ -46,7 +46,6 @@ public:
 	LightBuffer::Light* GetLight(UINT index) { return &lightBuffer->data.lights[index]; }
 
 private:
-	void CreateViewport();
 	void CreateProjection();
 
 	void SetLight(UINT index);

@@ -3,7 +3,7 @@
 
 TerrainEditorScene::TerrainEditorScene()
 {
-	terrainEditor = new TerrainEditor();
+	terrainEditor = new TerrainEditor(200, 200);
 
 	//Raw();
 }

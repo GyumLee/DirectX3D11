@@ -137,7 +137,9 @@
     <ClInclude Include="Framework\State\DepthStencilState.h" />
     <ClInclude Include="Framework\State\RasterizerState.h" />
     <ClInclude Include="Framework\State\SamplerState.h" />
+    <ClInclude Include="Framework\System\DepthStencil.h" />
     <ClInclude Include="Framework\System\Device.h" />
+    <ClInclude Include="Framework\System\RenderTarget.h" />
     <ClInclude Include="Framework\Utility\BinaryReader.h" />
     <ClInclude Include="Framework\Utility\BinaryWriter.h" />
     <ClInclude Include="Framework\Utility\Font.h" />
@@ -145,6 +147,7 @@
     <ClInclude Include="Framework\Utility\Utility.h" />
     <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\UI\RenderTexture.h" />
     <ClInclude Include="Objects\Basic\RenderTransform.h" />
     <ClInclude Include="Objects\Basic\Sphere.h" />
     <ClInclude Include="Objects\Landscape\SkyBox.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="Scenes\ModelInstancingScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\PlaneScene.h" />
+    <ClInclude Include="Scenes\RenderTargetScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShootingScene.h" />
     <ClInclude Include="Scenes\TerrainEditorScene.h" />
@@ -224,7 +228,9 @@
     <ClCompile Include="Framework\State\DepthStencilState.cpp" />
     <ClCompile Include="Framework\State\RasterizerState.cpp" />
     <ClCompile Include="Framework\State\SamplerState.cpp" />
+    <ClCompile Include="Framework\System\DepthStencil.cpp" />
     <ClCompile Include="Framework\System\Device.cpp" />
+    <ClCompile Include="Framework\System\RenderTarget.cpp" />
     <ClCompile Include="Framework\Utility\BinaryReader.cpp" />
     <ClCompile Include="Framework\Utility\BinaryWriter.cpp" />
     <ClCompile Include="Framework\Utility\Font.cpp" />
@@ -245,6 +251,7 @@
     <ClCompile Include="Objects\Model\Obstacle.cpp" />
     <ClCompile Include="Objects\Model\Sword.cpp" />
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
+    <ClCompile Include="Objects\UI\RenderTexture.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Program\SceneManager.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />
@@ -259,6 +266,7 @@
     <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\PlaneScene.cpp" />
+    <ClCompile Include="Scenes\RenderTargetScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
     <ClCompile Include="Scenes\TerrainScene.cpp" />
@@ -301,6 +309,10 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Model\ModelInstancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>

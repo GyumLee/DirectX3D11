@@ -84,11 +84,11 @@ void SphereCollider::CreateMesh()
 	{
 		for (UINT j = 0; j < sliceCount; j++)
 		{
-			indices.push_back((sliceCount + 1) * i + j); //0
-			indices.push_back((sliceCount + 1) * i + j + 1); //1
+			indices.push_back((sliceCount + 1) * i + j);//0
+			indices.push_back((sliceCount + 1) * i + j + 1);//1
 
-			indices.push_back((sliceCount + 1) * i + j); //0
-			indices.push_back((sliceCount + 1) * (i + 1) + j); //2
+			indices.push_back((sliceCount + 1) * i + j);//0
+			indices.push_back((sliceCount + 1) * (i + 1) + j);//2
 		}
 	}
 

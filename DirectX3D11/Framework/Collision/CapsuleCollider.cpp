@@ -117,7 +117,7 @@ bool CapsuleCollider::SphereCollision(SphereCollider* collider)
 
 	float distance = Distance(P, pointOnLine);
 
-	return distance <= (Radius() + collider->Radius());;
+	return distance <= (Radius() + collider->Radius());
 }
 
 bool CapsuleCollider::CapsuleCollision(CapsuleCollider* collider)
@@ -159,6 +159,7 @@ void CapsuleCollider::CreateMesh()
 	float phiStep = XM_PI / stackCount;
 	float thetaStep = XM_2PI / sliceCount;
 
+	//Vertices
 	for (UINT i = 0; i <= stackCount; i++)
 	{
 		float phi = phiStep * i;
@@ -181,15 +182,16 @@ void CapsuleCollider::CreateMesh()
 		}
 	}
 
+	//Indices
 	for (UINT i = 0; i < stackCount; i++)
 	{
 		for (UINT j = 0; j < sliceCount; j++)
 		{
-			indices.push_back((sliceCount + 1) * i + j); //0
-			indices.push_back((sliceCount + 1) * i + j + 1); //1
+			indices.push_back((sliceCount + 1) * i + j);//0
+			indices.push_back((sliceCount + 1) * i + j + 1);//1
 
-			indices.push_back((sliceCount + 1) * i + j); //0
-			indices.push_back((sliceCount + 1) * (i + 1) + j); //2
+			indices.push_back((sliceCount + 1) * i + j);//0
+			indices.push_back((sliceCount + 1) * (i + 1) + j);//2
 		}
 	}
 

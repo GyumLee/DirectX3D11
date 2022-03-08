@@ -2,7 +2,7 @@
 
 class Quad : public Transform
 {
-private:
+protected:
 	typedef VertexUVNormalTangent VertexType;
 
 	Material* material;

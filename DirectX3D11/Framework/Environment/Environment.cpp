@@ -2,10 +2,10 @@
 
 Environment::Environment()
 {
-	CreateViewport();
+	SetViewport();
 	CreateProjection();
 
-	uiViewBuffer = new ViewBuffer();
+	uiViewBuffer = new ViewBuffer();	
 
 	samplerState = new SamplerState();
 	samplerState->SetState();
@@ -24,7 +24,7 @@ Environment::Environment()
 	depthState[1]->DepthEnable(false);
 
 	for (UINT i = 0; i < MAX_LIGHT; i++)
-		lightTransforms[i] = new RenderTransform();
+		lightTransforms[i] = new RenderTransform();	
 }
 
 Environment::~Environment()
@@ -70,10 +70,6 @@ void Environment::SetPostRender()
 
 	blendState[1]->SetState();
 	depthState[1]->SetState();
-}
-
-void Environment::Render()
-{
 }
 
 void Environment::GUIRender()
@@ -131,16 +127,16 @@ void Environment::LightRender()
 	}
 }
 
-void Environment::CreateViewport()
+void Environment::SetViewport(UINT width, UINT height)
 {
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
-	viewport.Width = WIN_WIDTH;
-	viewport.Height = WIN_HEIGHT;
+	viewport.Width = width;
+	viewport.Height = height;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 
-	DC->RSSetViewports(1, &viewport);
+	//DC->RSSetViewports(1, &viewport);
 }
 
 void Environment::CreateProjection()

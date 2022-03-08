@@ -240,7 +240,7 @@ public:
 
 		Motion()
 		{
-			next.clip = 1;
+			next.clip = -1;
 		}
 	};
 

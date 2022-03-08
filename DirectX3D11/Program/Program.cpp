@@ -17,6 +17,7 @@
 #include "Scenes/ModelInstancingScene.h"
 #include "Scenes/ModelAnimatorInstancingScene.h"
 #include "Scenes/FrustumScene.h"
+#include "Scenes/RenderTargetScene.h"
 
 Program::Program()
 {
@@ -35,9 +36,10 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ShootingScene());
 	//SceneManager::Get()->Create("Start", new LightScene());
 	//SceneManager::Get()->Create("Start", new AStarScene());
-	SceneManager::Get()->Create("Start", new ModelInstancingScene());
+	//SceneManager::Get()->Create("Start", new ModelInstancingScene());
 	//SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
 	//SceneManager::Get()->Create("Start", new FrustumScene());
+	SceneManager::Get()->Create("Start", new RenderTargetScene());
 
 	SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
@@ -72,7 +74,6 @@ void Program::Render()
 
 	Device::Get()->SetRenderTarget();
 
-	Environment::Get()->Render();
 	SceneManager::Get()->Render();
 }
 

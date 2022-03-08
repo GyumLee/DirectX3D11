@@ -96,6 +96,8 @@ typedef function<void()> Event;
 using namespace Utility;
 
 #include "Framework/System/Device.h"
+#include "Framework/System/DepthStencil.h"
+#include "Framework/System/RenderTarget.h"
 
 #include "Framework/Shader/Shader.h"
 #include "Framework/Shader/VertexShader.h"
@@ -157,6 +159,7 @@ using namespace GameMath;
 #include "Objects/Basic/Sphere.h"
 
 #include "Objects/UI/ProgressBar.h"
+#include "Objects/UI/RenderTexture.h"
 
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
