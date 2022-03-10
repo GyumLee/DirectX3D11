@@ -18,6 +18,8 @@
 #include "Scenes/ModelAnimatorInstancingScene.h"
 #include "Scenes/FrustumScene.h"
 #include "Scenes/RenderTargetScene.h"
+#include "Scenes/BillboardScene.h"
+#include "Scenes/ParticleToolScene.h"
 
 Program::Program()
 {
@@ -39,7 +41,9 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ModelInstancingScene());
 	//SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
 	//SceneManager::Get()->Create("Start", new FrustumScene());
-	SceneManager::Get()->Create("Start", new RenderTargetScene());
+	//SceneManager::Get()->Create("Start", new RenderTargetScene());
+	SceneManager::Get()->Create("Start", new BillboardScene());
+	//SceneManager::Get()->Create("Start", new ParticleToolScene());
 
 	SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
