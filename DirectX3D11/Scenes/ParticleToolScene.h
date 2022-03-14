@@ -3,7 +3,7 @@
 class ParticleToolScene : public Scene
 {
 private:
-
+	ParticleSystem* particleSystem;
 
 public:
 	ParticleToolScene();

@@ -560,6 +560,9 @@
     <ClCompile Include="Scenes\ParticleToolScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Particle\ParticleSystem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -589,6 +592,7 @@
     <FxCompile Include="Shaders\Model\ModelInstancing.hlsl" />
     <FxCompile Include="Shaders\Model\ModelAnimatorInstancing.hlsl" />
     <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl" />
+    <FxCompile Include="Shaders\Particle\ParticleSystem.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

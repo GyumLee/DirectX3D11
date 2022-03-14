@@ -33,6 +33,8 @@ public:
 	void SetSpecularMap(string file);
 	void SetNormalMap(string file);
 
+	string GetDiffuseMap() { return diffuseMap->GetFile(); }
+
 	void Save(string file);
 	void Load(string file);
 

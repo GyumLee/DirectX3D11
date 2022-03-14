@@ -1,6 +1,6 @@
 #pragma once
 
-class ParticleSytem
+class ParticleSystem
 {
 private:
 	const UINT MAX_COUNT = 1000;
@@ -28,4 +28,47 @@ private:
 		Float4 startColor = { 1, 1, 1, 1 };
 		Float4 endColor = { 1, 1, 1, 1 };
 	}particleData;
+
+	struct QuadData
+	{
+		Transform transform;
+		Vector3 velocity;
+		Vector3 accelation;
+		float startTime = 0.0f;
+		float speed = 1.0f;
+		float angularVelocity = 0.0f;
+	};
+
+	Quad* quad;
+
+	vector<Matrix> transforms;
+	VertexBuffer* instanceBuffer;
+
+	vector<QuadData> quads;
+
+	float time = 0.0f;
+	UINT drawCount = 0;
+
+	BlendState* blendState[2];
+	DepthStencilState* depthState[2];
+
+public:
+	ParticleSystem();
+	~ParticleSystem();
+
+	void Update();
+	void Render();
+	void GUIRender();
+
+	void Play(Vector3 pos, Vector3 rot = Vector3());
+	void Stop();
+
+	void Save(string file);
+	void Load(string file);
+
+private:
+	void UpdatePhysical();
+	void UpdateColor();
+
+	void Init();
 };

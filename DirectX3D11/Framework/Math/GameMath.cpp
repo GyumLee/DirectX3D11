@@ -12,6 +12,16 @@ float GameMath::Random(float min, float max)
 	return min + (max - min) * normal;
 }
 
+Vector3 GameMath::Random(Vector3 min, Vector3 max)
+{
+	Vector3 result;
+	result.x = Random(min.x, max.x);
+	result.y = Random(min.y, max.y);
+	result.z = Random(min.z, max.z);
+
+	return result;
+}
+
 float GameMath::Distance(Vector3& v1, Vector3& v2)
 {
 	return (v1 - v2).Length();

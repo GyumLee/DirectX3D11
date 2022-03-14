@@ -20,6 +20,8 @@ public:
 	~Quad();
 
 	void Render();
+
+	void SetRender();
 	
 	Material* GetMaterial() { return material; }
 

@@ -42,8 +42,8 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
 	//SceneManager::Get()->Create("Start", new FrustumScene());
 	//SceneManager::Get()->Create("Start", new RenderTargetScene());
-	SceneManager::Get()->Create("Start", new BillboardScene());
-	//SceneManager::Get()->Create("Start", new ParticleToolScene());
+	//SceneManager::Get()->Create("Start", new BillboardScene());
+	SceneManager::Get()->Create("Start", new ParticleToolScene());
 
 	SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
