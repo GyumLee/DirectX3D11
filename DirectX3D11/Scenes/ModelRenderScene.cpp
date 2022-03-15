@@ -9,7 +9,8 @@ ModelRenderScene::ModelRenderScene()
 
 	blendState[0] = new BlendState();
 	blendState[1] = new BlendState();
-	blendState[1]->Alpha(true);
+	//blendState[1]->Alpha(true);
+	blendState[1]->AlphaToCoverage(true);
 
 	//rasterizerState[0] = new RasterizerState();
 	//rasterizerState[1] = new RasterizerState();
