@@ -48,14 +48,17 @@ void ModelExporter::ReadMaterial()
 		aiColor3D color;
 		MaterialBuffer::Data& data = material->GetData();
 
-		srcMaterial->Get(AI_MATKEY_COLOR_DIFFUSE, color);
-		data.diffuse = Float4(color.r, color.g, color.b, 1.0f);
+		//srcMaterial->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+		//data.diffuse = Float4(color.r, color.g, color.b, 1.0f);
+		data.diffuse = Float4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		srcMaterial->Get(AI_MATKEY_COLOR_SPECULAR, color);
-		data.specular = Float4(color.r, color.g, color.b, 1.0f);
+		//srcMaterial->Get(AI_MATKEY_COLOR_SPECULAR, color);
+		//data.specular = Float4(color.r, color.g, color.b, 1.0f);
+		data.specular = Float4(0, 0, 0, 0);
 
-		srcMaterial->Get(AI_MATKEY_COLOR_AMBIENT, color);
-		data.ambient = Float4(color.r, color.g, color.b, 1.0f);
+		//srcMaterial->Get(AI_MATKEY_COLOR_AMBIENT, color);
+		//data.ambient = Float4(color.r, color.g, color.b, 1.0f);
+		data.ambient = Float4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		srcMaterial->Get(AI_MATKEY_COLOR_EMISSIVE, color);
 		data.emissive = Float4(color.r, color.g, color.b, 1.0f);
