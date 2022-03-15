@@ -4,7 +4,7 @@
 ModelExportScene::ModelExportScene()
 {
 	ModelExporter* exporter;
-	string name = "BedsideTable";
+	string name = "Fence_MetalChainlink_2x";
 	string file;
 	string clip;
 

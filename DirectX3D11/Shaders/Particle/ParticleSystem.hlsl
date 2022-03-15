@@ -28,7 +28,15 @@ PixelInput VS(VertexInput input)
 	return output;
 }
 
+cbuffer SpriteBuffer : register(b10)
+{
+	float2 maxFrame;
+	float2 curFrame;
+}
+
 float4 PS(PixelInput input) : SV_TARGET
 {
-	return diffuseMap.Sample(samp, input.uv) * mDiffuse;
+	float2 uv = (input.uv / maxFrame) + (curFrame / maxFrame);
+	
+	return diffuseMap.Sample(samp, uv) * mDiffuse;
 }

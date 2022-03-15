@@ -3,7 +3,12 @@
 class BillboardScene : public Scene
 {
 private:
-	vector<Quad*> quads;
+	//vector<Quad*> quads;
+
+	Material* material;
+	VertexBuffer* vertexBuffer;
+
+	GeometryShader* geometryShader;
 
 	BlendState* blendState;
 	DepthStencilState* depthStencil;

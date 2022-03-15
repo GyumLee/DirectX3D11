@@ -303,6 +303,9 @@
     <ClInclude Include="Objects\Particle\ParticleSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Shader\GeometryShader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -563,6 +566,9 @@
     <ClCompile Include="Objects\Particle\ParticleSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Shader\GeometryShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -593,6 +599,7 @@
     <FxCompile Include="Shaders\Model\ModelAnimatorInstancing.hlsl" />
     <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl" />
     <FxCompile Include="Shaders\Particle\ParticleSystem.hlsl" />
+    <FxCompile Include="Shaders\Geometry\Billboard.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

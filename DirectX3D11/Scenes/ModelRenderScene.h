@@ -6,6 +6,7 @@ private:
 	Model* model;
 	BoxCollider* boxCollider;
 
+	BlendState* blendState[2];
 	//RasterizerState* rasterizerState[2];
 
 public:

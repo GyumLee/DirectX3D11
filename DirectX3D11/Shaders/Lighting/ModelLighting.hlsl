@@ -29,5 +29,9 @@ float4 PS(LightPixelInput input) : SV_TARGET
 	float4 ambient = CalcAmbient(material);
 	float4 emissive = CalcEmissive(material);
 	
-	return result + ambient + emissive;
+	//return result + ambient + emissive;
+	
+	float4 color = result + ambient + emissive;
+	
+	return float4(color.rgb, material.diffuseColor.a);
 }

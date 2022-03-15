@@ -27,6 +27,8 @@ private:
 		float worldRotationY;
 		Float4 startColor = { 1, 1, 1, 1 };
 		Float4 endColor = { 1, 1, 1, 1 };
+		Float2 tiling = { 1, 1 };
+		float spriteSpeed = 1.0f;
 	}particleData;
 
 	struct QuadData
@@ -43,10 +45,12 @@ private:
 
 	vector<Matrix> transforms;
 	VertexBuffer* instanceBuffer;
+	SpriteBuffer* spriteBuffer;
 
 	vector<QuadData> quads;
 
 	float time = 0.0f;
+	float spriteTime = 0.0f;
 	UINT drawCount = 0;
 
 	BlendState* blendState[2];
@@ -69,6 +73,7 @@ public:
 private:
 	void UpdatePhysical();
 	void UpdateColor();
+	void UpdateSprite();
 
 	void Init();
 };

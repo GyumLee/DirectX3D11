@@ -263,3 +263,17 @@ public:
 	{
 	}
 };
+
+class SpriteBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		Float2 maxFrame = { 1, 1 };
+		Float2 curFrame = { 0, 0 };
+	}data;
+	
+	SpriteBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+	}
+};

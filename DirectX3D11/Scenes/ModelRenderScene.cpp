@@ -3,9 +3,13 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-	string name = "Sword";
+	string name = "Fence_MetalChainlink_2x";
 
 	model = new Model(name);
+
+	blendState[0] = new BlendState();
+	blendState[1] = new BlendState();
+	blendState[1]->Alpha(true);
 
 	//rasterizerState[0] = new RasterizerState();
 	//rasterizerState[1] = new RasterizerState();
@@ -21,6 +25,9 @@ ModelRenderScene::~ModelRenderScene()
 
 	//delete rasterizerState[0];
 	//delete rasterizerState[1];
+
+	delete blendState[0];
+	delete blendState[1];
 
 	delete boxCollider;
 }
@@ -39,8 +46,11 @@ void ModelRenderScene::PreRender()
 void ModelRenderScene::Render()
 {
 	//rasterizerState[1]->SetState();
+	blendState[1]->SetState();
 
 	model->Render();
+
+	blendState[0]->SetState();
 
 	boxCollider->Render();
 

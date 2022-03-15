@@ -130,6 +130,7 @@
     <ClInclude Include="Framework\Render\Mesh.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
     <ClInclude Include="Framework\Shader\ComputeShader.h" />
+    <ClInclude Include="Framework\Shader\GeometryShader.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
     <ClInclude Include="Framework\Shader\VertexShader.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Framework\Render\Mesh.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
     <ClCompile Include="Framework\Shader\ComputeShader.cpp" />
+    <ClCompile Include="Framework\Shader\GeometryShader.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
     <ClCompile Include="Framework\Shader\VertexShader.cpp" />
@@ -295,6 +297,10 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Basic\SkyBox.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Geometry\Billboard.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>

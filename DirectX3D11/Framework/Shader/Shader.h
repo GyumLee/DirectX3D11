@@ -3,6 +3,7 @@
 class VertexShader;
 class PixelShader;
 class ComputeShader;
+class GeometryShader;
 
 class Shader
 {
@@ -18,6 +19,7 @@ public:
 	static VertexShader* AddVS(wstring file);
 	static PixelShader* AddPS(wstring file);
 	static ComputeShader* AddCS(wstring file);
+	static GeometryShader* AddGS(wstring file);
 
 	static void Delete();
 

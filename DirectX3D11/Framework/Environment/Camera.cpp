@@ -73,6 +73,7 @@ void Camera::GUIRender()
 void Camera::SetBuffer()
 {
 	viewBuffer->SetVSBuffer(1);
+	viewBuffer->SetGSBuffer(1);
 }
 
 Ray Camera::ScreenPointToRay(Vector3 screenPos)

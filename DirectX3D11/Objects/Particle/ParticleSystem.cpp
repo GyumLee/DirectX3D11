@@ -10,6 +10,7 @@ ParticleSystem::ParticleSystem()
 	quads.resize(MAX_COUNT);
 
 	instanceBuffer = new VertexBuffer(transforms.data(), sizeof(Matrix), MAX_COUNT);
+	spriteBuffer = new SpriteBuffer();
 
 	blendState[0] = new BlendState();
 	blendState[1] = new BlendState();
@@ -24,6 +25,7 @@ ParticleSystem::~ParticleSystem()
 {
 	delete quad;
 	delete instanceBuffer;
+	delete spriteBuffer;
 
 	delete blendState[0];
 	delete blendState[1];
@@ -39,6 +41,8 @@ void ParticleSystem::Update()
 
 	UpdatePhysical();
 	UpdateColor();
+	UpdateSprite();
+
 	quad->UpdateWorld();
 
 	if (time > particleData.duration)
@@ -55,6 +59,8 @@ void ParticleSystem::Render()
 	if (!quad->isActive) return;
 
 	instanceBuffer->IASet(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST, 1);
+
+	spriteBuffer->SetPSBuffer(10);
 
 	quad->SetRender();
 
@@ -91,6 +97,9 @@ void ParticleSystem::GUIRender()
 
 	ImGui::ColorEdit4("StartColor", (float*)&particleData.startColor);
 	ImGui::ColorEdit4("EndColor", (float*)&particleData.endColor);
+
+	ImGui::DragFloat2("Tiling", (float*)&particleData.tiling, 1.0f);
+	ImGui::DragFloat("TilingSpeed", &particleData.spriteSpeed, 0.1f);
 
 	quad->GetMaterial()->GUIRender();
 }
@@ -172,6 +181,31 @@ void ParticleSystem::UpdateColor()
 	quad->GetMaterial()->GetData().diffuse = color;
 }
 
+void ParticleSystem::UpdateSprite()
+{
+	if (particleData.tiling.x == 1 && particleData.tiling.y == 1)
+		return;
+
+	spriteTime += particleData.spriteSpeed * DELTA;
+
+	if (spriteTime > 0.1f)
+	{
+		spriteBuffer->data.curFrame.x++;
+
+		if (spriteBuffer->data.curFrame.x >= particleData.tiling.x)
+		{
+			spriteBuffer->data.curFrame.x = 0;
+			spriteBuffer->data.curFrame.y++;
+			if (spriteBuffer->data.curFrame.y >= particleData.tiling.y)
+				spriteBuffer->data.curFrame.y = 0;
+		}
+
+		spriteTime = 0.0f;
+	}
+
+	spriteBuffer->data.maxFrame = particleData.tiling;
+}
+
 void ParticleSystem::Init()
 {
 	if (particleData.isAdditive)
@@ -180,7 +214,10 @@ void ParticleSystem::Init()
 		blendState[1]->Alpha(true);
 
 	time = 0.0f;
+	spriteTime = 0.0f;
 	drawCount = 0;
+
+	spriteBuffer->data.curFrame = { 0, 0 };
 
 	for (UINT i = 0; i < particleData.count; i++)
 	{
