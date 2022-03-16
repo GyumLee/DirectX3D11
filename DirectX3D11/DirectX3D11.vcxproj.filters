@@ -306,6 +306,21 @@
     <ClInclude Include="Framework\Shader\GeometryShader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\ParticleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Particle\Particle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Particle\Spark.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Particle\Rain.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Particle\Snow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -569,6 +584,21 @@
     <ClCompile Include="Framework\Shader\GeometryShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\ParticleScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Particle\Particle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Particle\Spark.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Particle\Snow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Particle\Rain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -600,6 +630,8 @@
     <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl" />
     <FxCompile Include="Shaders\Particle\ParticleSystem.hlsl" />
     <FxCompile Include="Shaders\Geometry\Billboard.hlsl" />
+    <FxCompile Include="Shaders\Geometry\Spark.hlsl" />
+    <FxCompile Include="Shaders\Geometry\Rain.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

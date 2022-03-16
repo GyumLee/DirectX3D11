@@ -89,6 +89,8 @@ void BillboardScene::Render()
 	geometryShader->Set();
 
 	DC->Draw(1000, 0);
+
+	DC->GSSetShader(nullptr, nullptr, 0);
 }
 
 void BillboardScene::PostRender()

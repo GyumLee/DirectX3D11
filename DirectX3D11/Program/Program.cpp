@@ -20,6 +20,7 @@
 #include "Scenes/RenderTargetScene.h"
 #include "Scenes/BillboardScene.h"
 #include "Scenes/ParticleToolScene.h"
+#include "Scenes/ParticleScene.h"
 
 Program::Program()
 {
@@ -43,7 +44,8 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new FrustumScene());
 	//SceneManager::Get()->Create("Start", new RenderTargetScene());
 	//SceneManager::Get()->Create("Start", new BillboardScene());
-	SceneManager::Get()->Create("Start", new ParticleToolScene());
+	//SceneManager::Get()->Create("Start", new ParticleToolScene());
+	SceneManager::Get()->Create("Start", new ParticleScene());
 
 	SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");

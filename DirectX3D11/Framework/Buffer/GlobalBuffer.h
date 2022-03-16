@@ -277,3 +277,35 @@ public:
 	{
 	}
 };
+
+class ColorBuffer : public ConstBuffer
+{
+public:
+	Float4 color = { 1, 1, 1, 1 };
+
+	ColorBuffer() : ConstBuffer(&color, sizeof(Float4))
+	{
+	}
+};
+
+class WeatherBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		Float3 velocity = Float3(0, -1, 0);
+		float distance = 100.0f;
+
+		Float4 color = Float4(1, 1, 1, 1);
+
+		Float3 origin = Float3(0, 0, 0);
+		float time = 0.0f;
+
+		Float3 size = Float3(50, 50, 50);
+		float turbulence = 5.0f;
+	}data;
+
+	WeatherBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+	}
+};

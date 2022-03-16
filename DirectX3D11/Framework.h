@@ -174,6 +174,10 @@ using namespace GameMath;
 #include "Objects/Model/Obstacle.h"
 
 #include "Objects/Particle/ParticleSystem.h"
+#include "Objects/Particle/Particle.h"
+#include "Objects/Particle/Spark.h"
+#include "Objects/Particle/Rain.h"
+#include "Objects/Particle/Snow.h"
 
 #include "Objects/Manager/BulletManager.h"
 #include "Objects/Manager/MonsterManager.h"
