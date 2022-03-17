@@ -21,6 +21,7 @@
 #include "Scenes/BillboardScene.h"
 #include "Scenes/ParticleToolScene.h"
 #include "Scenes/ParticleScene.h"
+#include "Scenes/WaterScene.h"
 
 Program::Program()
 {
@@ -28,7 +29,7 @@ Program::Program()
 
 	//SceneManager::Get()->Create("Start", new CubeScene());
 	//SceneManager::Get()->Create("Start", new PlaneScene());
-	SceneManager::Get()->Create("Grid", new GridScene());
+	//SceneManager::Get()->Create("Grid", new GridScene());
 	//SceneManager::Get()->Create("Start", new TerrainScene());
 	//SceneManager::Get()->Create("Start", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
@@ -45,9 +46,10 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new RenderTargetScene());
 	//SceneManager::Get()->Create("Start", new BillboardScene());
 	//SceneManager::Get()->Create("Start", new ParticleToolScene());
-	SceneManager::Get()->Create("Start", new ParticleScene());
+	//SceneManager::Get()->Create("Start", new ParticleScene());
+	SceneManager::Get()->Create("Start", new WaterScene());
 
-	SceneManager::Get()->Add("Grid");
+	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
 }
 
@@ -76,6 +78,7 @@ void Program::PreRender()
 
 void Program::Render()
 {
+	Environment::Get()->SetViewport();
 	Environment::Get()->SetRender();
 
 	Device::Get()->SetRenderTarget();

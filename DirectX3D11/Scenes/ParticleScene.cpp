@@ -4,7 +4,8 @@
 ParticleScene::ParticleScene()
 {
 	//particle = new Spark("Textures/Particle/star.png", true);
-	particle = new Rain();
+	//particle = new Rain();
+	particle = new Snow();
 }
 
 ParticleScene::~ParticleScene()
