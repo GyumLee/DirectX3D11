@@ -137,6 +137,7 @@ using namespace GameMath;
 #include "Framework/Environment/Environment.h"
 #include "Framework/Environment/ETC.h"
 #include "Framework/Environment/Reflection.h"
+#include "Framework/Environment/Refraction.h"
 
 #include "Framework/Model/ModelType.h"
 #include "Framework/Model/ModelExporter.h"
@@ -166,6 +167,7 @@ using namespace GameMath;
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
 #include "Objects/Landscape/SkyBox.h"
+#include "Objects/Landscape/Water.h"
 
 #include "Objects/Model/Ninja.h"
 #include "Objects/Model/Sword.h"

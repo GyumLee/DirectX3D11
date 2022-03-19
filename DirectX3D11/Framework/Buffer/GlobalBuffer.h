@@ -309,3 +309,24 @@ public:
 	{
 	}
 };
+
+class WaterBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		Float4 color = Float4(1, 1, 1, 1);
+
+		float waveTime = 0.0f;
+		float waveSpeed = 0.1f;
+		float waveScale = 0.1;
+		float waveShininess = 24.0f;
+
+		float fresnel = 0.5f;
+		float padding[3];
+	}data;
+
+	WaterBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+	}
+};

@@ -5,13 +5,16 @@ class WaterScene : public Scene
 private:
 	SkyBox* skybox;
 
-	Quad* quad;
+	//Quad* quad;
 
 	Model* sword;
 	ModelAnimator* hinata;
 	Sphere* sphere;
 
-	Reflection* reflection;
+	//Reflection* reflection;
+	//Refraction* refraction;
+
+	Water* water;
 
 public:
 	WaterScene();

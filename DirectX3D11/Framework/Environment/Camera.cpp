@@ -9,12 +9,12 @@ Camera::Camera()
 	viewBuffer = new ViewBuffer();
 	view = XMMatrixIdentity();
 
-	Load();
+	//Load();
 }
 
 Camera::~Camera()
 {
-	Save();
+	//Save();
 
 	delete viewBuffer;
 }

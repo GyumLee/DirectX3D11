@@ -52,12 +52,12 @@ public:
 
 	Matrix GetView() { return view; }
 
+	void Save();
+	void Load();
+
 private:
 	void FreeMode();
 	void FollowMode();
 
 	void SetView();
-
-	void Save();
-	void Load();
 };

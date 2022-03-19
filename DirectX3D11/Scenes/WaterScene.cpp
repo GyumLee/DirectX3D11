@@ -4,35 +4,45 @@
 WaterScene::WaterScene()
 {
 	Create();
-	quad->GetMaterial()->SetShader(L"Water/Reflection.hlsl");
 
-	reflection = new Reflection(quad);
+	//quad->GetMaterial()->SetShader(L"Water/Refraction.hlsl");
+	//refraction = new Refraction("Textures/Landscape/Wave.dds");
+
+	water = new Water("Textures/Landscape/Wave.dds");
 }
 
 WaterScene::~WaterScene()
 {
 	delete skybox;
-	delete quad;
+	//delete quad;
 	delete sword;
 	delete hinata;
 	delete sphere;
 
-	delete reflection;
+	delete water;
 }
 
 void WaterScene::Update()
 {
-	quad->UpdateWorld();
+	//quad->UpdateWorld();
 	sword->UpdateWorld();
 	hinata->Update();
 	sphere->UpdateWorld();
 
-	reflection->Update();
+	water->Update();
 }
 
 void WaterScene::PreRender()
 {
-	reflection->SetReflection();
+	water->SetRefraction();
+
+	skybox->Render();
+
+	sword->Render();
+	hinata->Render();
+	sphere->Render();
+
+	water->SetReflection();
 
 	skybox->Render();
 
@@ -45,8 +55,9 @@ void WaterScene::Render()
 {
 	skybox->Render();
 
-	reflection->SetRender();
-	quad->Render();
+	//refraction->SetRender();
+	//quad->Render();
+	water->Render();
 
 	sword->Render();
 	hinata->Render();
@@ -55,21 +66,24 @@ void WaterScene::Render()
 
 void WaterScene::PostRender()
 {
-	reflection->PostRender();
+	//refraction->PostRender();
 }
 
 void WaterScene::GUIRender()
 {
+	//quad->GUIRender();
+	//refraction->GUIRender();
+	water->GUIRender();
 }
 
 void WaterScene::Create()
 {
-	skybox = new SkyBox("Textures/DDS/ColdSunset.dds");
+	skybox = new SkyBox("Textures/DDS/Snow_ENV.dds");
 
-	quad = new Quad();
-	quad->tag = "Quad";
-	quad->GetMaterial()->SetDiffuseMap("Textures/Landscape/Floor.png");
-	quad->Load();
+	//quad = new Quad();
+	//quad->tag = "Quad";
+	//quad->GetMaterial()->SetDiffuseMap("Textures/Landscape/Floor.png");
+	//quad->Load();
 
 	sword = new Model("Sword");
 	sword->tag = "TestSword";
@@ -86,5 +100,5 @@ void WaterScene::Create()
 	sphere->GetMaterial()->Load("TextData/Materials/FieldStone.mat");
 	sphere->Load();
 
-	quad->GetMaterial()->SetShader(L"Lighting/ModelLighting.hlsl");
+	//quad->GetMaterial()->SetShader(L"Lighting/ModelLighting.hlsl");
 }
