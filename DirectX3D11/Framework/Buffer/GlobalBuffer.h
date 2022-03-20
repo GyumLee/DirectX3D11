@@ -301,7 +301,8 @@ public:
 		Float3 origin = Float3(0, 0, 0);
 		float time = 0.0f;
 
-		Float3 size = Float3(50, 50, 50);
+		//Float3 size = Float3(50, 50, 50);
+		Float3 size = Float3(1000, 1000, 1000);
 		float turbulence = 5.0f;
 	}data;
 
