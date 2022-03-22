@@ -138,6 +138,7 @@ using namespace GameMath;
 #include "Framework/Environment/ETC.h"
 #include "Framework/Environment/Reflection.h"
 #include "Framework/Environment/Refraction.h"
+#include "Framework/Environment/Shadow.h"
 
 #include "Framework/Model/ModelType.h"
 #include "Framework/Model/ModelExporter.h"

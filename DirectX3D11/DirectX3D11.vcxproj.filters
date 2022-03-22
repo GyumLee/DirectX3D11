@@ -333,6 +333,12 @@
     <ClInclude Include="Objects\Landscape\Water.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\ShadowScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Environment\Shadow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -623,6 +629,12 @@
     <ClCompile Include="Objects\Landscape\Water.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\ShadowScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Environment\Shadow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -660,6 +672,8 @@
     <FxCompile Include="Shaders\Water\Reflection.hlsl" />
     <FxCompile Include="Shaders\Water\Refraction.hlsl" />
     <FxCompile Include="Shaders\Water\Water.hlsl" />
+    <FxCompile Include="Shaders\Shadow\AnimatorDepthMap.hlsl" />
+    <FxCompile Include="Shaders\Shadow\ModelDepthMap.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />
