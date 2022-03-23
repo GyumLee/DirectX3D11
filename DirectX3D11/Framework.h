@@ -169,6 +169,8 @@ using namespace GameMath;
 #include "Objects/Landscape/TerrainEditor.h"
 #include "Objects/Landscape/SkyBox.h"
 #include "Objects/Landscape/Water.h"
+#include "Objects/Landscape/TerrainData.h"
+#include "Objects/Landscape/QuadTreeTerrain.h"
 
 #include "Objects/Model/Ninja.h"
 #include "Objects/Model/Sword.h"

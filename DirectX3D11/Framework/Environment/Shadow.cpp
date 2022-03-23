@@ -32,6 +32,10 @@ void Shadow::SetDepthRender()
 
 void Shadow::SetRender()
 {
+	viewBuffer->SetVSBuffer(11);
+	projectionBuffer->SetVSBuffer(12);
+
+	DC->PSSetShaderResources(10, 1, &renderTarget->GetSRV());
 }
 
 void Shadow::PostRender()
@@ -49,7 +53,9 @@ void Shadow::SetViewProjection()
 	Vector3 lightPos = Environment::Get()->GetLight(0)->position;
 
 	Matrix view = XMMatrixLookAtLH(lightPos, Vector3(), Vector3(0, 1, 0));
-	Matrix projection = XMMatrixPerspectiveFovLH(XM_PIDIV2, 1.0f, 0.1f, 1000.0f);
+	//Matrix projection = XMMatrixPerspectiveFovLH(XM_PIDIV2, 1.0f, 0.1f, 1000.0f);
+	float length = lightPos.Length() * scale;
+	Matrix projection = XMMatrixOrthographicLH(length, length, 0.1f, 1000.0f);
 
 	viewBuffer->Set(view, view);
 	projectionBuffer->Set(projection);

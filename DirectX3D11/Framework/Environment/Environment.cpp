@@ -12,7 +12,10 @@ Environment::Environment()
 
 	mainCamera = new Camera();
 	mainCamera->Load();
-	frustum = new Frustum(projection);
+	//frustum = new Frustum(projection);
+	Matrix testProjection = XMMatrixPerspectiveFovLH(XM_PIDIV4,
+		1.0f, 0.1f, 1000.0f);
+	frustum = new Frustum(testProjection);
 
 	lightBuffer = new LightBuffer();
 

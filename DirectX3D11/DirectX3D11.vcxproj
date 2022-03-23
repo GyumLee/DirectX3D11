@@ -151,6 +151,8 @@
     <ClInclude Include="Framework\Utility\Utility.h" />
     <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Landscape\QuadTreeTerrain.h" />
+    <ClInclude Include="Objects\Landscape\TerrainData.h" />
     <ClInclude Include="Objects\Landscape\Water.h" />
     <ClInclude Include="Objects\Particle\Particle.h" />
     <ClInclude Include="Objects\Particle\ParticleSystem.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Scenes\ParticleScene.h" />
     <ClInclude Include="Scenes\ParticleToolScene.h" />
     <ClInclude Include="Scenes\PlaneScene.h" />
+    <ClInclude Include="Scenes\QuadTreeScene.h" />
     <ClInclude Include="Scenes\RenderTargetScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShadowScene.h" />
@@ -258,8 +261,10 @@
     <ClCompile Include="Objects\Basic\Quad.cpp" />
     <ClCompile Include="Objects\Basic\RenderTransform.cpp" />
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
+    <ClCompile Include="Objects\Landscape\QuadTreeTerrain.cpp" />
     <ClCompile Include="Objects\Landscape\SkyBox.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
+    <ClCompile Include="Objects\Landscape\TerrainData.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
     <ClCompile Include="Objects\Landscape\Water.cpp" />
     <ClCompile Include="Objects\Manager\BulletManager.cpp" />
@@ -294,6 +299,7 @@
     <ClCompile Include="Scenes\ParticleScene.cpp" />
     <ClCompile Include="Scenes\ParticleToolScene.cpp" />
     <ClCompile Include="Scenes\PlaneScene.cpp" />
+    <ClCompile Include="Scenes\QuadTreeScene.cpp" />
     <ClCompile Include="Scenes\RenderTargetScene.cpp" />
     <ClCompile Include="Scenes\ShadowScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
@@ -371,6 +377,10 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Shadow\ModelDepthMap.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Shadow\Shadow.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>

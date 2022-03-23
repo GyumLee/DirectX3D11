@@ -339,6 +339,15 @@
     <ClInclude Include="Framework\Environment\Shadow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\QuadTreeScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Landscape\TerrainData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Landscape\QuadTreeTerrain.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -635,6 +644,15 @@
     <ClCompile Include="Framework\Environment\Shadow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\QuadTreeScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Landscape\TerrainData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Landscape\QuadTreeTerrain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -674,6 +692,7 @@
     <FxCompile Include="Shaders\Water\Water.hlsl" />
     <FxCompile Include="Shaders\Shadow\AnimatorDepthMap.hlsl" />
     <FxCompile Include="Shaders\Shadow\ModelDepthMap.hlsl" />
+    <FxCompile Include="Shaders\Shadow\Shadow.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

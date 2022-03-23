@@ -9,6 +9,7 @@ ShadowScene::ShadowScene()
 	light->range = 500.0f;
 
 	Create();
+	quad->GetMaterial()->SetShader(L"Shadow/Shadow.hlsl");
 
 	shadow = new Shadow();
 }
@@ -49,6 +50,7 @@ void ShadowScene::Render()
 {
 	skybox->Render();
 
+	shadow->SetRender();
 	quad->Render();
 
 	sword->GetReader()->SetShader(L"Lighting/ModelLighting.hlsl");

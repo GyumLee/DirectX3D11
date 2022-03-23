@@ -23,6 +23,7 @@
 #include "Scenes/ParticleScene.h"
 #include "Scenes/WaterScene.h"
 #include "Scenes/ShadowScene.h"
+#include "Scenes/QuadTreeScene.h"
 
 Program::Program()
 {
@@ -49,7 +50,8 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ParticleToolScene());
 	//SceneManager::Get()->Create("Start", new ParticleScene());
 	//SceneManager::Get()->Create("Start", new WaterScene());
-	SceneManager::Get()->Create("Start", new ShadowScene());
+	//SceneManager::Get()->Create("Start", new ShadowScene());
+	SceneManager::Get()->Create("Start", new QuadTreeScene());
 
 	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
