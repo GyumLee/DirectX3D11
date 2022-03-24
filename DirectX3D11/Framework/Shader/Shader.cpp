@@ -55,6 +55,30 @@ GeometryShader* Shader::AddGS(wstring file)
 	return (GeometryShader*)shaders[key];
 }
 
+HullShader* Shader::AddHS(wstring file)
+{
+	wstring key = file + L"HS";
+
+	if (shaders.count(key) > 0)
+		return (HullShader*)shaders[key];
+
+	shaders[key] = new HullShader(file);
+
+	return (HullShader*)shaders[key];
+}
+
+DomainShader* Shader::AddDS(wstring file)
+{
+	wstring key = file + L"DS";
+
+	if (shaders.count(key) > 0)
+		return (DomainShader*)shaders[key];
+
+	shaders[key] = new DomainShader(file);
+
+	return (DomainShader*)shaders[key];
+}
+
 void Shader::Delete()
 {
 	for (pair<wstring, Shader*> shader : shaders)

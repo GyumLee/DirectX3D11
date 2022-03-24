@@ -4,6 +4,8 @@ class VertexShader;
 class PixelShader;
 class ComputeShader;
 class GeometryShader;
+class HullShader;
+class DomainShader;
 
 class Shader
 {
@@ -20,6 +22,8 @@ public:
 	static PixelShader* AddPS(wstring file);
 	static ComputeShader* AddCS(wstring file);
 	static GeometryShader* AddGS(wstring file);
+	static HullShader* AddHS(wstring file);
+	static DomainShader* AddDS(wstring file);
 
 	static void Delete();
 

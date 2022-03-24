@@ -47,3 +47,15 @@ void ConstBuffer::SetGSBuffer(UINT slot)
 	Update();
 	DC->GSSetConstantBuffers(slot, 1, &buffer);
 }
+
+void ConstBuffer::SetHSBuffer(UINT slot)
+{
+	Update();
+	DC->HSSetConstantBuffers(slot, 1, &buffer);
+}
+
+void ConstBuffer::SetDSBuffer(UINT slot)
+{
+	Update();
+	DC->DSSetConstantBuffers(slot, 1, &buffer);
+}
