@@ -20,6 +20,7 @@ public:
 	static void Delete();
 
 	void Set(UINT slot);
+	void SetDS(UINT slot);
 
 	vector<Float4> ReadPixels();
 

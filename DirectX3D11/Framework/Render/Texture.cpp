@@ -83,6 +83,11 @@ void Texture::Set(UINT slot)
 	DC->PSSetShaderResources(slot, 1, &srv);
 }
 
+void Texture::SetDS(UINT slot)
+{
+	DC->DSSetShaderResources(slot, 1, &srv);
+}
+
 vector<Float4> Texture::ReadPixels()
 {
 	uint8_t* colors = image.GetPixels();

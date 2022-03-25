@@ -62,6 +62,7 @@ void Environment::SetRender()
 	mainCamera->SetBuffer();
 	projectionBuffer->SetVSBuffer(2);
 	projectionBuffer->SetGSBuffer(2);
+	projectionBuffer->SetDSBuffer(2);
 
 	lightBuffer->SetPSBuffer(0);
 
@@ -150,7 +151,7 @@ void Environment::CreateProjection()
 	projectionBuffer = new ProjectionBuffer();
 
 	projection = XMMatrixPerspectiveFovLH(XM_PIDIV4,
-		(float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 1000.0f);
+		(float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 5000.0f);
 
 	projectionBuffer->Set(projection);
 

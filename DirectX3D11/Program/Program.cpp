@@ -25,6 +25,7 @@
 #include "Scenes/ShadowScene.h"
 #include "Scenes/QuadTreeScene.h"
 #include "Scenes/TessellationScene.h"
+#include "Scenes/TerrainLODScene.h"
 
 Program::Program()
 {
@@ -53,7 +54,8 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new WaterScene());
 	//SceneManager::Get()->Create("Start", new ShadowScene());
 	//SceneManager::Get()->Create("Start", new QuadTreeScene());
-	SceneManager::Get()->Create("Start", new TessellationScene());
+	//SceneManager::Get()->Create("Start", new TessellationScene());
+	SceneManager::Get()->Create("Start", new TerrainLODScene());
 
 	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");

@@ -74,6 +74,8 @@ void Camera::SetBuffer(UINT slot)
 {
 	viewBuffer->SetVSBuffer(slot);
 	viewBuffer->SetGSBuffer(slot);
+	viewBuffer->SetHSBuffer(slot);
+	viewBuffer->SetDSBuffer(slot);
 }
 
 Ray Camera::ScreenPointToRay(Vector3 screenPos)
