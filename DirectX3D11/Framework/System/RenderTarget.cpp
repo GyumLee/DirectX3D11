@@ -52,3 +52,23 @@ void RenderTarget::Set(DepthStencil* depthStencil, Float4 clearColor)
     Environment::Get()->SetViewport(width, height);
     Environment::Get()->SetRender();
 }
+
+void RenderTarget::SetMulti(RenderTarget** targets, UINT count, DepthStencil* depthStencil, Float4 clearColor)
+{
+    vector<ID3D11RenderTargetView*> rtvs;
+
+    for (UINT i = 0; i < count; i++)
+    {
+        rtvs.push_back(targets[i]->GetRTV());
+        DC->ClearRenderTargetView(rtvs.back(), (float*)&clearColor);
+    }
+
+    depthStencil->Clear();
+
+    DC->OMSetRenderTargets(count, rtvs.data(), depthStencil->GetDSV());
+
+    depthStencil->Clear();
+
+    Environment::Get()->SetViewport();
+    Environment::Get()->SetRender();
+}

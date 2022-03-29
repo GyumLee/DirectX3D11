@@ -153,7 +153,9 @@
     <ClInclude Include="Framework\Utility\Utility.h" />
     <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Deferred\GBuffer.h" />
     <ClInclude Include="Objects\Landscape\QuadTreeTerrain.h" />
+    <ClInclude Include="Objects\Landscape\Scattering.h" />
     <ClInclude Include="Objects\Landscape\TerrainData.h" />
     <ClInclude Include="Objects\Landscape\TerrainLOD.h" />
     <ClInclude Include="Objects\Landscape\Water.h" />
@@ -184,6 +186,7 @@
     <ClInclude Include="Scenes\BillboardScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\CubeScene.h" />
+    <ClInclude Include="Scenes\DeferredScene.h" />
     <ClInclude Include="Scenes\FrustumScene.h" />
     <ClInclude Include="Scenes\GridScene.h" />
     <ClInclude Include="Scenes\LightScene.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="Scenes\PlaneScene.h" />
     <ClInclude Include="Scenes\QuadTreeScene.h" />
     <ClInclude Include="Scenes\RenderTargetScene.h" />
+    <ClInclude Include="Scenes\ScatteringScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShadowScene.h" />
     <ClInclude Include="Scenes\ShootingScene.h" />
@@ -268,7 +272,9 @@
     <ClCompile Include="Objects\Basic\Quad.cpp" />
     <ClCompile Include="Objects\Basic\RenderTransform.cpp" />
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
+    <ClCompile Include="Objects\Deferred\GBuffer.cpp" />
     <ClCompile Include="Objects\Landscape\QuadTreeTerrain.cpp" />
+    <ClCompile Include="Objects\Landscape\Scattering.cpp" />
     <ClCompile Include="Objects\Landscape\SkyBox.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainData.cpp" />
@@ -296,6 +302,7 @@
     <ClCompile Include="Scenes\BillboardScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\CubeScene.cpp" />
+    <ClCompile Include="Scenes\DeferredScene.cpp" />
     <ClCompile Include="Scenes\FrustumScene.cpp" />
     <ClCompile Include="Scenes\GridScene.cpp" />
     <ClCompile Include="Scenes\LightScene.cpp" />
@@ -309,6 +316,7 @@
     <ClCompile Include="Scenes\PlaneScene.cpp" />
     <ClCompile Include="Scenes\QuadTreeScene.cpp" />
     <ClCompile Include="Scenes\RenderTargetScene.cpp" />
+    <ClCompile Include="Scenes\ScatteringScene.cpp" />
     <ClCompile Include="Scenes\ShadowScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
@@ -335,6 +343,18 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Basic\SkyBox.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Deferred\AnimGBuffer.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Deferred\DeferredLighting.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Deferred\ModelGBuffer.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
@@ -381,6 +401,18 @@
     <FxCompile Include="Shaders\PostEffect\GrayScale.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Scattering\Scattering.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="Shaders\Scattering\ScatteringTarget.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
     </FxCompile>
     <FxCompile Include="Shaders\Shadow\AnimatorDepthMap.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

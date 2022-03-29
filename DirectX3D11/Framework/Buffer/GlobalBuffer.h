@@ -331,3 +331,27 @@ public:
 	{
 	}
 };
+
+class ScatteringBuffer : public ConstBuffer
+{
+public:
+	struct Data
+	{
+		Float3 waveLength = Float3(0.65f, 0.57, 0.475f);
+		int sampleCount = 5;
+
+		Float3 invWaveLength;
+		float padding;
+	}data;
+
+	ScatteringBuffer() : ConstBuffer(&data, sizeof(Data))
+	{
+		data.invWaveLength.x = 1.0f / pow(data.waveLength.x, 4.0f);
+		data.invWaveLength.y = 1.0f / pow(data.waveLength.y, 4.0f);
+		data.invWaveLength.z = 1.0f / pow(data.waveLength.z, 4.0f);
+
+		data.waveLength.x = pow(data.waveLength.x, 0.84f);
+		data.waveLength.y = pow(data.waveLength.y, 0.84f);
+		data.waveLength.z = pow(data.waveLength.z, 0.84f);
+	}
+};

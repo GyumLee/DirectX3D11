@@ -73,6 +73,7 @@ void Camera::GUIRender()
 void Camera::SetBuffer(UINT slot)
 {
 	viewBuffer->SetVSBuffer(slot);
+	viewBuffer->SetPSBuffer(10);
 	viewBuffer->SetGSBuffer(slot);
 	viewBuffer->SetHSBuffer(slot);
 	viewBuffer->SetDSBuffer(slot);

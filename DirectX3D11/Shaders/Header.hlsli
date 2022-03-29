@@ -3,6 +3,8 @@
 #define MAX_LIGHT 10
 #define MAX_INSTANCE 100
 
+static const float2 shininessRange = { 0.1f, 50.0f };
+
 //VertexLayout
 struct Vertex
 {
@@ -307,6 +309,7 @@ struct Material
 	float4 specularIntensity;
 	float3 viewPos;
 	float3 worldPos;
+	float shininess;
 };
 
 float3 NormalMapping(float3 T, float3 B, float3 N, float2 uv)
@@ -351,6 +354,7 @@ Material GetMaterial(LightPixelInput input)
 	material.viewPos = input.viewPos;
 	material.specularIntensity = SpecularMapping(input.uv);
 	material.worldPos = input.worldPos;
+	material.shininess = shininess;
 	
 	return material;
 }
@@ -394,7 +398,7 @@ float4 CalcDirectional(Material material, Light light)
 		float3 halfWay = normalize(toEye + toLight);
 		float NdotH = saturate(dot(material.normal, halfWay));
 		
-		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+		finalColor += light.color * pow(NdotH, material.shininess) * material.specularIntensity * mSpecular;
 	}
 	
 	return finalColor * material.diffuseColor;
@@ -416,7 +420,7 @@ float4 CalcPoint(Material material, Light light)
 		float3 halfWay = normalize(toEye + toLight);
 		float NdotH = saturate(dot(material.normal, halfWay));
 		
-		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+		finalColor += light.color * pow(NdotH, material.shininess) * material.specularIntensity * mSpecular;
 	}
 	
 	float distanceToLightNormal = 1.0f - saturate(distanceToLight / light.range);
@@ -441,7 +445,7 @@ float4 CalcSpot(Material material, Light light)
 		float3 halfWay = normalize(toEye + toLight);
 		float NdotH = saturate(dot(material.normal, halfWay));
 		
-		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+		finalColor += light.color * pow(NdotH, material.shininess) * material.specularIntensity * mSpecular;
 	}
 	
 	float3 dir = -normalize(light.direction);
@@ -482,7 +486,7 @@ float4 CalcCapsule(Material material, Light light)
 		float3 halfWay = normalize(toEye + toLight);
 		float NdotH = saturate(dot(material.normal, halfWay));
 		
-		finalColor += light.color * pow(NdotH, shininess) * material.specularIntensity * mSpecular;
+		finalColor += light.color * pow(NdotH, material.shininess) * material.specularIntensity * mSpecular;
 	}
 	
 	float distanceToLightNormal = 1.0f - saturate(distanceToLight / light.range);

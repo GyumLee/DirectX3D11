@@ -174,6 +174,7 @@ using namespace GameMath;
 #include "Objects/Landscape/TerrainData.h"
 #include "Objects/Landscape/QuadTreeTerrain.h"
 #include "Objects/Landscape/TerrainLOD.h"
+#include "Objects/Landscape/Scattering.h"
 
 #include "Objects/Model/Ninja.h"
 #include "Objects/Model/Sword.h"
@@ -190,6 +191,8 @@ using namespace GameMath;
 
 #include "Objects/Manager/BulletManager.h"
 #include "Objects/Manager/MonsterManager.h"
+
+#include "Objects/Deferred/GBuffer.h"
 
 //Program
 #include "Scenes/Scene.h"

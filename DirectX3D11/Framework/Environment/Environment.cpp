@@ -61,6 +61,7 @@ void Environment::SetRender()
 
 	mainCamera->SetBuffer();
 	projectionBuffer->SetVSBuffer(2);
+	projectionBuffer->SetPSBuffer(11);
 	projectionBuffer->SetGSBuffer(2);
 	projectionBuffer->SetDSBuffer(2);
 

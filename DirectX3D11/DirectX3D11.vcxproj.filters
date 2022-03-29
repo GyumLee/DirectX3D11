@@ -363,6 +363,18 @@
     <ClInclude Include="Objects\Landscape\TerrainLOD.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\ScatteringScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Landscape\Scattering.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\DeferredScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Deferred\GBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D11.cpp">
@@ -683,6 +695,18 @@
     <ClCompile Include="Objects\Landscape\TerrainLOD.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\ScatteringScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Landscape\Scattering.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\DeferredScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Deferred\GBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D11.rc">
@@ -726,6 +750,11 @@
     <FxCompile Include="Shaders\TS\Triangle.hlsl" />
     <FxCompile Include="Shaders\TS\Rectangle.hlsl" />
     <FxCompile Include="Shaders\TS\TerrainLOD.hlsl" />
+    <FxCompile Include="Shaders\Scattering\Scattering.hlsl" />
+    <FxCompile Include="Shaders\Scattering\ScatteringTarget.hlsl" />
+    <FxCompile Include="Shaders\Deferred\ModelGBuffer.hlsl" />
+    <FxCompile Include="Shaders\Deferred\AnimGBuffer.hlsl" />
+    <FxCompile Include="Shaders\Deferred\DeferredLighting.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

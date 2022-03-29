@@ -26,6 +26,8 @@
 #include "Scenes/QuadTreeScene.h"
 #include "Scenes/TessellationScene.h"
 #include "Scenes/TerrainLODScene.h"
+#include "Scenes/ScatteringScene.h"
+#include "Scenes/DeferredScene.h"
 
 Program::Program()
 {
@@ -34,20 +36,20 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new CubeScene());
 	//SceneManager::Get()->Create("Start", new PlaneScene());
 	//SceneManager::Get()->Create("Grid", new GridScene());
-	//SceneManager::Get()->Create("Start", new TerrainScene());
-	//SceneManager::Get()->Create("Start", new TerrainEditorScene());
+	///SceneManager::Get()->Create("Start", new TerrainScene());
+	///SceneManager::Get()->Create("Start", new TerrainEditorScene());
 	//SceneManager::Get()->Create("ModelExport", new ModelExportScene());
 	//SceneManager::Get()->Create("Start", new ModelRenderScene());
 	//SceneManager::Get()->Create("Start", new ModelAnimatorRenderScene());
 	//SceneManager::Get()->Create("Start", new CharacterScene());
 	//SceneManager::Get()->Create("Start", new CollisionScene());
-	//SceneManager::Get()->Create("Start", new ShootingScene());
+	///SceneManager::Get()->Create("Start", new ShootingScene());
 	//SceneManager::Get()->Create("Start", new LightScene());
-	//SceneManager::Get()->Create("Start", new AStarScene());
+	///SceneManager::Get()->Create("Start", new AStarScene());
 	//SceneManager::Get()->Create("Start", new ModelInstancingScene());
-	//SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
+	///SceneManager::Get()->Create("Start", new ModelAnimatorInstancingScene());
 	//SceneManager::Get()->Create("Start", new FrustumScene());
-	//SceneManager::Get()->Create("Start", new RenderTargetScene());
+	///SceneManager::Get()->Create("Start", new RenderTargetScene());
 	//SceneManager::Get()->Create("Start", new BillboardScene());
 	//SceneManager::Get()->Create("Start", new ParticleToolScene());
 	//SceneManager::Get()->Create("Start", new ParticleScene());
@@ -55,7 +57,9 @@ Program::Program()
 	//SceneManager::Get()->Create("Start", new ShadowScene());
 	//SceneManager::Get()->Create("Start", new QuadTreeScene());
 	//SceneManager::Get()->Create("Start", new TessellationScene());
-	SceneManager::Get()->Create("Start", new TerrainLODScene());
+	//SceneManager::Get()->Create("Start", new TerrainLODScene());
+	//SceneManager::Get()->Create("Start", new ScatteringScene());
+	//SceneManager::Get()->Create("Start", new DeferredScene());
 
 	//SceneManager::Get()->Add("Grid");
 	SceneManager::Get()->Add("Start");
