@@ -17,7 +17,7 @@
 #define MAX_BONE 1024
 #define MAX_FRAME 1024
 #define MAX_LIGHT 10
-#define MAX_INSTANCE 400
+#define MAX_INSTANCE 100
 
 #define LERP(s, e, t) (s + (e - s) * t)
 

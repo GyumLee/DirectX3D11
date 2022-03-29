@@ -6,9 +6,10 @@ ModelInstancingScene::ModelInstancingScene()
 	modelInstancing = new ModelInstancing("Sword");
 
 	float interval = 20.0f;
-
+	float instanceCount = 0;
 	for (float z = -10.0f; z < 10.0f; z++)
 	{
+		if (instanceCount >= MAX_INSTANCE) break;
 		for (float x = -10.0f; x < 10.0f; x++)
 		{
 			Transform* transform = modelInstancing->Add();
@@ -20,6 +21,9 @@ ModelInstancingScene::ModelInstancingScene()
 			model->position *= interval;
 			model->UpdateWorld();
 			models.push_back(model);*/
+
+			instanceCount++;
+			if (instanceCount >= MAX_INSTANCE) break;
 		}
 	}
 }

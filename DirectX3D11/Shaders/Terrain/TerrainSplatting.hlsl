@@ -44,6 +44,7 @@ float4 PS(LightPixelInput input) : SV_TARGET
 	material.viewPos = input.viewPos;
 	material.specularIntensity = SpecularMapping(input.uv);
 	material.worldPos = input.worldPos;
+	material.shininess = shininess;
 	
 	float4 result = CalcLights(material);
 	float4 ambient = CalcAmbient(material);
