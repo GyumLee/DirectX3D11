@@ -19,6 +19,13 @@ void RasterizerState::SetState()
 	DC->RSSetState(state);
 }
 
+void RasterizerState::CullMode(D3D11_CULL_MODE value)
+{
+	desc.CullMode = value;
+
+	Changed();
+}
+
 void RasterizerState::FillMode(D3D11_FILL_MODE value)
 {
 	desc.FillMode = value;

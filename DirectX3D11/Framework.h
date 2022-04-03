@@ -188,6 +188,7 @@ using namespace GameMath;
 #include "Objects/Particle/Spark.h"
 #include "Objects/Particle/Rain.h"
 #include "Objects/Particle/Snow.h"
+#include "Objects/Particle/Trail.h"
 
 #include "Objects/Manager/BulletManager.h"
 #include "Objects/Manager/MonsterManager.h"

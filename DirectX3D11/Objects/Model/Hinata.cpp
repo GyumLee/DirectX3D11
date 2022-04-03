@@ -75,7 +75,10 @@ void Hinata::Control()
 		isAttack = true;
 
 		if (isSwordMode)
+		{
 			SetClip(SWORD_ATTACK);
+			sword->GetTrail()->isActive = true;
+		}
 		else
 			SetClip(RIFLE_ATTACK);
 		
@@ -174,6 +177,8 @@ void Hinata::EndSlash()
 {
 	isAttack = false;
 	SetClip(SWORD_IDLE);
+
+	sword->GetTrail()->isActive = false;
 }
 
 void Hinata::EndSheath()
