@@ -55,6 +55,8 @@ private:
 
 	UINT size;
 
+	vector<string> comboList;
+
 public:
 	TerrainEditor(UINT width = 100, UINT height = 100);
 	~TerrainEditor();
