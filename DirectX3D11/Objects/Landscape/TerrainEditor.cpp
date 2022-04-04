@@ -16,6 +16,9 @@ TerrainEditor::TerrainEditor(UINT width, UINT height)
 
 	worldBuffer = new WorldBuffer();
 	brushBuffer = new BrushBuffer();
+
+	comboList.push_back("HIEGHT");
+	comboList.push_back("ALPHA");
 }
 
 TerrainEditor::~TerrainEditor()
@@ -78,8 +81,12 @@ void TerrainEditor::GUIRender()
 	ImGui::DragFloat("BRUSH RANGE", &brushBuffer->data.range, 0.1f, 0, 100);
 	ImGui::DragFloat("ADJUST VALUE", &adjustValue, 1.0f);
 
-	const char* editList[] = { "HIEGHT", "ALPHA" };
-	ImGui::Combo("EDIT TYPE", &editType, editList, sizeof(editList) / sizeof(const char*));
+	const char* editList[100];
+	//for (int i = 0; i < 100; i++)
+	//	editList[i] = new char[100];
+	for (int i = 0; i < comboList.size(); i++)
+		editList[i] = comboList[i].c_str();
+	ImGui::Combo("EDIT TYPE", &editType, editList, comboList.size());
 
 	if (ImGui::ImageButton(secondMap->GetSRV(), ImVec2(50, 50)))
 		selectMap = 0;
